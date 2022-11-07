@@ -14,12 +14,21 @@ public class Cadastro {public static void main(String[] args) throws IOException
     System.out.println("informe a sua senha:");
     String senha = ler.nextLine();
 
+    String URI = "C:\\Users\\2022101202010252.IFGOIANO\\OneDrive\\";
+    StringBuilder id = new StringBuilder(String.valueOf(criptografia(login)));
+    StringBuilder caminho = new StringBuilder(URI+id);
+
+
     do {
-        if (validacaoDeUsuario(login) ||verificaLoginDuplicada(login))
+        if (validacaoDeUsuario(login) ||verificaLoginDuplicada(String.valueOf(caminho)))
         {
             System.out.println("login invalido");
             System.out.println("Informe seu login:");
             login = ler.nextLine();
+            id.delete(0,id.length());
+            id.append(String.valueOf(criptografia(login)));
+            caminho.delete(0,caminho.length());
+            caminho.append(URI).append(id);
         }
 
         else if (validaDeSenhaRegex(senha) ||senha.equals(login)|| verificaSequencia(senha)){
@@ -30,14 +39,15 @@ public class Cadastro {public static void main(String[] args) throws IOException
 
     }while (senha.equals(login)|| validacaoDeUsuario(senha) || validaDeSenhaRegex(senha) ||verificaLoginDuplicada(login)|| verificaSequencia(senha));
 
-    File diretorio = new File(String.valueOf(criptografia(login)));
+
+            File diretorio = new File(String.valueOf(caminho));
+
     diretorio.mkdir();
     File arquivo = new File(diretorio,"LoginESenha.txt");
     arquivo.createNewFile();
-    BufferedWriter armazenaSenha = new BufferedWriter(new FileWriter(arquivo, true));
-    BufferedWriter armazenalogin = new BufferedWriter(new FileWriter(arquivo, true));
-    armazenaLoginESenha(armazenaSenha,armazenalogin,login,senha);
+    BufferedWriter armazena = new BufferedWriter(new FileWriter(arquivo, true));
 
+    armazenaLoginESenha(armazena,login,senha);
 }
 
     public static boolean validacaoDeUsuario(String login){
@@ -77,17 +87,18 @@ public class Cadastro {public static void main(String[] args) throws IOException
         return !matcher.find();
     }
 
-    public static Boolean verificaLoginDuplicada(String login) {
-        File verificaDuplicado = new File(String.valueOf(criptografia(login)));
+    public static Boolean verificaLoginDuplicada(String caminho) {
+        File verificaDuplicado = new File(caminho);
         return verificaDuplicado.exists();
     }
 
-    public static void armazenaLoginESenha(BufferedWriter armazenaSenha, BufferedWriter armazenalogin,String login, String senha){
+    public static void armazenaLoginESenha( BufferedWriter armazena,String login, String senha){
         try {
-            armazenalogin.write(login+"\n");
-            armazenaSenha.write(criptografia(senha)+"\n");
-            armazenalogin.close();
-            armazenaSenha.close();
+            armazena.write(login);
+            armazena.newLine();
+            armazena.write(String.valueOf(criptografia(senha)));
+            armazena.newLine();
+            armazena.close();
 
         }catch (IOException e){
             e.printStackTrace();
