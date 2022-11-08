@@ -25,7 +25,7 @@ public class Cadastro {public static void main(String[] args) throws IOException
             System.out.println("login invalido");
             System.out.println("Informe seu login:");
             login = ler.nextLine();
-            id.delete(0,id.length());
+            id.delete(0,id.length()); 
             id.append(String.valueOf(criptografia(login)));
             caminho.delete(0,caminho.length());
             caminho.append(URI).append(id);
