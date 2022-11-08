@@ -14,7 +14,7 @@ public class Cadastro {public static void main(String[] args) throws IOException
     System.out.println("informe a sua senha:");
     String senha = ler.nextLine();
 
-    String URI = "C:\\Users\\2022101202010252.IFGOIANO\\OneDrive\\";
+    String URI = "C:\\OneDrive\\EscapebankFiles\\logins\\";
     StringBuilder id = new StringBuilder(String.valueOf(criptografia(login)));
     StringBuilder caminho = new StringBuilder(URI+id);
 
