@@ -14,7 +14,7 @@ public class Cadastro {public static void main(String[] args) throws IOException
     System.out.println("informe a sua senha:");
     String senha = ler.nextLine();
 
-    String URI = "C:\\OneDrive\\EscapebankFiles\\logins\\";
+    String URI = "C:\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\EscapebankFiles\\logins\\";
     StringBuilder id = new StringBuilder(String.valueOf(criptografia(login)));
     StringBuilder caminho = new StringBuilder(URI+id);
 
@@ -25,7 +25,7 @@ public class Cadastro {public static void main(String[] args) throws IOException
             System.out.println("login invalido");
             System.out.println("Informe seu login:");
             login = ler.nextLine();
-            id.delete(0,id.length()); 
+            id.delete(0,id.length());
             id.append(String.valueOf(criptografia(login)));
             caminho.delete(0,caminho.length());
             caminho.append(URI).append(id);

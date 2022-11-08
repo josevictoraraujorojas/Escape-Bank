@@ -11,7 +11,7 @@ public class Login {
         String senha = ler.nextLine();
 
         String id = String.valueOf(Cadastro.criptografia(login));
-        String URI = "C:\\OneDrive\\EscapebankFiles\\logins\\";
+        String URI = "C:\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\EscapebankFiles\\logins\\";
         String caminho = URI+id;
 
         File diretorio = new File(caminho);
