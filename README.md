@@ -8,7 +8,7 @@
 - página inicial - mostrar saldo e gráfico de representação de gastos;
 - barra de opções;
 
-## Abrir conta, cadastrar conta, deletar conta -> josé
+## Abrir conta, cadastrar conta, deletar conta -> ariana
 - cadastro da pessoa - nome, endereço, cpf salário atual, ganhos extras;
 - abertura de conta - baseada em salário atual - possibilidade de cheque especial com porcentagem salário;
 - cadastrar conta aleatoria - ele informar um nome e senha ficticio - abrir um valor random;
@@ -24,13 +24,13 @@
 
 ## Comprovantes -> ariana
 - arquivo com linhas onde serão lidas as informações, impressas via %s;
-  Cartão de Débito Virtual, de Crédito-> josé,
-  empréstimos->ariana;
 
-    - print de cartão em tela com numeração - uso virtual;
-    - CC - acesso a limites, saldo menrsal, extrato de gastos - mesma página;
-    - CD - impressão em tela e previsão de pagar as coisas com app;
-    - empréstimos - limite baseado em salário cadastrado, valor a ser descontado por mês da conta, cálculo das outras dívidas já feitas;
+## Cartão de Débito Virtual, de Crédito-> josé,
+### empréstimos->ariana;
+- print de cartão em tela com numeração - uso virtual;
+- CC - acesso a limites, saldo menrsal, extrato de gastos - mesma página;
+- CD - impressão em tela e previsão de pagar as coisas com app;
+- empréstimos - limite baseado em salário cadastrado, valor a ser descontado por mês da conta, cálculo das outras dívidas já feitas;
 
 ## Controle e monitoramento de gastos -> ariana
 - página de cadastro de gastos extras - em dinheiro;
