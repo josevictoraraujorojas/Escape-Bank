@@ -1,17 +1,13 @@
-import javax.management.StringValueExp;
+
 import java.io.*;
-import java.util.Scanner;
+
 
 public class Login {
-    public static void main(String[] args) throws IOException {
-        Scanner ler = new Scanner(System.in);
-        System.out.println("informe seu login:");
-        String login = ler.nextLine();
-        System.out.println("informe sua senha:");
-        String senha = ler.nextLine();
+
+    public Login(String login, String senha) throws IOException {
 
         String id = String.valueOf(Cadastro.criptografia(login));
-        String URI = "C:\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\EscapebankFiles\\logins\\";
+        String URI = "C:\\EscapeBank\\login";
         String caminho = URI+id;
 
         File diretorio = new File(caminho);
@@ -34,7 +30,4 @@ public class Login {
         }
         if (verificaLogin && verificaSenha){
             System.out.println("login valido");
-        }
-
-    }
-}
+        }}}
