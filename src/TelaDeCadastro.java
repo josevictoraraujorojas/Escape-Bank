@@ -1,13 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.IOException;
 
 
-public class TelaDeCadastro extends JFrame{
+
+public class TelaDeCadastro extends JFrame {
 
     JButton jb1,jb2;
     JTextField jt1,jt2;
+
     JLabel jl1,jl2,jl3, jl4, jl5;
     Color cor = new Color(98, 0, 158);
 
@@ -17,7 +21,8 @@ public class TelaDeCadastro extends JFrame{
 
 
 
-    public TelaDeCadastro(){
+    public TelaDeCadastro()
+    {
 
 
         //configurações do jframe//
@@ -48,19 +53,59 @@ public class TelaDeCadastro extends JFrame{
         jb2.addActionListener(this::close);
 
         //configuraçao do Jtextfield//
-        jt1 = new JTextField();
+
+        jt1= new JTextField("digite um nome de usuario");
         jt1.setBounds(140, 145, 300, 30);//x=130 y= 4
         jt1.setBackground(Color.MAGENTA);
         jt1.setForeground(Color.WHITE);
         jt1.setFont(new Font("Arial", Font.BOLD, 15));
         jt1.setVisible(true);
+        jt1.addFocusListener(new FocusListener()
+        {
+            @Override
+            public void focusGained(FocusEvent e)
+            {
+                if (jt1.getText().equals("digite um nome de usuario"))
+                {
+                    jt1.setText("");
+                }
+            }
 
-        jt2 = new JTextField();
+            @Override
+            public void focusLost(FocusEvent e)
+            {
+                if (jt1.getText().isEmpty())
+                {
+                    jt1.setText("digite um nome de usuario");
+                }
+            }
+        });
+
+        jt2 = new JTextField("digite uma senha");
         jt2.setBounds(140, 266, 300, 30);
         jt2.setBackground(Color.MAGENTA);
         jt2.setForeground(Color.WHITE);
         jt2.setFont(new Font("Arial", Font.BOLD, 15));
         jt2.setVisible(true);
+        jt2.addFocusListener(new FocusListener()
+        {
+            @Override
+            public void focusGained(FocusEvent e)
+            {
+                if (jt2.getText().equals("digite uma senha")){
+                    jt2.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e)
+            {
+                if (jt2.getText().isEmpty())
+                {
+                    jt2.setText("digite uma senha");
+                }
+            }
+        });
 
         //configurar jlabel//
         jl1 = new JLabel("usuario:");
@@ -75,7 +120,7 @@ public class TelaDeCadastro extends JFrame{
         jl2.setBounds(10, 267, 70, 30);
         jl2.setVisible(true);
 
-        jl3 = new JLabel("<html>Bem vindo ao Escape-Bank<br> dê um Escape na burocracia!</html>");
+        jl3 = new JLabel("<html>Bem vindo ao Escape-Bank<br> de um Escape na burocracia!</html>");
         jl3.setFont(new Font("arial", Font.BOLD, 20));
         jl3.setForeground(Color.MAGENTA);
         jl3.setBounds(10, 10, 450, 60);
@@ -93,7 +138,19 @@ public class TelaDeCadastro extends JFrame{
         jl5.setBounds(10,303 , 450, 90);
         jl5.setVisible(true);
 
+        JLabel icon = new JLabel("E");
+        icon.setBounds(480,11,500,400);
+        icon.setFont(new Font("arial", Font.ITALIC, 500));
+        icon.setForeground(Color.MAGENTA);
+        icon.setVisible(true);
 
+        JLabel icon2 = new JLabel("bank!");
+        icon2.setBounds(700,370,60,50);
+        icon2.setFont(new Font("arial", Font.ITALIC, 20));
+        icon2.setForeground(Color.MAGENTA);
+        icon2.setVisible(true);
+
+        add(icon);
         add(jl3);
         add(jl1);
         add(jt1);
@@ -104,17 +161,14 @@ public class TelaDeCadastro extends JFrame{
         add(jb2);
         add(jl4);
         add(jl5);
-     /*   setExtendedState(getState()| JFrame.MAXIMIZED_BOTH);
+        add(icon2);
+/*        setExtendedState(getState()| JFrame.MAXIMIZED_BOTH);
         setExtendedState(getState()| JFrame.NORMAL);*/
-
-
-
-
-
     }
 
-    private void close(ActionEvent actionEvent) {
+    private TelaDeLogin close(ActionEvent actionEvent) {
         dispose();
+        return new TelaDeLogin();
     }
 
     private void acesscadastro(ActionEvent actionEvent)
@@ -130,6 +184,7 @@ public class TelaDeCadastro extends JFrame{
             if (B)
             {
                 dispose();
+                new TelaDeCadastroCliente();
             }
         } catch (IOException e)
         {
@@ -143,5 +198,12 @@ public class TelaDeCadastro extends JFrame{
     public static void fechartela(Boolean b)
     {
         B=b;
+        Main.verificarcadastrodecliente(B);
+        return;
     }
+
+    public static void main(String[] args) {
+        new TelaDeCadastro();
+    }
+
 }

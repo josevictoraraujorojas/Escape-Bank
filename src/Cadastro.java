@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Component;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -15,9 +14,10 @@ public class Cadastro {
         UIManager.getDefaults().put("OptionPane.background", new Color(6422686));
         UIManager.put("Panel.background", new Color(6422686));
         new Scanner(System.in);
-        String URI = "C:\\Users\\arian\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\ScapeBank\\";
+        String URI = "C:\\EscapeBank\\login\\";
         StringBuilder id = new StringBuilder(String.valueOf(criptografia(login)));
         StringBuilder caminho = new StringBuilder(URI + id);
+        new SetPaths().SavePaths(id,"C:\\EscapeBank\\native.txt",false);
 
         while(validacaoDeUsuario(login) && !verificaLoginDuplicada(String.valueOf(caminho)) && !senha.equals(login)&& !verificaSequencia(senha)&& !validaDeSenhaRegex(senha)){
             if (validaDeSenhaRegex(senha) || senha.equals(login) || verificaSequencia(senha)) {
@@ -43,25 +43,13 @@ public class Cadastro {
     }
 
     public static boolean validacaoDeUsuario(String login) {
-        char[] var1 = login.toCharArray();
-        int var2 = var1.length;
+        boolean found;
+        Pattern pattern = Pattern.compile("^[A-z_].(?!.*[\\s]).(?!.*[\\p{Punct}&&[^_]]).(?=\\w).{4,12}$");
+        Matcher matcher = pattern.matcher(login);
+        found = matcher.find();
 
-        for(int var3 = 0; var3 < var2; ++var3) {
-            char letra = var1[var3];
-            if (!Character.isLetterOrDigit(letra) && letra != '_') {
-                return false;
-            }
 
-            if (Character.isDigit(login.charAt(0))) {
-                return false;
-            }
-
-            if (login.length() < 8 || login.length() > 16) {
-                return false;
-            }
-        }
-
-        return true;
+        return found;
     }
 
     public static boolean verificaSequencia(String senha) {
