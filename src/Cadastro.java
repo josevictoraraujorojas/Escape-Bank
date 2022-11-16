@@ -14,7 +14,7 @@ public class Cadastro {
         UIManager.getDefaults().put("OptionPane.background", new Color(6422686));
         UIManager.put("Panel.background", new Color(6422686));
         new Scanner(System.in);
-        String URI = "C:\\EscapeBank\\login\\";
+        String URI = new URIpadrao().URI();
         StringBuilder id = new StringBuilder(String.valueOf(criptografia(login)));
         StringBuilder caminho = new StringBuilder(URI + id);
         new SetPaths().SavePaths(id,"C:\\EscapeBank\\native.txt",false);

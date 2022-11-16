@@ -8,7 +8,7 @@ public class Login {
     public Login(String login, String senha) throws IOException {
 
         String id = String.valueOf(Cadastro.criptografia(login));
-        String URI = "C:\\EscapeBank\\login";
+        String URI = new URIpadrao().URI();
         String caminho = URI+id;
 
         File diretorio = new File(caminho);

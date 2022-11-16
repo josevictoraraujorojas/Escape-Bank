@@ -11,8 +11,8 @@ import java.util.regex.Pattern;
         - cadastrar conta aleatoria - ele informar um nome e senha ficticio - abrir um valor random;
         - deletar conta - onde e como fazer.*/
 public class CadastroCliente {
-    static StringBuilder fiile = new StringBuilder(new SetPaths().GetPaths("C:\\EscapeBank\\native.txt"));
-    public static StringBuilder URI = new StringBuilder("C:\\EscapeBank\\login\\"+ fiile+"\\CadastroCliente.txt");
+    static StringBuilder IdPaths = new StringBuilder(new SetPaths().GetPaths("C:\\EscapeBank\\native.txt"));
+    public static StringBuilder URI = new StringBuilder(new URIpadrao().URI()+ IdPaths +"\\CadastroCliente.txt");
     public static File cadastroCliente = new File(String.valueOf(URI));
     public static Scanner scan = new Scanner(System.in);
 
