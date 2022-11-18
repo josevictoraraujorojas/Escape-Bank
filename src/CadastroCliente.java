@@ -11,8 +11,9 @@ import java.util.regex.Pattern;
         - cadastrar conta aleatoria - ele informar um nome e senha ficticio - abrir um valor random;
         - deletar conta - onde e como fazer.*/
 public class CadastroCliente {
-    static StringBuilder IdPaths = new StringBuilder(new SetPaths().GetPaths("C:\\EscapeBank\\native.txt"));
+    public static StringBuilder IdPaths = new StringBuilder(new SetPaths().GetPaths("C:\\EscapeBank\\native.txt"));
     public static StringBuilder URI = new StringBuilder(new URIpadrao().URI()+ IdPaths +"\\CadastroCliente.txt");
+    public static File CC = new File("C:\\EscapeBank\\native.txt");
     public static File cadastroCliente = new File(String.valueOf(URI));
     public static Scanner scan = new Scanner(System.in);
 
@@ -26,7 +27,6 @@ public class CadastroCliente {
         confereSalario(salarioAtual);
         confereGanhosExtras(ganhosExtras);
         calcularRendaTotal();
-        System.out.println("Cadastro finalizado.");
     }
 
     public static void confereCPF(String cpf) throws IOException {
@@ -61,14 +61,14 @@ public class CadastroCliente {
     public static void confereEndereco(String endereco, String numero, String cep, String cidade, String estado) throws IOException{
         BufferedWriter wr = new BufferedWriter(new FileWriter(cadastroCliente, true));
         do {
-            wr.write("Endere�o: " + endereco);
+            wr.write("Endereco: " + endereco);
         }while (!found);
         do {
             Pattern pattern = Pattern.compile("^[0-9]{0,3}.[0-9]{0,3}$");
             Matcher matcher = pattern.matcher(numero);
             found = matcher.find();
             if (found) {
-                wr.write(", n�.: " + numero);
+                wr.write(", n.: " + numero);
             } else {
                 JOptionPane.showMessageDialog(null,"numero incorreto");break;
             }
@@ -115,7 +115,7 @@ public class CadastroCliente {
             Matcher matcher = pattern.matcher(salarioAtual);
             found = matcher.find();
             if (found) {
-                wr.write("Sal�rio Atual: R$ " + salarioAtual);
+                wr.write("Salario Atual: R$ " + salarioAtual);
                 wr.newLine();
                 wr.close();
             } else {
@@ -135,7 +135,7 @@ public class CadastroCliente {
                 wr.newLine();
                 wr.close();
             } else {
-                JOptionPane.showMessageDialog(null,"foemato de ganho extra nao permitido");
+                JOptionPane.showMessageDialog(null,"formato de ganho extra nao permitido");
                 break;
             }
         }while (!found);
@@ -147,7 +147,7 @@ public class CadastroCliente {
         double salario = 0, rendaExtra = 0, rendaTotal;
         while (scan.hasNextLine()){
             salario1 = scan.nextLine();
-            if (salario1.contains("Sal�rio Atual: R$ ")){
+            if (salario1.contains("Salario Atual: R$ ")){
                 salario = Double.parseDouble(salario1.substring(salario1.indexOf('$')+2));
             }
             if (salario1.contains("Ganhos Extras: R$ ")){
@@ -162,10 +162,16 @@ public class CadastroCliente {
     }
     public static void abrirConta() throws IOException {
         BufferedWriter wr = new BufferedWriter(new FileWriter(cadastroCliente, true));
-        int comecoNumero = random.nextInt(00,99);
-        int meioNumero = random.nextInt(100,999);
-        int digito = random.nextInt(10,99);
-        wr.write("Numero Conta: " + comecoNumero + "." + meioNumero + "-" + digito);
+        int numeroConta = 0, digito = 0;
+        scan = new Scanner(CC);
+        String contaCorrente;
+        while (scan.hasNextLine()){
+            contaCorrente = scan.nextLine();
+            System.out.println(contaCorrente);
+            numeroConta = Integer.parseInt(contaCorrente.substring(0,5));
+            digito = Integer.parseInt(contaCorrente.substring(6,7));
+        }
+        wr.write("Numero Conta: " + numeroConta + digito);
         wr.newLine();
         wr.close();
     }
