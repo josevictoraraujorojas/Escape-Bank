@@ -1,8 +1,6 @@
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.IOException;
@@ -103,8 +101,8 @@ public class TelaDeCadastroCliente extends JFrame {
             numero = new MaskFormatter("#####");
             estado = new MaskFormatter("UU");
             cep = new MaskFormatter("##.###-###");
-            salarioatual = new MaskFormatter("#######.##");
-            ganhoextras = new MaskFormatter("#######.##");
+            salarioatual = new MaskFormatter("R$#######.##");
+            ganhoextras = new MaskFormatter("R$************");
             cpf.setPlaceholderCharacter('_');
             numero.setPlaceholderCharacter('_');
             estado.setPlaceholderCharacter('_');
@@ -325,7 +323,7 @@ public class TelaDeCadastroCliente extends JFrame {
             }
         });
 
-        jt8  = new JTextField("R$______.__");
+        jt8  = new JTextField("R$___.__,__");
         jt8.setBounds(x, 398, 280, 20);//x=130 y= 4
         jt8.setBackground(Color.MAGENTA);
         jt8.setForeground(Color.WHITE);
@@ -334,10 +332,12 @@ public class TelaDeCadastroCliente extends JFrame {
         jt8.addFocusListener(new FocusListener()
         {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (jt8.getText().equals("R$______.__")){
+            public void focusGained(FocusEvent e)
+            {
+                if (jt8.getText().equals("R$___.__,__"))
+                {
                     jt8.setBackground(Color.MAGENTA);
-                    jt8.setText("");
+                    jt8.setText("R$");
                 }
             }
 
@@ -347,13 +347,13 @@ public class TelaDeCadastroCliente extends JFrame {
                 if (jt8.getText().equals("R$")||jt8.getText().equals(""))
                 {
                     jt8.setBackground(Color.red);
-                    jt8.setText("R$______.__");
+                    jt8.setText("R$___.__,__");
                 }
 
             }
         });
 
-        jt9  = new JTextField("R$______.__");
+        jt9  = new JTextField("R$___.__,__");
         jt9.setBounds(x, 440, 280, 20);//x=130 y= 4
         jt9.setBackground(Color.MAGENTA);
         jt9.setForeground(Color.WHITE);
@@ -362,14 +362,12 @@ public class TelaDeCadastroCliente extends JFrame {
         jt9.addFocusListener(new FocusListener()
         {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (jt9.getText().equals("R$______.__")){
             public void focusGained(FocusEvent e)
             {
                 if (jt9.getText().equals("R$___.__,__"))
                 {
                     jt9.setBackground(Color.MAGENTA);
-                    jt9.setText("");
+                    jt9.setText("R$");
                 }
             }
 
@@ -379,7 +377,7 @@ public class TelaDeCadastroCliente extends JFrame {
                 if (jt9.getText().equals("R$")||jt9.getText().equals(""))
                 {
                     jt9.setBackground(Color.red);
-                    jt9.setText("R$______.__");
+                    jt9.setText("R$___.__,__");
                 }
 
             }
@@ -389,7 +387,7 @@ public class TelaDeCadastroCliente extends JFrame {
 
 
         //configurar jlabel//
-        jl1 = new JLabel("<html>nome:<br><br>cpf:<br><br>endereco:<br><br>numero:<br><br>cep:<br><br>cidade:<br><br>estado:<br><br>salario R$:<br><br>rendaextra R$: </html>");
+        jl1 = new JLabel("<html>nome:<br><br>cpf:<br><br>endereco:<br><br>numero:<br><br>cep:<br><br>cidade:<br><br>estado:<br><br>salario:<br><br>rendaextra: </html>");
         jl1.setFont(new Font("arial", Font.BOLD, 17));
         jl1.setForeground(Color.MAGENTA);
         jl1.setBounds(X, 80, 100, 400);
