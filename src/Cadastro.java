@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class Cadastro {
-    public Cadastro(String login, String senha) throws IOException {
+    public boolean CadastroLoginESenha(String login, String senha) throws IOException {
         UIManager.getDefaults().put("OptionPane.background", new Color(6422686));
         UIManager.put("Panel.background", new Color(6422686));
         new Scanner(System.in);
@@ -19,9 +19,10 @@ public class Cadastro {
         StringBuilder caminho = new StringBuilder(URI + id);
         new SetPaths().SavePaths(id,"C:\\EscapeBank\\native.txt",false);
 
-        while(validacaoDeUsuario(login) && !verificaLoginDuplicada(String.valueOf(caminho)) && !senha.equals(login)&& !verificaSequencia(senha)&& !validaDeSenhaRegex(senha)){
+        while(validacaoDeUsuario(login) && !verificaLoginDuplicada(String.valueOf(caminho)) && !verificaSequencia(senha)&& !validaDeSenhaRegex(senha)){
             if (validaDeSenhaRegex(senha) || senha.equals(login) || verificaSequencia(senha)) {
                 JOptionPane.showMessageDialog(null, "<html><font color=#FF00FF face=arial><i><b> senha incorreta atente-se aos requisitos");
+                return false;
             }
 
             if (!senha.equals(login) && validacaoDeUsuario(senha) && !validaDeSenhaRegex(senha) && !verificaLoginDuplicada(login) && !verificaSequencia(senha)) {
@@ -31,20 +32,21 @@ public class Cadastro {
                 arquivo.createNewFile();
                 BufferedWriter armazena = new BufferedWriter(new FileWriter(arquivo, true));
                 armazenaLoginESenha(armazena, login, senha);
-                return;
+                return true;
             }
         }
 
-        JOptionPane.showMessageDialog(null, "<html><font color=#FF00FF face=arial><i><b> login incorreto", "erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "<html><font color=#FF00FF face=arial><i><b> login Já existente", "erro", JOptionPane.ERROR_MESSAGE);
         id.delete(0, id.length());
-        id.append(String.valueOf(criptografia(login)));
+        id.append(criptografia(login));
         caminho.delete(0, caminho.length());
         caminho.append(URI).append(id);
+        return false;
     }
 
     public static boolean validacaoDeUsuario(String login) {
         boolean found;
-        Pattern pattern = Pattern.compile("^[A-z_].(?!.*[\\s]).(?!.*[\\p{Punct}&&[^_]]).(?=\\w).{4,12}$");
+        Pattern pattern = Pattern.compile("^[A-z_].(?!.*\\s).(?!.*[\\p{Punct}&&[^_]]).(?=\\w).{4,12}$");
         Matcher matcher = pattern.matcher(login);
         found = matcher.find();
 
@@ -69,7 +71,7 @@ public class Cadastro {
     }
 
     public static boolean validaDeSenhaRegex(String senha) {
-        Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}$");
+        Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[\\da-zA-Z]{8,16}$");
         Matcher matcher = pattern.matcher(senha);
         return !matcher.find();
     }
@@ -88,7 +90,6 @@ public class Cadastro {
             armazena.newLine();
             armazena.close();
             JOptionPane.showMessageDialog(null, "<html><font color=#FF00FF face=arial><i><b> usuario cadastrado com sucesso!!");
-            TelaDeCadastro.fechartela(b);
         } catch (IOException var4) {
             var4.printStackTrace();
         }

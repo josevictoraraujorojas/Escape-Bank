@@ -1,8 +1,6 @@
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.IOException;
@@ -36,14 +34,15 @@ public class TelaDeCadastroCliente extends JFrame {
     {
 
         //configurações do jframe//
-        setUndecorated(true);
-
         setLayout(null);
         setTitle("tela de login");
         setSize(800, 600);
         getContentPane().setBackground(cor);
         setLocationRelativeTo(null);
-        setVisible(true);
+        setUndecorated(true);
+
+        int x = 280;
+        int X = x-110;
 
         //configuracão do jbotton//
         jb1 = new JButton("ok");
@@ -52,24 +51,25 @@ public class TelaDeCadastroCliente extends JFrame {
         jb1.setFont(new Font("Arial", Font.BOLD, 20));
         jb1.setForeground(Color.WHITE);
         jb1.setVisible(true);
-        jb1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Nome = jt1.getText();
-                Cpf = jt2.getText();
-                Endereco = jt3.getText();
-                Numero = jt4.getText();
-                Cep = jt5.getText();
-                Cidade = jt6.getText();
-                Estado = jt7.getText();
-                SalarioAtual = jt8.getText();
-                GanhosExtras = jt9.getText();
+        jb1.addActionListener(e ->
+        {
+            Nome = jt1.getText();
+            Cpf = jt2.getText();
+            Endereco = jt3.getText();
+            Numero = jt4.getText();
+            Cep = jt5.getText();
+            Cidade = jt6.getText();
+            Estado = jt7.getText();
+            SalarioAtual = jt8.getText();
+            GanhosExtras = jt9.getText();
 
-                try {
-                    CadastroCliente.cadastrarConta(Nome,Cpf,Endereco,Numero,Cep,Cidade,Estado,SalarioAtual,GanhosExtras);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+            try
+            {
+                CadastroCliente.cadastrarConta(Nome,Cpf,Endereco,Numero,Cep,Cidade,Estado,SalarioAtual,GanhosExtras);
+            }
+            catch (IOException ex)
+            {
+                throw new RuntimeException(ex);
             }
         });
 
@@ -80,14 +80,18 @@ public class TelaDeCadastroCliente extends JFrame {
         jb2.setFont(new Font("Arial", Font.BOLD, 20));
         jb2.setForeground(Color.WHITE);
         jb2.setVisible(true);
-        jb2.addActionListener(this::close);
+        jb2.addActionListener(e ->
+        {
+            new TelaDeCadastro();
+            dispose();
+        });
 
         MaskFormatter cpf = null;
-        MaskFormatter numero = null;
+        MaskFormatter numero;
         MaskFormatter estado = null;
         MaskFormatter cep = null;
-        MaskFormatter salarioatual = null;
-        MaskFormatter ganhoextras = null;
+        MaskFormatter salarioatual;
+        MaskFormatter ganhoextras;
 
 
         try
@@ -112,8 +116,7 @@ public class TelaDeCadastroCliente extends JFrame {
             System.err.println("Erro na formatação: " + excp.getMessage());
             System.exit(-1);
         }
-        int x = 280;
-        int X = x-110;
+
         //configuraçao do Jtextfield//
         jt1  = new JTextField("digite seu nome");
         jt1.setBounds(x, 104, 280, 20);//x=130 y= 4
@@ -121,22 +124,25 @@ public class TelaDeCadastroCliente extends JFrame {
         jt1.setForeground(Color.WHITE);
         jt1.setFont(new Font("Arial", Font.BOLD, 15));
         jt1.setVisible(true);
-        jt1.addFocusListener(new FocusListener() {
+        jt1.addFocusListener(new FocusListener()
+        {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (jt1.getText().equals("digite seu nome")){
+            public void focusGained(FocusEvent e)
+            {
+                if (jt1.getText().equals("digite seu nome"))
+                {
                     jt1.setBackground(Color.MAGENTA);
                     jt1.setText("");
                 }
             }
-
             @Override
-            public void focusLost(FocusEvent e) {
-                if (jt1.getText().equals("")){
+            public void focusLost(FocusEvent e)
+            {
+                if (jt1.getText().equals(""))
+                {
                     jt1.setBackground(Color.red);
                     jt1.setText("digite seu nome");
                 }
-
             }
         });
 
@@ -146,16 +152,15 @@ public class TelaDeCadastroCliente extends JFrame {
         jt2.setForeground(Color.WHITE);
         jt2.setFont(new Font("Arial", Font.BOLD, 15));
         jt2.setVisible(true);
-        MaskFormatter finalCpf = cpf;
-        MaskFormatter finalCpf1 = cpf;
-        jt2.addFocusListener(new FocusListener() {
+        jt2.addFocusListener(new FocusListener()
+        {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (jt2.getText().equals("___.___.___-__")){
+            public void focusGained(FocusEvent e)
+            {
+                if (jt2.getText().equals("___.___.___-__"))
+                {
                     jt2.setBackground(Color.magenta);
                     jt2.setText("___.___.___-__");
-
-
                 }
             }
 
@@ -177,22 +182,25 @@ public class TelaDeCadastroCliente extends JFrame {
         jt3.setForeground(Color.WHITE);
         jt3.setFont(new Font("Arial", Font.BOLD, 15));
         jt3.setVisible(true);
-        jt3.addFocusListener(new FocusListener() {
+        jt3.addFocusListener(new FocusListener()
+        {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (jt3.getText().equals("digite seu endereco")){
+            public void focusGained(FocusEvent e)
+            {
+                if (jt3.getText().equals("digite seu endereco"))
+                {
                     jt3.setBackground(Color.MAGENTA);
                     jt3.setText("");
                 }
             }
-
             @Override
-            public void focusLost(FocusEvent e) {
-                if (jt3.getText().equals("")){
+            public void focusLost(FocusEvent e)
+            {
+                if (jt3.getText().equals(""))
+                {
                     jt3.setBackground(Color.red);
                     jt3.setText("digite seu endereco");
                 }
-
             }
         });
 
@@ -202,18 +210,23 @@ public class TelaDeCadastroCliente extends JFrame {
         jt4.setForeground(Color.WHITE);
         jt4.setFont(new Font("Arial", Font.BOLD, 15));
         jt4.setVisible(true);
-        jt4.addFocusListener(new FocusListener() {
+        jt4.addFocusListener(new FocusListener()
+        {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (jt4.getText().equals("digite o numero do seu endereco")){
+            public void focusGained(FocusEvent e)
+            {
+                if (jt4.getText().equals("digite o numero do seu endereco"))
+                {
                     jt4.setBackground(Color.MAGENTA);
                     jt4.setText("");
                 }
             }
 
             @Override
-            public void focusLost(FocusEvent e) {
-                if (jt4.getText().equals("")){
+            public void focusLost(FocusEvent e)
+            {
+                if (jt4.getText().equals(""))
+                {
                     jt4.setBackground(Color.red);
                     jt4.setText("digite o numero do seu endereco");
                 }
@@ -228,26 +241,26 @@ public class TelaDeCadastroCliente extends JFrame {
         jt5.setForeground(Color.WHITE);
         jt5.setFont(new Font("Arial", Font.BOLD, 15));
         jt5.setVisible(true);
-        jt5.addFocusListener(new FocusListener() {
+        jt5.addFocusListener(new FocusListener()
+        {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (jt5.getText().equals("__.___-___")){
+            public void focusGained(FocusEvent e)
+            {
+                if (jt5.getText().equals("__.___-___"))
+                {
                     jt5.setBackground(Color.magenta);
                     jt5.setText("__.___-___");
-
-
                 }
             }
 
             @Override
-            public void focusLost(FocusEvent e) {
-                if (jt5.getText().equals("__.___-___")){
+            public void focusLost(FocusEvent e)
+            {
+                if (jt5.getText().equals("__.___-___"))
+                {
                     jt5.setBackground(Color.red);
                     jt5.setText("__.___-___");
-
-
                 }
-
             }
         });
 
@@ -258,18 +271,23 @@ public class TelaDeCadastroCliente extends JFrame {
         jt6.setForeground(Color.WHITE);
         jt6.setFont(new Font("Arial", Font.BOLD, 15));
         jt6.setVisible(true);
-        jt6.addFocusListener(new FocusListener() {
+        jt6.addFocusListener(new FocusListener()
+        {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (jt6.getText().equals("digite o nome da sua cidade")){
+            public void focusGained(FocusEvent e)
+            {
+                if (jt6.getText().equals("digite o nome da sua cidade"))
+                {
                     jt6.setBackground(Color.MAGENTA);
                     jt6.setText("");
                 }
             }
 
             @Override
-            public void focusLost(FocusEvent e) {
-                if (jt6.getText().equals("")){
+            public void focusLost(FocusEvent e)
+            {
+                if (jt6.getText().equals(""))
+                {
                     jt6.setBackground(Color.red);
                     jt6.setText("digite o nome da sua cidade");
                 }
@@ -283,22 +301,25 @@ public class TelaDeCadastroCliente extends JFrame {
         jt7.setForeground(Color.WHITE);
         jt7.setFont(new Font("Arial", Font.BOLD, 15));
         jt7.setVisible(true);
-        jt7.addFocusListener(new FocusListener() {
+        jt7.addFocusListener(new FocusListener()
+        {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (jt7.getText().equals("__")){
+            public void focusGained(FocusEvent e)
+            {
+                if (jt7.getText().equals("__"))
+                {
                     jt7.setBackground(Color.MAGENTA);
                     jt7.setText("__");
                 }
             }
-
             @Override
-            public void focusLost(FocusEvent e) {
-                if (jt7.getText().equals("__")){
+            public void focusLost(FocusEvent e)
+            {
+                if (jt7.getText().equals("__"))
+                {
                     jt7.setBackground(Color.red);
                     jt7.setText("__");
                 }
-
             }
         });
 
@@ -308,18 +329,23 @@ public class TelaDeCadastroCliente extends JFrame {
         jt8.setForeground(Color.WHITE);
         jt8.setFont(new Font("Arial", Font.BOLD, 15));
         jt8.setVisible(true);
-        jt8.addFocusListener(new FocusListener() {
+        jt8.addFocusListener(new FocusListener()
+        {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (jt8.getText().equals("R$___.__,__")){
+            public void focusGained(FocusEvent e)
+            {
+                if (jt8.getText().equals("R$___.__,__"))
+                {
                     jt8.setBackground(Color.MAGENTA);
                     jt8.setText("R$");
                 }
             }
 
             @Override
-            public void focusLost(FocusEvent e) {
-                if (jt8.getText().equals("R$")||jt8.getText().equals("")){
+            public void focusLost(FocusEvent e)
+            {
+                if (jt8.getText().equals("R$")||jt8.getText().equals(""))
+                {
                     jt8.setBackground(Color.red);
                     jt8.setText("R$___.__,__");
                 }
@@ -333,18 +359,23 @@ public class TelaDeCadastroCliente extends JFrame {
         jt9.setForeground(Color.WHITE);
         jt9.setFont(new Font("Arial", Font.BOLD, 15));
         jt9.setVisible(true);
-        jt9.addFocusListener(new FocusListener() {
+        jt9.addFocusListener(new FocusListener()
+        {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (jt9.getText().equals("R$___.__,__")){
+            public void focusGained(FocusEvent e)
+            {
+                if (jt9.getText().equals("R$___.__,__"))
+                {
                     jt9.setBackground(Color.MAGENTA);
                     jt9.setText("R$");
                 }
             }
 
             @Override
-            public void focusLost(FocusEvent e) {
-                if (jt9.getText().equals("R$")||jt9.getText().equals("")){
+            public void focusLost(FocusEvent e)
+            {
+                if (jt9.getText().equals("R$")||jt9.getText().equals(""))
+                {
                     jt9.setBackground(Color.red);
                     jt9.setText("R$___.__,__");
                 }
@@ -405,23 +436,8 @@ public class TelaDeCadastroCliente extends JFrame {
         add(jb2);
         add(jl4);
         add(jl5);
-/*        setExtendedState(getState()| JFrame.MAXIMIZED_BOTH);
-        setExtendedState(getState()| JFrame.NORMAL);*/
 
-
-
-
-
+        setVisible(true);
     }
-
-    private TelaDeCadastro close(ActionEvent actionEvent) {
-        dispose();
-        return new TelaDeCadastro();
-    }
-
-    public static void main(String[] args) {
-        new TelaDeCadastroCliente();
-    }
-    }
-
+}
 

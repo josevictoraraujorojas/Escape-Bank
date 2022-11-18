@@ -32,8 +32,6 @@ public class CadastroCliente {
     public static void confereCPF(String cpf) throws IOException {
         BufferedWriter wr = new BufferedWriter(new FileWriter(cadastroCliente, true));
         do {
-            System.out.println("Digite o seu cpf (xxx.xxx.xxx-xx):");
-            cpf = scan.nextLine();
             Pattern pattern = Pattern.compile("^[0-9]{3}.[0-9]{3}.[0-9]{3}[-][0-9]{2}$");
             Matcher matcher = pattern.matcher(cpf);
             found = matcher.find();

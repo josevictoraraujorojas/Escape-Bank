@@ -1,12 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.IOException;
 
-public class TelaDeLogin extends JFrame implements ActionListener {
+public class TelaDeLogin extends JFrame
+{
 
     JButton jb1,jb2,jb3;
     JTextField jt1;
@@ -26,7 +25,8 @@ public class TelaDeLogin extends JFrame implements ActionListener {
         setSize(800, 600);
         getContentPane().setBackground(cor);
         setLocationRelativeTo(null);
-        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
         //configuracão do jbotton//
         jb1 = new JButton("ok");
@@ -35,6 +35,26 @@ public class TelaDeLogin extends JFrame implements ActionListener {
         jb1.setFont(new Font("Arial", Font.BOLD, 20));
         jb1.setForeground(Color.WHITE);
         jb1.setVisible(true);
+        jb1.addActionListener(e ->
+        {
+            Login = jt1.getText();
+            Senha = String.valueOf(jt2.getPassword());
+
+            try
+            {
+                if (new Login().VerificaLogin(Login,Senha)){
+                    boolean B = true;
+                    Main.VerificarLogin(B);
+                    dispose();
+                    new Main();
+                }
+            }
+            catch (IOException ex)
+            {
+                throw new RuntimeException(ex);
+            }
+
+        });
 
         jb2 = new JButton("Primeiro acesso");
         jb2.setBounds(170, 480, 200, 40);
@@ -42,7 +62,11 @@ public class TelaDeLogin extends JFrame implements ActionListener {
         jb2.setFont(new Font("Arial", Font.BOLD, 20));
         jb2.setForeground(Color.WHITE);
         jb2.setVisible(true);
-        jb2.addActionListener(this::cadastrarNovoUser);
+        jb2.addActionListener(e ->
+        {
+            new TelaDeCadastro();
+            dispose();
+        });
 
         jb3 = new JButton("esqueci minha senha");
         jb3.setBorderPainted(false);
@@ -51,7 +75,7 @@ public class TelaDeLogin extends JFrame implements ActionListener {
         jb3.setForeground(Color.MAGENTA);
         jb3.setBackground(cor);
         jb3.setVisible(true);
-        jb1.addActionListener(this);
+
 
 
 
@@ -90,36 +114,35 @@ public class TelaDeLogin extends JFrame implements ActionListener {
         jt2.setFont(new Font("Arial", Font.BOLD, 15));
         jt2.setVisible(true);
         jt2.setEchoChar('\u0000');
-        jt2.addFocusListener(new FocusListener() {
-                                 @Override
-                                 public void focusGained(FocusEvent e) {
-                                     jc.setSelected(false);
-                                     jt2.setEchoChar('•');
-                                     String password = String.valueOf(jt2.getPassword());
+        jt2.addFocusListener(new FocusListener()
+        {
+            @Override
+            public void focusGained(FocusEvent e)
+            {
+                jc.setSelected(false);
+                jt2.setEchoChar('•');
+                String password = String.valueOf(jt2.getPassword());
 
-                                     if(password.toLowerCase().equals("digite a sua senha"))
-                                     {
-                                         jt2.setText("");
-                                         jt2.setBackground(Color.magenta);
-                                     }
+                if(password.equalsIgnoreCase("digite a sua senha"))
+                {
+                    jt2.setText("");
+                    jt2.setBackground(Color.magenta);
+                }
 
-                                 }
+            }
+            @Override
+            public void focusLost(FocusEvent e)
+            {
+                String password = String.valueOf(jt2.getPassword());
+                if(password.equalsIgnoreCase("") || password.equalsIgnoreCase("digite a sua senha"))
+                {
+                    jt2.setText("digite a sua senha");
+                    jt2.setEchoChar((char)0);
+                    jt2.setBackground(Color.red);
 
-                                 @Override
-                                 public void focusLost(FocusEvent e) {
-                                     String password = String.valueOf(jt2.getPassword());
-
-
-                                     if(password.toLowerCase().equals("") || password.toLowerCase().equals("digite a sua senha"))
-                                     {
-                                         jt2.setText("digite a sua senha");
-                                         jt2.setEchoChar((char)0);
-                                         jt2.setBackground(Color.red);
-
-                                     }
-                                 }
-                             }
-        );
+                }
+            }
+        });
 
 
         //configurar jlabel//
@@ -144,8 +167,15 @@ public class TelaDeLogin extends JFrame implements ActionListener {
         jc = new JCheckBox();
         jc.setBounds(610,340,30,30);
         jc.setBackground(cor);
-        jc.addActionListener(this::mostrar);
         jc.setVisible(true);
+        jc.addActionListener(e ->
+        {
+            if (jc.isSelected())
+            {
+                jt2.setEchoChar('\u0000');
+            }
+            else jt2.setEchoChar('•');
+        });
 
 
 
@@ -159,40 +189,8 @@ public class TelaDeLogin extends JFrame implements ActionListener {
         add(jb1);
         add(jb2);
         add(jb2);
-        setExtendedState(getState()| JFrame.MAXIMIZED_BOTH);
-        setExtendedState(getState()| JFrame.NORMAL);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    }
-
-
-
-    private void mostrar(ActionEvent actionEvent) {
-        if (jc.isSelected()){
-            jt2.setEchoChar('\u0000');
-        }else jt2.setEchoChar('•');
-    }
-
-    private void cadastrarNovoUser(ActionEvent actionEvent) {
-        dispose();
-        new TelaDeCadastro();
-
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        Login = jt1.getText();
-        Senha = String.valueOf(jt2.getPassword());
-        System.out.println(Senha);
-        try {
-            gravar();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-    public static void gravar() throws IOException {
-        new Login(Login,Senha);
+        setVisible(true);
 
     }
 }

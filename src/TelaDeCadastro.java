@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.IOException;
@@ -26,14 +25,12 @@ public class TelaDeCadastro extends JFrame {
 
 
         //configurações do jframe//
-        setUndecorated(true);
-
         setLayout(null);
         setTitle("tela de login");
         setSize(800, 600);
         getContentPane().setBackground(cor);
         setLocationRelativeTo(null);
-        setVisible(true);
+        setUndecorated(true);
 
         //configuracão do jbotton//
         jb1 = new JButton("ok");
@@ -42,7 +39,26 @@ public class TelaDeCadastro extends JFrame {
         jb1.setFont(new Font("Arial", Font.BOLD, 20));
         jb1.setForeground(Color.WHITE);
         jb1.setVisible(true);
-        jb1.addActionListener(this::acesscadastro);
+        jb1.addActionListener(e ->
+        {
+            UIManager.getDefaults().put("OptionPane.background",cor);
+            UIManager.put ("Panel.background", cor);
+            Login = jt1.getText();
+            Senha = jt2.getText();
+
+            try
+            {
+
+                if (new Cadastro().CadastroLoginESenha(Login,Senha))
+                {
+                    new TelaDeCadastroCliente();
+                    dispose();
+                }
+            } catch (IOException a)
+            {
+                throw new RuntimeException(a);
+            }
+        });
 
         jb2 = new JButton("<- voltar");
         jb2.setBounds(170, 500, 120, 40);
@@ -50,7 +66,11 @@ public class TelaDeCadastro extends JFrame {
         jb2.setFont(new Font("Arial", Font.BOLD, 20));
         jb2.setForeground(Color.WHITE);
         jb2.setVisible(true);
-        jb2.addActionListener(this::close);
+        jb2.addActionListener(e ->
+        {
+            new TelaDeLogin();
+            dispose();
+        });
 
         //configuraçao do Jtextfield//
 
@@ -162,48 +182,7 @@ public class TelaDeCadastro extends JFrame {
         add(jl4);
         add(jl5);
         add(icon2);
-/*        setExtendedState(getState()| JFrame.MAXIMIZED_BOTH);
-        setExtendedState(getState()| JFrame.NORMAL);*/
-    }
 
-    private TelaDeLogin close(ActionEvent actionEvent) {
-        dispose();
-        return new TelaDeLogin();
+        setVisible(true);
     }
-
-    private void acesscadastro(ActionEvent actionEvent)
-    {
-        UIManager.getDefaults().put("OptionPane.background",cor);
-        UIManager.put ("Panel.background", cor);
-        Login = jt1.getText();
-        Senha = jt2.getText();
-
-        try
-        {
-            gravar();
-            if (B)
-            {
-                dispose();
-                new TelaDeCadastroCliente();
-            }
-        } catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-    public static void gravar() throws IOException
-    {
-        new Cadastro(Login,Senha);
-    }
-    public static void fechartela(Boolean b)
-    {
-        B=b;
-        Main.verificarcadastrodecliente(B);
-        return;
-    }
-
-    public static void main(String[] args) {
-        new TelaDeCadastro();
-    }
-
 }

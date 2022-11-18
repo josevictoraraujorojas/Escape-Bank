@@ -14,7 +14,7 @@ public class SetPaths
         }
         catch (IOException e)
         {
-            JOptionPane.showMessageDialog(null,"não foi possível gravar");
+            JOptionPane.showMessageDialog(null,"nao foi possÃ­vel gravar");
             throw new RuntimeException(e);
         }
     }
@@ -28,7 +28,7 @@ public class SetPaths
         }
         catch (IOException e)
         {
-            JOptionPane.showMessageDialog(null,"nao foi possível ler!");
+            JOptionPane.showMessageDialog(null,"nao foi possÃ­vel ler!");
             throw new RuntimeException(e);
         }
         return new StringBuilder(ItemSalvo);

@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Login {
 
-    public Login(String login, String senha) throws IOException {
+    public boolean VerificaLogin(String login, String senha) throws IOException {
 
         String id = String.valueOf(Cadastro.criptografia(login));
         String URI = new URIpadrao().URI();
@@ -14,9 +14,8 @@ public class Login {
         File diretorio = new File(caminho);
 
         String[] pasta = diretorio.list();
-        if (pasta == null){ JOptionPane.showMessageDialog(null,"usuario nao encontrado"); }
-        assert pasta != null;
-        String arquivo = pasta[0];
+        if (pasta == null){ JOptionPane.showMessageDialog(null,"usuario nao encontrado");return false; }
+        String arquivo = "LoginESenha.txt";
 
         BufferedReader le = new BufferedReader(new FileReader(caminho+"\\"+arquivo));
         String line;
@@ -35,7 +34,9 @@ public class Login {
             JOptionPane.showMessageDialog(null,"<html><font color=#FF00FF face=arial><i><b> usuario encontrado");
         } else if (!verificaSenha)
         {
-            JOptionPane.showMessageDialog(null,"usuario não encontrado");
+            JOptionPane.showMessageDialog(null,"senha incorreta");
+            return false;
         }
+        return true;
     }
 }

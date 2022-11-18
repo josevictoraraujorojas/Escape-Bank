@@ -2,10 +2,9 @@ public class Main {
     static boolean a = false;
     public static void main(String[] args) {
 
-        new TelaDeLogin();
-        if (a){
-            new TelaDeCadastroCliente();
-        }
+        if (!a){
+            new TelaDeLogin();
+        }else System.out.println("aguardar Proxima tela");
     }
-    public static void verificarcadastrodecliente(Boolean B){a=B;}
+    public static void VerificarLogin(Boolean B){a=B;}
 }
