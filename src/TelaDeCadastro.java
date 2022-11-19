@@ -16,7 +16,7 @@ public class TelaDeCadastro extends JFrame {
 
     static  String Login = "";
     static String Senha = "";
-    static Boolean B;
+
 
 
 
@@ -47,12 +47,21 @@ public class TelaDeCadastro extends JFrame {
             Senha = jt2.getText();
 
             try
-            {
+            { /*preciso de que "new Cadastro().CadastroLoginESenha(Login,Senha);"
+                estiver certo e gravou me retorne int 1; se der erro me retorne:
+                JOptionPane.showMessageDialog(null, esse nome de usuario não e valido);seguido de return "2";
+                JOptionPane.showMessageDialog(null,esse senha invalida, atente-se aos requisitos);seguido de return "3";*/
 
-                if (new Cadastro().CadastroLoginESenha(Login,Senha))
+                if (new Cadastro().CadastroLoginESenha(Login,Senha)==1)
                 {
                     new TelaDeCadastroCliente();
                     dispose();
+                } else if (new Cadastro().CadastroLoginESenha(Login,Senha)==2)
+                {
+                    jt1.setBackground(Color.red);
+                } else if (new Cadastro().CadastroLoginESenha(Login,Senha)==3)
+                {
+                    jt2.setBackground(Color.red);
                 }
             } catch (IOException a)
             {

@@ -2,14 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.io.IOException;
 
 public class TelaDeLogin extends JFrame
 {
 
     JButton jb1,jb2,jb3;
     JTextField jt1;
-    JPasswordField jt2;
+    JPasswordField jps2;
     JLabel jl1,jl2,jl3;
     Color cor = new Color(98, 0, 158);
     JCheckBox jc;
@@ -38,21 +37,27 @@ public class TelaDeLogin extends JFrame
         jb1.addActionListener(e ->
         {
             Login = jt1.getText();
-            Senha = String.valueOf(jt2.getPassword());
+            Senha = String.valueOf(jps2.getPassword());
 
-            try
+
+                /*Preciso que Login().VerificaLogin(Login,Senha)
+               estiver certo e gravou me retorne int 1; se der erro me retorne:
+               JOptionPane.showMessageDialog(null,usuario não existe);seguido de: return "2";
+               ou
+               JOptionPane.showMessageDialog(null,senha incorreta);seguido de: return "3";*/
+
+            if (new Login().VerificaLogin(Login,Senha)==1)
             {
-                if (new Login().VerificaLogin(Login,Senha)){
-                    boolean B = true;
-                    Main.VerificarLogin(B);
-                    dispose();
-                    new Main();
-                }
-            }
-            catch (IOException ex)
+                System.out.println("proxima tela ainda em desenvolvimento");
+            } else if (new Login().VerificaLogin(Login,Senha)==2 )
             {
-                throw new RuntimeException(ex);
+                jt1.setBackground(Color.red);
+                jps2.setBackground(Color.red);
+            } else if (new Login().VerificaLogin(Login,Senha)==3)
+            {
+                jps2.setBackground(Color.red);
             }
+
 
         });
 
@@ -107,38 +112,38 @@ public class TelaDeLogin extends JFrame
             }
         });
 
-        jt2 = new JPasswordField("digite a sua senha");
-        jt2.setBounds(300, 336, 300, 40);
-        jt2.setBackground(Color.MAGENTA);
-        jt2.setForeground(Color.WHITE);
-        jt2.setFont(new Font("Arial", Font.BOLD, 15));
-        jt2.setVisible(true);
-        jt2.setEchoChar('\u0000');
-        jt2.addFocusListener(new FocusListener()
+        jps2 = new JPasswordField("digite a sua senha");
+        jps2.setBounds(300, 336, 300, 40);
+        jps2.setBackground(Color.MAGENTA);
+        jps2.setForeground(Color.WHITE);
+        jps2.setFont(new Font("Arial", Font.BOLD, 15));
+        jps2.setVisible(true);
+        jps2.setEchoChar('\u0000');
+        jps2.addFocusListener(new FocusListener()
         {
             @Override
             public void focusGained(FocusEvent e)
             {
                 jc.setSelected(false);
-                jt2.setEchoChar('•');
-                String password = String.valueOf(jt2.getPassword());
+                jps2.setEchoChar('•');
+                String password = String.valueOf(jps2.getPassword());
 
                 if(password.equalsIgnoreCase("digite a sua senha"))
                 {
-                    jt2.setText("");
-                    jt2.setBackground(Color.magenta);
+                    jps2.setText("");
+                    jps2.setBackground(Color.magenta);
                 }
 
             }
             @Override
             public void focusLost(FocusEvent e)
             {
-                String password = String.valueOf(jt2.getPassword());
+                String password = String.valueOf(jps2.getPassword());
                 if(password.equalsIgnoreCase("") || password.equalsIgnoreCase("digite a sua senha"))
                 {
-                    jt2.setText("digite a sua senha");
-                    jt2.setEchoChar((char)0);
-                    jt2.setBackground(Color.red);
+                    jps2.setText("digite a sua senha");
+                    jps2.setEchoChar((char)0);
+                    jps2.setBackground(Color.red);
 
                 }
             }
@@ -172,9 +177,9 @@ public class TelaDeLogin extends JFrame
         {
             if (jc.isSelected())
             {
-                jt2.setEchoChar('\u0000');
+                jps2.setEchoChar('\u0000');
             }
-            else jt2.setEchoChar('•');
+            else jps2.setEchoChar('•');
         });
 
 
@@ -184,7 +189,7 @@ public class TelaDeLogin extends JFrame
         add(jl1);
         add(jt1);
         add(jl2);
-        add(jt2);
+        add(jps2);
         add(jb3);
         add(jb1);
         add(jb2);

@@ -52,26 +52,77 @@ public class TelaDeCadastroCliente extends JFrame {
         jb1.setForeground(Color.WHITE);
         jb1.setVisible(true);
         jb1.addActionListener(e ->
-        {
-            Nome = jt1.getText();
-            Cpf = jt2.getText();
-            Endereco = jt3.getText();
-            Numero = jt4.getText();
-            Cep = jt5.getText();
-            Cidade = jt6.getText();
-            Estado = jt7.getText();
-            SalarioAtual = jt8.getText();
-            GanhosExtras = jt9.getText();
+                {
+                    Nome = jt1.getText();
+                    Cpf = jt2.getText();
+                    Endereco = jt3.getText();
+                    Numero = jt4.getText();
+                    Cep = jt5.getText();
+                    Cidade = jt6.getText();
+                    Estado = jt7.getText();
+                    SalarioAtual = jt8.getText();
+                    GanhosExtras = jt9.getText();
+            /*
+               Preciso que "CadastroCliente.cadastrarConta(Nome,Cpf,Endereco,Numero,Cep,Cidade,Estado,SalarioAtual,GanhosExtras);"
+               estiver certo e gravou me retorne int "1"; caso esteja errado me retorne:
+               JOptionPane.showMessageDialog(null,"Você digitou errado! O campo nome não pode conter números ou caracteres especiais. Tente novamente.");
+               seguido de return "1"; ou
+               JOptionPane.showMessageDialog(null,"Você digitou errado! O campo cpf tem que conter 11 digitos. Tente novamente.");
+               seguido de return "2"; ou
+               OBS: endereço nao precisa me retornar nada!ou
+               JOptionPane.showMessageDialog(null,"Você digitou errado! O campo numero pode conter até 3 numeros. Tente novamente.");
+               seguido de return "3";ou
+               JOptionPane.showMessageDialog(null,"Você digitou errado! O campo cep tem que conter 8 digitos. Tente novamente.");
+               seguido de return "4";ou
+               JOptionPane.showMessageDialog(null,"Você digitou errado! O campo cidade não pode conter numeros e nem caracteres especiais. Tente novamente.");
+               seguido de return "5"; ou
+               JOptionPane.showMessageDialog(null,"Você digitou errado! O campo estado não pode conter numeros e nem caracteres especiais. Tente novamente.");
+               seguido de return "6";ou
+               JOptionPane.showMessageDialog(null,"Você digitou errado!  ariana o campo Salario atual ariana aqui fica ao seu dispor. Tente novamente.");
+               seguido de return "7";ou
+               JOptionPane.showMessageDialog(null,"Você digitou errado!  ariana o campo Salario renda extra ariana aqui fica ao seu dispor. Tente novamente.");
+               seguido de return "8";
+             */
 
-            try
-            {
-                CadastroCliente.cadastrarConta(Nome,Cpf,Endereco,Numero,Cep,Cidade,Estado,SalarioAtual,GanhosExtras);
-            }
-            catch (IOException ex)
-            {
-                throw new RuntimeException(ex);
-            }
-        });
+                    try {
+                        if (CadastroCliente.cadastrarConta(Nome, Cpf, Endereco, Numero, Cep, Cidade, Estado, SalarioAtual, GanhosExtras)==1)
+                        {
+                            JOptionPane.showMessageDialog(null, "usuario cadastrado com sucesso");
+                            dispose();
+                            new TelaDeLogin();
+                        } else if (CadastroCliente.cadastrarConta(Nome, Cpf, Endereco, Numero, Cep, Cidade, Estado, SalarioAtual, GanhosExtras)==2)
+                        {
+                            jt1.setBackground(Color.red);
+                        } else if (CadastroCliente.cadastrarConta(Nome, Cpf, Endereco, Numero, Cep, Cidade, Estado, SalarioAtual, GanhosExtras)==3)
+                        {
+                            jt2.setBackground(Color.red);
+                        } else if (CadastroCliente.cadastrarConta(Nome, Cpf, Endereco, Numero, Cep, Cidade, Estado, SalarioAtual, GanhosExtras)==4)
+                        {
+                            jt4.setBackground(Color.red);
+                        } else if (CadastroCliente.cadastrarConta(Nome, Cpf, Endereco, Numero, Cep, Cidade, Estado, SalarioAtual, GanhosExtras) == 5)
+                        {
+                            jt5.setBackground(Color.red);
+                        } else if (CadastroCliente.cadastrarConta(Nome, Cpf, Endereco, Numero, Cep, Cidade, Estado, SalarioAtual, GanhosExtras)==6)
+                        {
+                            jt6.setBackground(Color.red);
+                        } else if (CadastroCliente.cadastrarConta(Nome, Cpf, Endereco, Numero, Cep, Cidade, Estado, SalarioAtual, GanhosExtras)==7)
+                        {
+                           jt7.setBackground(Color.red);
+                        } else if (CadastroCliente.cadastrarConta(Nome, Cpf, Endereco, Numero, Cep, Cidade, Estado, SalarioAtual, GanhosExtras)==8)
+                        {
+                           jt8.setBackground(Color.red);
+                        } else if (CadastroCliente.cadastrarConta(Nome, Cpf, Endereco, Numero, Cep, Cidade, Estado, SalarioAtual, GanhosExtras)==9)
+                        {
+                            jt9.setBackground(Color.red);
+                        }
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+
+
+
 
 
         jb2 = new JButton("<- voltar");
