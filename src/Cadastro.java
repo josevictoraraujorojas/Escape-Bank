@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class Cadastro {
-    public boolean CadastroLoginESenha(String login, String senha) throws IOException {
+    public int CadastroLoginESenha(String login, String senha) throws IOException {
         UIManager.getDefaults().put("OptionPane.background", new Color(6422686));
         UIManager.put("Panel.background", new Color(6422686));
         new Scanner(System.in);
@@ -19,10 +19,9 @@ public class Cadastro {
         StringBuilder caminho = new StringBuilder(URI + id);
         new SetPaths().SavePaths(id,"C:\\EscapeBank\\native.txt",false);
 
-        while(validacaoDeUsuario(login) && !verificaLoginDuplicada(String.valueOf(caminho)) && !verificaSequencia(senha)&& !validaDeSenhaRegex(senha)){
             if (validaDeSenhaRegex(senha) || senha.equals(login) || verificaSequencia(senha)) {
                 JOptionPane.showMessageDialog(null, "<html><font color=#FF00FF face=arial><i><b> senha incorreta atente-se aos requisitos");
-                return false;
+                return 3;
             }
 
             if (!senha.equals(login) && validacaoDeUsuario(senha) && !validaDeSenhaRegex(senha) && !verificaLoginDuplicada(login) && !verificaSequencia(senha)) {
@@ -32,16 +31,17 @@ public class Cadastro {
                 arquivo.createNewFile();
                 BufferedWriter armazena = new BufferedWriter(new FileWriter(arquivo, true));
                 armazenaLoginESenha(armazena, login, senha);
-                return true;
+                return 1;
+
             }
-        }
+
 
         JOptionPane.showMessageDialog(null, "<html><font color=#FF00FF face=arial><i><b> login Já existente", "erro", JOptionPane.ERROR_MESSAGE);
         id.delete(0, id.length());
         id.append(criptografia(login));
         caminho.delete(0, caminho.length());
         caminho.append(URI).append(id);
-        return false;
+        return 2;
     }
 
     public static boolean validacaoDeUsuario(String login) {

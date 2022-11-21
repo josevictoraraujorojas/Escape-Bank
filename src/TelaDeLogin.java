@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.IOException;
 
 public class TelaDeLogin extends JFrame
 {
@@ -41,21 +42,27 @@ public class TelaDeLogin extends JFrame
 
 
                 /*Preciso que Login().VerificaLogin(Login,Senha)
-               estiver certo e gravou me retorne int 1; se der erro me retorne:
-               JOptionPane.showMessageDialog(null,usuario não existe);seguido de: return "2";
+               estiver certo e gravou me retorne int 1;
+               se der erro me retorne:
+               JOptionPane.showMessageDialog(null,usuario não existe);seguido de: 2";
                ou
                JOptionPane.showMessageDialog(null,senha incorreta);seguido de: return "3";*/
 
-            if (new Login().VerificaLogin(Login,Senha)==1)
-            {
-                System.out.println("proxima tela ainda em desenvolvimento");
-            } else if (new Login().VerificaLogin(Login,Senha)==2 )
-            {
-                jt1.setBackground(Color.red);
-                jps2.setBackground(Color.red);
-            } else if (new Login().VerificaLogin(Login,Senha)==3)
-            {
-                jps2.setBackground(Color.red);
+            try {
+                if (new Login().VerificaLogin(Login,Senha)==1)
+                {
+
+                    System.out.println("proxima tela ainda em desenvolvimento");
+                } else if (new Login().VerificaLogin(Login,Senha)==2 )
+                {
+                    jt1.setBackground(Color.red);
+                    jps2.setBackground(Color.red);
+                } else if (new Login().VerificaLogin(Login,Senha)==3)
+                {
+                    jps2.setBackground(Color.red);
+                }
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
 
 

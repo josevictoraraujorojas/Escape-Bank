@@ -52,17 +52,21 @@ public class TelaDeCadastro extends JFrame {
                 JOptionPane.showMessageDialog(null, esse nome de usuario não e valido);seguido de return "2";
                 JOptionPane.showMessageDialog(null,esse senha invalida, atente-se aos requisitos);seguido de return "3";*/
 
-                if (new Cadastro().CadastroLoginESenha(Login,Senha)==1)
-                {
-                    new TelaDeCadastroCliente();
-                    dispose();
-                } else if (new Cadastro().CadastroLoginESenha(Login,Senha)==2)
-                {
-                    jt1.setBackground(Color.red);
-                } else if (new Cadastro().CadastroLoginESenha(Login,Senha)==3)
-                {
-                    jt2.setBackground(Color.red);
+                switch (new Cadastro().CadastroLoginESenha(Login,Senha)){
+                    case 1 ->{
+                        new TelaDeCadastroCliente();
+                        dispose();
+                    }
+                    case 2 ->{
+                        jt1.setBackground(Color.red);
+
+                    }
+                    case 3 ->{
+                        jt2.setBackground(Color.red);
+
+                    }
                 }
+
             } catch (IOException a)
             {
                 throw new RuntimeException(a);
@@ -193,5 +197,9 @@ public class TelaDeCadastro extends JFrame {
         add(icon2);
 
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new TelaDeCadastro();
     }
 }
