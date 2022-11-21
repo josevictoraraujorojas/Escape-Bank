@@ -20,7 +20,7 @@ public class CadastroCliente {
     public static boolean found;
     static Random random = new Random();
 
-    public static void cadastrarConta(String nome,String cpf,String endereco,String numero,String cep,String cidade,String estado,String salarioAtual,String ganhosExtras) throws IOException {
+    public static int cadastrarConta(String nome, String cpf, String endereco, String numero, String cep, String cidade, String estado, String salarioAtual, String ganhosExtras) throws IOException {
         confereNome(nome);
         confereCPF(cpf);
         confereEndereco(endereco, numero, cep, cidade, estado);
