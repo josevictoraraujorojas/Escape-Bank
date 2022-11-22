@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.io.*;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,135 +12,101 @@ import java.util.regex.Pattern;
 public class CadastroCliente {
     public static StringBuilder IdPaths = new StringBuilder(new SetPaths().GetPaths("C:\\EscapeBank\\native.txt"));
     public static StringBuilder URI = new StringBuilder(new URIpadrao().URI()+ IdPaths +"\\CadastroCliente.txt");
-    public static File CC = new File("C:\\EscapeBank\\native.txt");
     public static File cadastroCliente = new File(String.valueOf(URI));
     public static Scanner scan = new Scanner(System.in);
-
     public static boolean found;
-    static Random random = new Random();
 
     public static int cadastrarConta(String nome, String cpf, String endereco, String numero, String cep, String cidade, String estado, String salarioAtual, String ganhosExtras) throws IOException {
-        confereNome(nome);
-        confereCPF(cpf);
-        confereEndereco(endereco, numero, cep, cidade, estado);
-        confereSalario(salarioAtual);
-        confereGanhosExtras(ganhosExtras);
-        calcularRendaTotal();
-    }
-
-    public static void confereCPF(String cpf) throws IOException {
-        BufferedWriter wr = new BufferedWriter(new FileWriter(cadastroCliente, true));
-        do {
-            Pattern pattern = Pattern.compile("^[0-9]{3}.[0-9]{3}.[0-9]{3}[-][0-9]{2}$");
-            Matcher matcher = pattern.matcher(cpf);
-            found = matcher.find();
-            if (found) {
-                wr.write("CPF: " + cpf);
-                wr.newLine();
-                wr.close();
-            } else {
-                System.out.println("Você digitou errado! Tente novamente!");break;            }
-        }while (!found);
-    }
-        public static void confereNome(String nome) throws IOException {
-            BufferedWriter wr = new BufferedWriter(new FileWriter(cadastroCliente, true));
-            do {
-                Pattern pattern = Pattern.compile("^[A-Za-z\\s]{8,}$");
-                Matcher matcher = pattern.matcher(nome);
-                found = matcher.find();
-                if (found) {
-                    wr.write("Nome: " + nome);
-                    wr.newLine();
-                    wr.close();
-                } else {
-                    JOptionPane.showMessageDialog(null,"Você digitou errado! O nome não pode conter números ou caracteres especiais. Tente novamente.");break;
-                }
-            }while (!found);
+        if (!confereNome(nome)){
+            return 2;
         }
-    public static void confereEndereco(String endereco, String numero, String cep, String cidade, String estado) throws IOException{
-        BufferedWriter wr = new BufferedWriter(new FileWriter(cadastroCliente, true));
-        do {
-            wr.write("Endereco: " + endereco);
-        }while (!found);
-        do {
-            Pattern pattern = Pattern.compile("^[0-9]{0,3}.[0-9]{0,3}$");
-            Matcher matcher = pattern.matcher(numero);
-            found = matcher.find();
-            if (found) {
-                wr.write(", n.: " + numero);
-            } else {
-                JOptionPane.showMessageDialog(null,"numero incorreto");break;
-            }
-        }while (!found);
-        do {
-            Pattern pattern = Pattern.compile("^[0-9]{2}.[0-9]{3}[-][0-9]{3}$");
-            Matcher matcher = pattern.matcher(cep);
-            found = matcher.find();
-            if (found) {
-                wr.write("- CEP: " + cep);
-            } else {
-                JOptionPane.showMessageDialog(null,"cep incorreto");break;
-            }
-        }while (!found);
-        do {
-
-            Pattern pattern = Pattern.compile("^[A-Za-z\\s]{2,20}$");
-            Matcher matcher = pattern.matcher(cidade);
-            found = matcher.find();
-            if (found) {
-                wr.write("- cidade: " + cidade);
-            } else {
-                JOptionPane.showMessageDialog(null,"cidade incorreto");break;}
-            }
-        while (!found);
-        do {
-            Pattern pattern = Pattern.compile("^[A-Z]{2}$");
-            Matcher matcher = pattern.matcher(estado);
-            found = matcher.find();
-            if (found) {
-                wr.write("/ " + estado + ".");
-                wr.newLine();
-                wr.close();
-            } else {
-                JOptionPane.showMessageDialog(null,"estado incorreto");
-                break;
-            }
-        }while (!found);
+        if (!confereCPF(cpf)){
+            return 3;
+        }
+        if (!confereEndereco(endereco, numero, cep, cidade, estado)){
+            return 4;
+        }
+        if (!confereSalario(salarioAtual)){
+            return 5;
+        }
+        if (!confereGanhosExtras(ganhosExtras)){
+            return 6;
+        }
+        calcularRendaTotal();
+        return 1;
     }
-    public static void confereSalario(String salarioAtual) throws IOException{
-        BufferedWriter wr = new BufferedWriter(new FileWriter(cadastroCliente, true));
-        do {
-            Pattern pattern = Pattern.compile("^[0-9]{0,3}.[0-9]{0,3}[.][0-9]{2}$");
-            Matcher matcher = pattern.matcher(salarioAtual);
-            found = matcher.find();
-            if (found) {
-                wr.write("Salario Atual: R$ " + salarioAtual);
-                wr.newLine();
-                wr.close();
-            } else {
-                JOptionPane.showMessageDialog(null,"formato de salario não compativel");
-                break;
-            }
-        }while (!found);
+    public static boolean confereRegex(String x, String y){
+        Pattern pattern = Pattern.compile(x);
+        Matcher matcher = pattern.matcher(y);
+        found = matcher.find();
+        return found;
     }
-    public static void confereGanhosExtras(String ganhosExtras) throws IOException{
+    public static void escreveArquivo(String x, String y) throws IOException {
         BufferedWriter wr = new BufferedWriter(new FileWriter(cadastroCliente, true));
-        do {
-            Pattern pattern = Pattern.compile("^[0-9]{0,3}.[0-9]{0,3}[.][0-9]{2}$");
-            Matcher matcher = pattern.matcher(ganhosExtras);
-            found = matcher.find();
-            if (found) {
-                wr.write("Ganhos Extras: R$ " + ganhosExtras);
-                wr.newLine();
-                wr.close();
+        wr.write(x + y);
+        wr.newLine();
+        wr.close();
+    }
+    public static boolean confereCPF(String cpf) throws IOException {
+        if (confereRegex("^[0-9]{3}.[0-9]{3}.[0-9]{3}[-][0-9]{2}$",cpf)) {
+            escreveArquivo("CPF: ", cpf);
+        } else{
+            JOptionPane.showMessageDialog(null,"Verifique o formato digitado!");
+        }
+        return true;
+    }
+        public static boolean confereNome(String nome) throws IOException {
+            if (confereRegex("^[A-Za-z\\s]{8,}$", nome)) {
+                escreveArquivo("Nome: ", nome);
             } else {
-                JOptionPane.showMessageDialog(null,"formato de ganho extra nao permitido");
-                break;
+                JOptionPane.showMessageDialog(null,"Você digitou errado! O nome não pode conter números ou caracteres especiais. Tente novamente.");
             }
-        }while (!found);
+            return true;
+        }
+    public static boolean confereEndereco(String endereco, String numero, String cep, String cidade, String estado) throws IOException{
+        BufferedWriter wr = new BufferedWriter(new FileWriter(cadastroCliente, true));
+        wr.write("Endereco: " + endereco);
+        if (confereRegex("^[0-9]{0,3}.[0-9]{0,3}$", numero)) {
+            wr.write(", n.: " + numero);
+        } else {
+            JOptionPane.showMessageDialog(null,"numero incorreto");
+        }
+        if (confereRegex("^[0-9]{2}.[0-9]{3}[-][0-9]{3}$", cep)) {
+            wr.write("- CEP: " + cep);
+        } else {
+            JOptionPane.showMessageDialog(null,"cep incorreto");
+        }
+        if (confereRegex("^[A-Za-z\\s]{2,20}$", cidade)) {
+            wr.write("- cidade: " + cidade);
+        } else {
+            JOptionPane.showMessageDialog(null,"cidade incorreto");
+        }
+        if (confereRegex("^[A-Z]{2}$", estado)) {
+            wr.write("/ " + estado + ".");
+            wr.newLine();
+            wr.close();
+        } else {
+            JOptionPane.showMessageDialog(null,"estado incorreto");
+        }
+        return true;
+    }
+    public static boolean confereSalario(String salarioAtual) throws IOException{
+        if (confereRegex("^[0-9]{0,3}.[0-9]{0,3}[.][0-9]{2}$", salarioAtual)) {
+            escreveArquivo("Salario Atual: R$ ", salarioAtual);
+        } else {
+            JOptionPane.showMessageDialog(null,"formato de salario não compativel");
+        }
+        return true;
+    }
+    public static boolean confereGanhosExtras(String ganhosExtras) throws IOException{
+        if (confereRegex("^[0-9]{0,3}.[0-9]{0,3}[.][0-9]{2}$", ganhosExtras)) {
+            escreveArquivo("Ganhos Extras: R$ ", ganhosExtras);
+        } else {
+            JOptionPane.showMessageDialog(null,"formato de ganho extra nao permitido");
+        }
+        return true;
     }
     public static void calcularRendaTotal() throws IOException {
-        BufferedWriter wr = new BufferedWriter(new FileWriter(cadastroCliente, true));
         scan = new Scanner(cadastroCliente);
         String salario1;
         double salario = 0, rendaExtra = 0, rendaTotal;
@@ -155,27 +120,7 @@ public class CadastroCliente {
             }
         }
         rendaTotal = salario + rendaExtra;
-        wr.write("Renda Total: R$ " + rendaTotal);
-        wr.newLine();
-        wr.close();
+        escreveArquivo("Renda Total: R$ ", String.valueOf(rendaTotal));
         System.out.println("Renda Total: R$ " + rendaTotal);
-    }
-    public static void abrirConta() throws IOException {
-        BufferedWriter wr = new BufferedWriter(new FileWriter(cadastroCliente, true));
-        int numeroConta = 0, digito = 0;
-        scan = new Scanner(CC);
-        String contaCorrente;
-        while (scan.hasNextLine()){
-            contaCorrente = scan.nextLine();
-            System.out.println(contaCorrente);
-            numeroConta = Integer.parseInt(contaCorrente.substring(0,5));
-            digito = Integer.parseInt(contaCorrente.substring(6,7));
-        }
-        wr.write("Numero Conta: " + numeroConta + digito);
-        wr.newLine();
-        wr.close();
-    }
-    public static void inserirConta(){
-
     }
 }

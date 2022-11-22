@@ -132,7 +132,7 @@ public class TelaDeLogin extends JFrame
             public void focusGained(FocusEvent e)
             {
                 jc.setSelected(false);
-                jps2.setEchoChar('•');
+                jps2.setEchoChar('*');
                 String password = String.valueOf(jps2.getPassword());
 
                 if(password.equalsIgnoreCase("digite a sua senha"))
@@ -186,7 +186,7 @@ public class TelaDeLogin extends JFrame
             {
                 jps2.setEchoChar('\u0000');
             }
-            else jps2.setEchoChar('•');
+            else jps2.setEchoChar('*');
         });
 
 
