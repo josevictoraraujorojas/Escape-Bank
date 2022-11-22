@@ -8,32 +8,17 @@ import java.text.ParseException;
 
 public class TelaDeCadastroCliente extends JFrame {
 
-    JButton jb1,jb2;
-    JTextField jt1;
-    JFormattedTextField jt2;
-    JFormattedTextField jt3;
-    JTextField jt4;
-    JFormattedTextField jt5;
-    JTextField jt6;
-    JFormattedTextField jt7;
-    JTextField jt8;
-    JTextField jt9;
-    JLabel jl1,jl2,jl3, jl4, jl5;
+    JButton JB1, JB2;
+    JTextField JT1, JT2, JT3, JT4, JT5;
+    JFormattedTextField JFT1, JFT2, JFT3, JFT4;
+    JLabel JL1, JL2, JL3, JL4;
     Color cor = new Color(98, 0, 158);
-    public static String Nome;
-    public static String Cpf;
-    public static String Endereco;
-    public static String Numero;
-    public static String Cep;
-    public static String Cidade;
-    public static String Estado;
-    public static String SalarioAtual;
-    public static String GanhosExtras;
+    public static String Nome, Cpf, Endereco, Numero, Cep, Cidade, Estado, SalarioAtual, GanhosExtras;
 
     public TelaDeCadastroCliente()
     {
 
-        //configurações do jframe//
+        /* configurações do JFrame */
         setLayout(null);
         setTitle("tela de login");
         setSize(800, 600);
@@ -44,29 +29,29 @@ public class TelaDeCadastroCliente extends JFrame {
         int x = 280;
         int X = x-110;
 
-        //configuracão do jbotton//
-        jb1 = new JButton("ok");
-        jb1.setBounds(460, 500, 100, 40);
-        jb1.setBackground(Color.MAGENTA);
-        jb1.setFont(new Font("Arial", Font.BOLD, 20));
-        jb1.setForeground(Color.WHITE);
-        jb1.setVisible(true);
-        jb1.addActionListener(e ->
+        /* configurações do JButton */
+        JB1 = new JButton("ok");
+        JB1.setBounds(460, 500, 100, 40);
+        JB1.setBackground(Color.MAGENTA);
+        JB1.setFont(new Font("Arial", Font.BOLD, 20));
+        JB1.setForeground(Color.WHITE);
+        JB1.setVisible(true);
+        JB1.addActionListener(e ->
                 {
-                    Nome = jt1.getText();
-                    Cpf = jt2.getText();
-                    Endereco = jt3.getText();
-                    Numero = jt4.getText();
-                    Cep = jt5.getText();
-                    Cidade = jt6.getText();
-                    Estado = jt7.getText();
-                    SalarioAtual = jt8.getText();
-                    GanhosExtras = jt9.getText();
+                    Nome = JT1.getText();
+                    Cpf = JFT1.getText();
+                    Endereco = JFT2.getText();
+                    Numero = JT2.getText();
+                    Cep = JFT3.getText();
+                    Cidade = JT3.getText();
+                    Estado = JFT4.getText();
+                    SalarioAtual = JT4.getText();
+                    GanhosExtras = JT5.getText();
                     SalarioAtual = SalarioAtual.substring(2);
                     GanhosExtras = GanhosExtras.substring(2);
             /*
                Preciso que "CadastroCliente.cadastrarConta(Nome,Cpf,Endereco,Numero,Cep,Cidade,Estado,SalarioAtual,GanhosExtras);"
-               estiver certo e gravou me retorne int "1"; caso esteja errado me retorne:
+               estiver certo e gravou me retorne int 1; caso esteja errado me retorne:
                JOptionPane.showMessageDialog(null,"Você digitou errado! O campo nome não pode conter números ou caracteres especiais. Tente novamente.");
                seguido de return "1"; ou
                JOptionPane.showMessageDialog(null,"Você digitou errado! O campo cpf tem que conter 11 digitos. Tente novamente.");
@@ -80,9 +65,9 @@ public class TelaDeCadastroCliente extends JFrame {
                seguido de return "5"; ou
                JOptionPane.showMessageDialog(null,"Você digitou errado! O campo estado não pode conter numeros e nem caracteres especiais. Tente novamente.");
                seguido de return "6";ou
-               JOptionPane.showMessageDialog(null,"Você digitou errado!  ariana o campo Salario atual ariana aqui fica ao seu dispor. Tente novamente.");
+               JOptionPane.showMessageDialog(null,"Você digitou errado! Ariana o campo Salario atual ariana aqui fica ao seu dispor. Tente novamente.");
                seguido de return "7";ou
-               JOptionPane.showMessageDialog(null,"Você digitou errado!  ariana o campo Salario renda extra ariana aqui fica ao seu dispor. Tente novamente.");
+               JOptionPane.showMessageDialog(null,"Você digitou errado! Ariana o campo Salario renda extra ariana aqui fica ao seu dispor. Tente novamente.");
                seguido de return "8";
              */
 
@@ -94,14 +79,14 @@ public class TelaDeCadastroCliente extends JFrame {
                                 JOptionPane.showMessageDialog(null, "usuario cadastrado com sucesso");
                                 dispose();
                             }
-                            case 2 -> jt1.setBackground(Color.red);
-                            case 3 -> jt2.setBackground(Color.red);
-                            case 4 -> jt4.setBackground(Color.red);
-                            case 5 -> jt5.setBackground(Color.red);
-                            case 6 -> jt6.setBackground(Color.red);
-                            case 7 -> jt7.setBackground(Color.red);
-                            case 8 -> jt8.setBackground(Color.red);
-                            case 9-> jt9.setBackground(Color.red);
+                            case 2 -> JT1.setBackground(Color.red);
+                            case 3 -> JFT1.setBackground(Color.red);
+                            case 4 -> JT2.setBackground(Color.red);
+                            case 5 -> JFT3.setBackground(Color.red);
+                            case 6 -> JT3.setBackground(Color.red);
+                            case 7 -> JFT4.setBackground(Color.red);
+                            case 8 -> JT4.setBackground(Color.red);
+                            case 9-> JT5.setBackground(Color.red);
                             default -> System.out.println("erro");
                         }
                     }catch (IOException ex) {
@@ -110,24 +95,23 @@ public class TelaDeCadastroCliente extends JFrame {
                 });
 
 
-        jb2 = new JButton("<- voltar");
-        jb2.setBounds(170, 500, 120, 40);
-        jb2.setBackground(Color.MAGENTA);
-        jb2.setFont(new Font("Arial", Font.BOLD, 20));
-        jb2.setForeground(Color.WHITE);
-        jb2.setVisible(true);
-        jb2.addActionListener(e ->
+        JB2 = new JButton("<- voltar");
+        JB2.setBounds(170, 500, 120, 40);
+        JB2.setBackground(Color.MAGENTA);
+        JB2.setFont(new Font("Arial", Font.BOLD, 20));
+        JB2.setForeground(Color.WHITE);
+        JB2.setVisible(true);
+        JB2.addActionListener(e ->
         {
             new TelaDeCadastro();
             dispose();
         });
 
+        /* mascarando as caixas de textos */
         MaskFormatter cpf = null;
         MaskFormatter numero;
         MaskFormatter estado = null;
         MaskFormatter cep = null;
-        MaskFormatter salarioatual;
-        MaskFormatter ganhoextras;
 
 
         try
@@ -143,64 +127,64 @@ public class TelaDeCadastroCliente extends JFrame {
             cep.setPlaceholderCharacter('_');
 
 
-        } catch(ParseException excp)
+        } catch(ParseException exe)
         {
-            System.err.println("Erro na formatação: " + excp.getMessage());
+            System.err.println("Erro na formatação: " + exe.getMessage());
             System.exit(-1);
         }
 
-        //configuraçao do Jtextfield//
-        jt1  = new JTextField("digite seu nome");
-        jt1.setBounds(x, 104, 280, 20);//x=130 y= 4
-        jt1.setBackground(Color.MAGENTA);
-        jt1.setForeground(Color.WHITE);
-        jt1.setFont(new Font("Arial", Font.BOLD, 15));
-        jt1.setVisible(true);
-        jt1.addFocusListener(new FocusListener()
+        /* configurações do JTextField e o JFormatTextField */
+        JT1 = new JTextField("digite seu nome");
+        JT1.setBounds(x, 104, 280, 20);//x=130 y= 4
+        JT1.setBackground(Color.MAGENTA);
+        JT1.setForeground(Color.WHITE);
+        JT1.setFont(new Font("Arial", Font.BOLD, 15));
+        JT1.setVisible(true);
+        JT1.addFocusListener(new FocusListener()
         {
             @Override
             public void focusGained(FocusEvent e)
             {
-                if (jt1.getText().equals("digite seu nome"))
+                if (JT1.getText().equals("digite seu nome"))
                 {
-                    jt1.setBackground(Color.MAGENTA);
-                    jt1.setText("");
+                    JT1.setBackground(Color.MAGENTA);
+                    JT1.setText("");
                 }
             }
             @Override
             public void focusLost(FocusEvent e)
             {
-                if (jt1.getText().equals(""))
+                if (JT1.getText().equals(""))
                 {
-                    jt1.setBackground(Color.red);
-                    jt1.setText("digite seu nome");
+                    JT1.setBackground(Color.red);
+                    JT1.setText("digite seu nome");
                 }
             }
         });
 
-        jt2  = new JFormattedTextField(cpf);
-        jt2.setBounds(x, 146, 280, 20);//x=130 y= 4
-        jt2.setBackground(Color.MAGENTA);
-        jt2.setForeground(Color.WHITE);
-        jt2.setFont(new Font("Arial", Font.BOLD, 15));
-        jt2.setVisible(true);
-        jt2.addFocusListener(new FocusListener()
+        JFT1 = new JFormattedTextField(cpf);
+        JFT1.setBounds(x, 146, 280, 20);//x=130 y= 4
+        JFT1.setBackground(Color.MAGENTA);
+        JFT1.setForeground(Color.WHITE);
+        JFT1.setFont(new Font("Arial", Font.BOLD, 15));
+        JFT1.setVisible(true);
+        JFT1.addFocusListener(new FocusListener()
         {
             @Override
             public void focusGained(FocusEvent e)
             {
-                if (jt2.getText().equals("___.___.___-__"))
+                if (JFT1.getText().equals("___.___.___-__"))
                 {
-                    jt2.setBackground(Color.magenta);
-                    jt2.setText("___.___.___-__");
+                    JFT1.setBackground(Color.magenta);
+                    JFT1.setText("___.___.___-__");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (jt2.getText().equals("___.___.___-__")){
-                    jt2.setBackground(Color.red);
-                    jt2.setText("___.___.___-__");
+                if (JFT1.getText().equals("___.___.___-__")){
+                    JFT1.setBackground(Color.red);
+                    JFT1.setText("___.___.___-__");
 
 
                 }
@@ -208,268 +192,256 @@ public class TelaDeCadastroCliente extends JFrame {
             }
         });
 
-        jt3  = new JFormattedTextField("digite seu endereco");
-        jt3.setBounds(x, 188, 280, 20);//x=130 y= 4
-        jt3.setBackground(Color.MAGENTA);
-        jt3.setForeground(Color.WHITE);
-        jt3.setFont(new Font("Arial", Font.BOLD, 15));
-        jt3.setVisible(true);
-        jt3.addFocusListener(new FocusListener()
+        JFT2 = new JFormattedTextField("digite seu endereco");
+        JFT2.setBounds(x, 188, 280, 20);//x=130 y= 4
+        JFT2.setBackground(Color.MAGENTA);
+        JFT2.setForeground(Color.WHITE);
+        JFT2.setFont(new Font("Arial", Font.BOLD, 15));
+        JFT2.setVisible(true);
+        JFT2.addFocusListener(new FocusListener()
         {
             @Override
             public void focusGained(FocusEvent e)
             {
-                if (jt3.getText().equals("digite seu endereco"))
+                if (JFT2.getText().equals("digite seu endereco"))
                 {
-                    jt3.setBackground(Color.MAGENTA);
-                    jt3.setText("");
+                    JFT2.setBackground(Color.MAGENTA);
+                    JFT2.setText("");
                 }
             }
             @Override
             public void focusLost(FocusEvent e)
             {
-                if (jt3.getText().equals(""))
+                if (JFT2.getText().equals(""))
                 {
-                    jt3.setBackground(Color.red);
-                    jt3.setText("digite seu endereco");
+                    JFT2.setBackground(Color.red);
+                    JFT2.setText("digite seu endereco");
                 }
             }
         });
 
-        jt4  = new JTextField("digite o numero do seu endereco");
-        jt4.setBounds(x, 230, 280, 20);//x=130 y= 4
-        jt4.setBackground(Color.MAGENTA);
-        jt4.setForeground(Color.WHITE);
-        jt4.setFont(new Font("Arial", Font.BOLD, 15));
-        jt4.setVisible(true);
-        jt4.addFocusListener(new FocusListener()
+        JT2 = new JTextField("digite o numero do seu endereco");
+        JT2.setBounds(x, 230, 280, 20);//x=130 y= 4
+        JT2.setBackground(Color.MAGENTA);
+        JT2.setForeground(Color.WHITE);
+        JT2.setFont(new Font("Arial", Font.BOLD, 15));
+        JT2.setVisible(true);
+        JT2.addFocusListener(new FocusListener()
         {
             @Override
             public void focusGained(FocusEvent e)
             {
-                if (jt4.getText().equals("digite o numero do seu endereco"))
+                if (JT2.getText().equals("digite o numero do seu endereco"))
                 {
-                    jt4.setBackground(Color.MAGENTA);
-                    jt4.setText("");
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e)
-            {
-                if (jt4.getText().equals(""))
-                {
-                    jt4.setBackground(Color.red);
-                    jt4.setText("digite o numero do seu endereco");
-                }
-
-            }
-        });
-
-
-        jt5  = new JFormattedTextField(cep);
-        jt5.setBounds(x, 272, 280, 20);//x=130 y= 4
-        jt5.setBackground(Color.MAGENTA);
-        jt5.setForeground(Color.WHITE);
-        jt5.setFont(new Font("Arial", Font.BOLD, 15));
-        jt5.setVisible(true);
-        jt5.addFocusListener(new FocusListener()
-        {
-            @Override
-            public void focusGained(FocusEvent e)
-            {
-                if (jt5.getText().equals("__.___-___"))
-                {
-                    jt5.setBackground(Color.magenta);
-                    jt5.setText("__.___-___");
+                    JT2.setBackground(Color.MAGENTA);
+                    JT2.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e)
             {
-                if (jt5.getText().equals("__.___-___"))
+                if (JT2.getText().equals(""))
                 {
-                    jt5.setBackground(Color.red);
-                    jt5.setText("__.___-___");
+                    JT2.setBackground(Color.red);
+                    JT2.setText("digite o numero do seu endereco");
                 }
+
             }
         });
 
 
-        jt6  = new JTextField("digite o nome da sua cidade");
-        jt6.setBounds(x, 314, 280, 20);//x=130 y= 4
-        jt6.setBackground(Color.MAGENTA);
-        jt6.setForeground(Color.WHITE);
-        jt6.setFont(new Font("Arial", Font.BOLD, 15));
-        jt6.setVisible(true);
-        jt6.addFocusListener(new FocusListener()
+        JFT3 = new JFormattedTextField(cep);
+        JFT3.setBounds(x, 272, 280, 20);//x=130 y= 4
+        JFT3.setBackground(Color.MAGENTA);
+        JFT3.setForeground(Color.WHITE);
+        JFT3.setFont(new Font("Arial", Font.BOLD, 15));
+        JFT3.setVisible(true);
+        JFT3.addFocusListener(new FocusListener()
         {
             @Override
             public void focusGained(FocusEvent e)
             {
-                if (jt6.getText().equals("digite o nome da sua cidade"))
+                if (JFT3.getText().equals("__.___-___"))
                 {
-                    jt6.setBackground(Color.MAGENTA);
-                    jt6.setText("");
+                    JFT3.setBackground(Color.magenta);
+                    JFT3.setText("__.___-___");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e)
             {
-                if (jt6.getText().equals(""))
+                if (JFT3.getText().equals("__.___-___"))
                 {
-                    jt6.setBackground(Color.red);
-                    jt6.setText("digite o nome da sua cidade");
-                }
-
-            }
-        });
-
-        jt7  = new JFormattedTextField(estado);
-        jt7.setBounds(x, 356, 280, 20);//x=130 y= 4
-        jt7.setBackground(Color.MAGENTA);
-        jt7.setForeground(Color.WHITE);
-        jt7.setFont(new Font("Arial", Font.BOLD, 15));
-        jt7.setVisible(true);
-        jt7.addFocusListener(new FocusListener()
-        {
-            @Override
-            public void focusGained(FocusEvent e)
-            {
-                if (jt7.getText().equals("__"))
-                {
-                    jt7.setBackground(Color.MAGENTA);
-                    jt7.setText("__");
-                }
-            }
-            @Override
-            public void focusLost(FocusEvent e)
-            {
-                if (jt7.getText().equals("__"))
-                {
-                    jt7.setBackground(Color.red);
-                    jt7.setText("__");
+                    JFT3.setBackground(Color.red);
+                    JFT3.setText("__.___-___");
                 }
             }
         });
 
-        jt8  = new JTextField("R$______.__");
-        jt8.setBounds(x, 398, 280, 20);//x=130 y= 4
-        jt8.setBackground(Color.MAGENTA);
-        jt8.setForeground(Color.WHITE);
-        jt8.setFont(new Font("Arial", Font.BOLD, 15));
-        jt8.setVisible(true);
-        jt8.addFocusListener(new FocusListener()
+
+        JT3 = new JTextField("digite o nome da sua cidade");
+        JT3.setBounds(x, 314, 280, 20);//x=130 y= 4
+        JT3.setBackground(Color.MAGENTA);
+        JT3.setForeground(Color.WHITE);
+        JT3.setFont(new Font("Arial", Font.BOLD, 15));
+        JT3.setVisible(true);
+        JT3.addFocusListener(new FocusListener()
         {
             @Override
             public void focusGained(FocusEvent e)
             {
-                if (jt8.getText().equals("R$______.__"))
+                if (JT3.getText().equals("digite o nome da sua cidade"))
                 {
-                    jt8.setBackground(Color.MAGENTA);
-                    jt8.setText("R$");
+                    JT3.setBackground(Color.MAGENTA);
+                    JT3.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e)
             {
-                if (jt8.getText().equals("R$")||jt8.getText().equals(""))
+                if (JT3.getText().equals(""))
                 {
-                    jt8.setBackground(Color.red);
-                    jt8.setText("R$______.__");
+                    JT3.setBackground(Color.red);
+                    JT3.setText("digite o nome da sua cidade");
                 }
 
             }
         });
 
-        jt9  = new JTextField("R$______.__");
-        jt9.setBounds(x, 440, 280, 20);//x=130 y= 4
-        jt9.setBackground(Color.MAGENTA);
-        jt9.setForeground(Color.WHITE);
-        jt9.setFont(new Font("Arial", Font.BOLD, 15));
-        jt9.setVisible(true);
-        jt9.addFocusListener(new FocusListener()
+        JFT4 = new JFormattedTextField(estado);
+        JFT4.setBounds(x, 356, 280, 20);//x=130 y= 4
+        JFT4.setBackground(Color.MAGENTA);
+        JFT4.setForeground(Color.WHITE);
+        JFT4.setFont(new Font("Arial", Font.BOLD, 15));
+        JFT4.setVisible(true);
+        JFT4.addFocusListener(new FocusListener()
         {
             @Override
             public void focusGained(FocusEvent e)
             {
-                if (jt9.getText().equals("R$______.__"))
+                if (JFT4.getText().equals("__"))
                 {
-                    jt9.setBackground(Color.MAGENTA);
-                    jt9.setText("R$");
+                    JFT4.setBackground(Color.MAGENTA);
+                    JFT4.setText("__");
+                }
+            }
+            @Override
+            public void focusLost(FocusEvent e)
+            {
+                if (JFT4.getText().equals("__"))
+                {
+                    JFT4.setBackground(Color.red);
+                    JFT4.setText("__");
+                }
+            }
+        });
+
+        JT4 = new JTextField("R$______.__");
+        JT4.setBounds(x, 398, 280, 20);//x=130 y= 4
+        JT4.setBackground(Color.MAGENTA);
+        JT4.setForeground(Color.WHITE);
+        JT4.setFont(new Font("Arial", Font.BOLD, 15));
+        JT4.setVisible(true);
+        JT4.addFocusListener(new FocusListener()
+        {
+            @Override
+            public void focusGained(FocusEvent e)
+            {
+                if (JT4.getText().equals("R$______.__"))
+                {
+                    JT4.setBackground(Color.MAGENTA);
+                    JT4.setText("R$");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e)
             {
-                if (jt9.getText().equals("R$")||jt9.getText().equals(""))
+                if (JT4.getText().equals("R$")|| JT4.getText().equals(""))
                 {
-                    jt9.setBackground(Color.red);
-                    jt9.setText("R$______.__");
+                    JT4.setBackground(Color.red);
+                    JT4.setText("R$______.__");
                 }
 
             }
         });
 
+        JT5 = new JTextField("R$______.__");
+        JT5.setBounds(x, 440, 280, 20);//x=130 y= 4
+        JT5.setBackground(Color.MAGENTA);
+        JT5.setForeground(Color.WHITE);
+        JT5.setFont(new Font("Arial", Font.BOLD, 15));
+        JT5.setVisible(true);
+        JT5.addFocusListener(new FocusListener()
+        {
+            @Override
+            public void focusGained(FocusEvent e)
+            {
+                if (JT5.getText().equals("R$______.__"))
+                {
+                    JT5.setBackground(Color.MAGENTA);
+                    JT5.setText("R$");
+                }
+            }
 
+            @Override
+            public void focusLost(FocusEvent e)
+            {
+                if (JT5.getText().equals("R$")|| JT5.getText().equals(""))
+                {
+                    JT5.setBackground(Color.red);
+                    JT5.setText("R$______.__");
+                }
 
+            }
+        });
 
-        //configurar jlabel//
-        jl1 = new JLabel("<html>nome:<br><br>cpf:<br><br>endereco:<br><br>numero:<br><br>cep:<br><br>cidade:<br><br>estado:<br><br>salario:<br><br>rendaextra: </html>");
-        jl1.setFont(new Font("arial", Font.BOLD, 17));
-        jl1.setForeground(Color.MAGENTA);
-        jl1.setBounds(X, 80, 100, 400);
-        jl1.setVisible(true);
+        /* configurações do JLabel */
+        JL1 = new JLabel("<html>nome:<br><br>cpf:<br><br>endereco:<br><br>numero:<br><br>cep:<br><br>cidade:<br><br>estado:<br><br>salario:<br><br>renda extra: </html>");
+        JL1.setFont(new Font("arial", Font.BOLD, 17));
+        JL1.setForeground(Color.MAGENTA);
+        JL1.setBounds(X, 80, 100, 400);
+        JL1.setVisible(true);
 
-        jl2 = new JLabel("senha:");
-        jl2.setFont(new Font("arial", Font.BOLD, 20));
-        jl2.setForeground(Color.MAGENTA);
-        jl2.setBounds(10, 267, 70, 30);
-        jl2.setVisible(true);
+        JL2 = new JLabel("<html>Bem vindo ao Escape-Bank<br> dê um Escape na burocracia!</html>");
+        JL2.setFont(new Font("arial", Font.BOLD, 20));
+        JL2.setForeground(Color.MAGENTA);
+        JL2.setBounds(10, 10, 450, 60);
+        JL2.setVisible(true);
 
-        jl3 = new JLabel("<html>Bem vindo ao Escape-Bank<br> dê um Escape na burocracia!</html>");
-        jl3.setFont(new Font("arial", Font.BOLD, 20));
-        jl3.setForeground(Color.MAGENTA);
-        jl3.setBounds(10, 10, 450, 60);
-        jl3.setVisible(true);
+        JL3 = new JLabel("<html>$<br>$</html>");
+        JL3.setFont(new Font("arial", Font.BOLD, 100));
+        JL3.setForeground(Color.MAGENTA);
+        JL3.setBounds(30, 0, 100, 600);
+        JL3.setVisible(true);
 
-        jl4 = new JLabel("<html>$<br>$</html>");
-        jl4.setFont(new Font("arial", Font.BOLD, 100));
-        jl4.setForeground(Color.MAGENTA);
-        jl4.setBounds(30, 0, 100, 600);
-        jl4.setVisible(true);
+        JL4 = new JLabel("<html>$<br>$</html>");
+        JL4.setFont(new Font("arial", Font.BOLD, 100));
+        JL4.setForeground(Color.MAGENTA);
+        JL4.setBounds(700, 0, 100, 600);
+        JL4.setVisible(true);
+         /* adicionando components */
+        add(JL2);
+        add(JL1);
+        add(JT1);
+        add(JFT1);
+        add(JFT2);
+        add(JT2);
+        add(JFT3);
+        add(JT3);
+        add(JFT4);
+        add(JT4);
+        add(JT5);
+        add(JB1);
+        add(JB2);
+        add(JB2);
+        add(JL3);
+        add(JL4);
 
-        jl5 = new JLabel("<html>$<br>$</html>");
-        jl5.setFont(new Font("arial", Font.BOLD, 100));
-        jl5.setForeground(Color.MAGENTA);
-        jl5.setBounds(700, 0, 100, 600);
-        jl5.setVisible(true);
-
-
-
-        add(jl3);
-        add(jl1);
-        add(jt1);
-    /*    add(jl2);*/
-        add(jt2);
-        add(jt3);
-        add(jt4);
-        add(jt5);
-        add(jt6);
-        add(jt7);
-        add(jt8);
-        add(jt9);
-        add(jb1);
-        add(jb2);
-        add(jb2);
-        add(jl4);
-        add(jl5);
-
+        /* inicializando componentes e JFrame */
         setVisible(true);
     }
 }
-

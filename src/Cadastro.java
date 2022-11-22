@@ -89,7 +89,6 @@ public class Cadastro {
             armazena.write(String.valueOf(criptografia(senha)));
             armazena.newLine();
             armazena.close();
-            JOptionPane.showMessageDialog(null, "<html><font color=#FF00FF face=arial><i><b> usuario cadastrado com sucesso!!");
         } catch (IOException var4) {
             var4.printStackTrace();
         }

@@ -7,19 +7,19 @@ import java.io.IOException;
 public class TelaDeLogin extends JFrame
 {
 
-    JButton jb1,jb2,jb3;
-    JTextField jt1;
-    JPasswordField jps2;
-    JLabel jl1,jl2,jl3;
+    JButton JB1, JB2, JB3;
+    JTextField JTF;
+    JPasswordField JPF;
+    JLabel JL1, JL2, JL3;
     Color cor = new Color(98, 0, 158);
-    JCheckBox jc;
+    JCheckBox JCB;
 
     static  String Login = "";
     static String Senha = "";
 
 
     public  TelaDeLogin() {
-        //configurações do jframe//
+        /* configurações do JFrame */
         setLayout(null);
         setTitle("tela de login");
         setSize(800, 600);
@@ -27,18 +27,17 @@ public class TelaDeLogin extends JFrame
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
-        //configuracão do jbotton//
-        jb1 = new JButton("ok");
-        jb1.setBounds(500, 480, 100, 40);
-        jb1.setBackground(Color.MAGENTA);
-        jb1.setFont(new Font("Arial", Font.BOLD, 20));
-        jb1.setForeground(Color.WHITE);
-        jb1.setVisible(true);
-        jb1.addActionListener(e ->
+        /* configurações do JButton */
+        JB1 = new JButton("ok");
+        JB1.setBounds(500, 480, 100, 40);
+        JB1.setBackground(Color.MAGENTA);
+        JB1.setFont(new Font("Arial", Font.BOLD, 20));
+        JB1.setForeground(Color.WHITE);
+        JB1.setVisible(true);
+        JB1.addActionListener(e ->
         {
-            Login = jt1.getText();
-            Senha = String.valueOf(jps2.getPassword());
+            Login = JTF.getText();
+            Senha = String.valueOf(JPF.getPassword());
 
 
                 /*Preciso que Login().VerificaLogin(Login,Senha)
@@ -52,14 +51,14 @@ public class TelaDeLogin extends JFrame
                 if (new Login().VerificaLogin(Login,Senha)==1)
                 {
 
-                    System.out.println("proxima tela ainda em desenvolvimento");
+                    System.out.println("próxima tela ainda em desenvolvimento");
                 } else if (new Login().VerificaLogin(Login,Senha)==2 )
                 {
-                    jt1.setBackground(Color.red);
-                    jps2.setBackground(Color.red);
+                    JTF.setBackground(Color.red);
+                    JPF.setBackground(Color.red);
                 } else if (new Login().VerificaLogin(Login,Senha)==3)
                 {
-                    jps2.setBackground(Color.red);
+                    JPF.setBackground(Color.red);
                 }
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
@@ -68,140 +67,141 @@ public class TelaDeLogin extends JFrame
 
         });
 
-        jb2 = new JButton("Primeiro acesso");
-        jb2.setBounds(170, 480, 200, 40);
-        jb2.setBackground(Color.MAGENTA);
-        jb2.setFont(new Font("Arial", Font.BOLD, 20));
-        jb2.setForeground(Color.WHITE);
-        jb2.setVisible(true);
-        jb2.addActionListener(e ->
+        JB2 = new JButton("Primeiro acesso");
+        JB2.setBounds(170, 480, 200, 40);
+        JB2.setBackground(Color.MAGENTA);
+        JB2.setFont(new Font("Arial", Font.BOLD, 20));
+        JB2.setForeground(Color.WHITE);
+        JB2.setVisible(true);
+        JB2.addActionListener(e ->
         {
             new TelaDeCadastro();
             dispose();
         });
 
-        jb3 = new JButton("esqueci minha senha");
-        jb3.setBorderPainted(false);
-        jb3.setBounds(150, 390, 150, 20);
-        jb3.setFont(new Font("Arial", Font.BOLD, 10));
-        jb3.setForeground(Color.MAGENTA);
-        jb3.setBackground(cor);
-        jb3.setVisible(true);
+        JB3 = new JButton("esqueci minha senha");
+        JB3.setBorderPainted(false);
+        JB3.setBounds(150, 390, 150, 20);
+        JB3.setFont(new Font("Arial", Font.BOLD, 10));
+        JB3.setForeground(Color.MAGENTA);
+        JB3.setBackground(cor);
+        JB3.setVisible(true);
 
 
 
 
-        //configuraçao do Jtextfield//
-        jt1 = new JTextField("digite seu nome de usuario");
-        jt1.setBounds(300, 276, 300, 40);
-        jt1.setBackground(Color.MAGENTA);
-        jt1.setForeground(Color.WHITE);
-        jt1.setFont(new Font("Arial", Font.BOLD, 15));
-        jt1.setVisible(true);
-        jt1.addFocusListener(new FocusListener()
+        /* configurações do JTextField */
+        JTF = new JTextField("digite seu nome de usuario");
+        JTF.setBounds(300, 276, 300, 40);
+        JTF.setBackground(Color.MAGENTA);
+        JTF.setForeground(Color.WHITE);
+        JTF.setFont(new Font("Arial", Font.BOLD, 15));
+        JTF.setVisible(true);
+        JTF.addFocusListener(new FocusListener()
         {
             public void focusGained(FocusEvent e)
             {
-                if (jt1.getText().equals("digite seu nome de usuario"))
+                if (JTF.getText().equals("digite seu nome de usuario"))
                 {
-                    jt1.setText("");
-                    jt1.setBackground(Color.magenta);
+                    JTF.setText("");
+                    JTF.setBackground(Color.magenta);
                 }
             }
 
             public void focusLost(FocusEvent e)
             {
-                if (jt1.getText().isEmpty())
+                if (JTF.getText().isEmpty())
                 {
-                    jt1.setText("digite seu nome de usuario");
-                    jt1.setBackground(Color.red);
+                    JTF.setText("digite seu nome de usuario");
+                    JTF.setBackground(Color.red);
                 }
             }
         });
 
-        jps2 = new JPasswordField("digite a sua senha");
-        jps2.setBounds(300, 336, 300, 40);
-        jps2.setBackground(Color.MAGENTA);
-        jps2.setForeground(Color.WHITE);
-        jps2.setFont(new Font("Arial", Font.BOLD, 15));
-        jps2.setVisible(true);
-        jps2.setEchoChar('\u0000');
-        jps2.addFocusListener(new FocusListener()
+        JPF = new JPasswordField("digite a sua senha");
+        JPF.setBounds(300, 336, 300, 40);
+        JPF.setBackground(Color.MAGENTA);
+        JPF.setForeground(Color.WHITE);
+        JPF.setFont(new Font("Arial", Font.BOLD, 15));
+        JPF.setVisible(true);
+        JPF.setEchoChar('\u0000');
+        JPF.addFocusListener(new FocusListener()
         {
             @Override
             public void focusGained(FocusEvent e)
             {
-                jc.setSelected(false);
-                jps2.setEchoChar('*');
-                String password = String.valueOf(jps2.getPassword());
+                JCB.setSelected(false);
+                JPF.setEchoChar('*');
+                String password = String.valueOf(JPF.getPassword());
 
                 if(password.equalsIgnoreCase("digite a sua senha"))
                 {
-                    jps2.setText("");
-                    jps2.setBackground(Color.magenta);
+                    JPF.setText("");
+                    JPF.setBackground(Color.magenta);
                 }
 
             }
             @Override
             public void focusLost(FocusEvent e)
             {
-                String password = String.valueOf(jps2.getPassword());
+                String password = String.valueOf(JPF.getPassword());
                 if(password.equalsIgnoreCase("") || password.equalsIgnoreCase("digite a sua senha"))
                 {
-                    jps2.setText("digite a sua senha");
-                    jps2.setEchoChar((char)0);
-                    jps2.setBackground(Color.red);
+                    JPF.setText("digite a sua senha");
+                    JPF.setEchoChar((char)0);
+                    JPF.setBackground(Color.red);
 
                 }
             }
         });
 
 
-        //configurar jlabel//
-        jl1 = new JLabel("usuario:");
-        jl1.setFont(new Font("arial", Font.BOLD, 20));
-        jl1.setForeground(Color.MAGENTA);
-        jl1.setBounds(170, 280, 80, 30);
-        jl1.setVisible(true);
+        /* configurações do JLabel */
+        JL1 = new JLabel("usuario:");
+        JL1.setFont(new Font("arial", Font.BOLD, 20));
+        JL1.setForeground(Color.MAGENTA);
+        JL1.setBounds(170, 280, 80, 30);
+        JL1.setVisible(true);
 
-        jl2 = new JLabel("senha:");
-        jl2.setFont(new Font("arial", Font.BOLD, 20));
-        jl2.setForeground(Color.MAGENTA);
-        jl2.setBounds(170, 340, 70, 30);
-        jl2.setVisible(true);
+        JL2 = new JLabel("senha:");
+        JL2.setFont(new Font("arial", Font.BOLD, 20));
+        JL2.setForeground(Color.MAGENTA);
+        JL2.setBounds(170, 340, 70, 30);
+        JL2.setVisible(true);
 
-        jl3 = new JLabel("<html> Scape<br>&nbsp;&nbsp; Bank</html>");
-        jl3.setFont(new Font("arial", Font.BOLD, 60));
-        jl3.setForeground(Color.MAGENTA);
-        jl3.setBounds(280, 0, 240, 300);
-        jl3.setVisible(true);
+        JL3 = new JLabel("<html> Scape<br>&nbsp;&nbsp; Bank</html>");
+        JL3.setFont(new Font("arial", Font.BOLD, 60));
+        JL3.setForeground(Color.MAGENTA);
+        JL3.setBounds(280, 0, 240, 300);
+        JL3.setVisible(true);
 
-        jc = new JCheckBox();
-        jc.setBounds(610,340,30,30);
-        jc.setBackground(cor);
-        jc.setVisible(true);
-        jc.addActionListener(e ->
+        /* configurações do JCheckBox */
+        JCB = new JCheckBox();
+        JCB.setBounds(610,340,30,30);
+        JCB.setBackground(cor);
+        JCB.setVisible(true);
+        JCB.addActionListener(e ->
         {
-            if (jc.isSelected())
+            if (JCB.isSelected())
             {
-                jps2.setEchoChar('\u0000');
+                JPF.setEchoChar('\u0000');
             }
-            else jps2.setEchoChar('*');
+            else JPF.setEchoChar('*');
         });
 
+        /* adicionando componentes */
+        add(JCB);
+        add(JL3);
+        add(JL1);
+        add(JTF);
+        add(JL2);
+        add(JPF);
+        add(JB3);
+        add(JB1);
+        add(JB2);
+        add(JB2);
 
-
-        add(jc);
-        add(jl3);
-        add(jl1);
-        add(jt1);
-        add(jl2);
-        add(jps2);
-        add(jb3);
-        add(jb1);
-        add(jb2);
-        add(jb2);
-
+        /* inicializando os componentes e o JFrame */
         setVisible(true);
 
     }
