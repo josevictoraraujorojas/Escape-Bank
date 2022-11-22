@@ -62,6 +62,8 @@ public class TelaDeCadastroCliente extends JFrame {
                     Estado = jt7.getText();
                     SalarioAtual = jt8.getText();
                     GanhosExtras = jt9.getText();
+                    SalarioAtual = SalarioAtual.substring(2);
+                    GanhosExtras = GanhosExtras.substring(2);
             /*
                Preciso que "CadastroCliente.cadastrarConta(Nome,Cpf,Endereco,Numero,Cep,Cidade,Estado,SalarioAtual,GanhosExtras);"
                estiver certo e gravou me retorne int "1"; caso esteja errado me retorne:
@@ -135,14 +137,10 @@ public class TelaDeCadastroCliente extends JFrame {
             numero = new MaskFormatter("#####");
             estado = new MaskFormatter("UU");
             cep = new MaskFormatter("##.###-###");
-            salarioatual = new MaskFormatter("R$#######.##");
-            ganhoextras = new MaskFormatter("R$************");
             cpf.setPlaceholderCharacter('_');
             numero.setPlaceholderCharacter('_');
             estado.setPlaceholderCharacter('_');
             cep.setPlaceholderCharacter('_');
-            salarioatual.setPlaceholderCharacter(' ');
-            ganhoextras.setPlaceholderCharacter('_');
 
 
         } catch(ParseException excp)
@@ -357,7 +355,7 @@ public class TelaDeCadastroCliente extends JFrame {
             }
         });
 
-        jt8  = new JTextField("R$___.__,__");
+        jt8  = new JTextField("R$______.__");
         jt8.setBounds(x, 398, 280, 20);//x=130 y= 4
         jt8.setBackground(Color.MAGENTA);
         jt8.setForeground(Color.WHITE);
@@ -368,7 +366,7 @@ public class TelaDeCadastroCliente extends JFrame {
             @Override
             public void focusGained(FocusEvent e)
             {
-                if (jt8.getText().equals("R$___.__,__"))
+                if (jt8.getText().equals("R$______.__"))
                 {
                     jt8.setBackground(Color.MAGENTA);
                     jt8.setText("R$");
@@ -381,13 +379,13 @@ public class TelaDeCadastroCliente extends JFrame {
                 if (jt8.getText().equals("R$")||jt8.getText().equals(""))
                 {
                     jt8.setBackground(Color.red);
-                    jt8.setText("R$___.__,__");
+                    jt8.setText("R$______.__");
                 }
 
             }
         });
 
-        jt9  = new JTextField("R$___.__,__");
+        jt9  = new JTextField("R$______.__");
         jt9.setBounds(x, 440, 280, 20);//x=130 y= 4
         jt9.setBackground(Color.MAGENTA);
         jt9.setForeground(Color.WHITE);
@@ -398,7 +396,7 @@ public class TelaDeCadastroCliente extends JFrame {
             @Override
             public void focusGained(FocusEvent e)
             {
-                if (jt9.getText().equals("R$___.__,__"))
+                if (jt9.getText().equals("R$______.__"))
                 {
                     jt9.setBackground(Color.MAGENTA);
                     jt9.setText("R$");
@@ -411,7 +409,7 @@ public class TelaDeCadastroCliente extends JFrame {
                 if (jt9.getText().equals("R$")||jt9.getText().equals(""))
                 {
                     jt9.setBackground(Color.red);
-                    jt9.setText("R$___.__,__");
+                    jt9.setText("R$______.__");
                 }
 
             }
