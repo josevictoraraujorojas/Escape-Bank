@@ -11,28 +11,38 @@ public class TelaDeLogin extends JFrame
     JTextField JTF;
     JPasswordField JPF;
     JLabel JL1, JL2, JL3;
-    Color cor = new Color(98, 0, 158);
+
+
     JCheckBox JCB;
 
     static  String Login = "";
     static String Senha = "";
+    Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("C:\\Users\\pedro\\OneDrive\\Área de Trabalho\\2º periodo\\TGA\\bank_78392.png");
+
+    Color cor1 = new PaletaDeCores1().cor1();
+    Color cor2 = new PaletaDeCores1().cor2();
+    Color cor3 = new PaletaDeCores1().cor3();
 
 
     public  TelaDeLogin() {
+
         /* configurações do JFrame */
         setLayout(null);
         setTitle("tela de login");
         setSize(800, 600);
-        getContentPane().setBackground(cor);
+        getContentPane().setBackground(cor1);
         setLocationRelativeTo(null);
+        setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
+        setIconImage(iconeTitulo);
 
         /* configurações do JButton */
         JB1 = new JButton("ok");
         JB1.setBounds(500, 480, 100, 40);
-        JB1.setBackground(Color.MAGENTA);
+        JB1.setBackground(cor2);
         JB1.setFont(new Font("Arial", Font.BOLD, 20));
-        JB1.setForeground(Color.WHITE);
+        JB1.setForeground(cor3);
         JB1.setVisible(true);
         JB1.addActionListener(e ->
         {
@@ -55,7 +65,6 @@ public class TelaDeLogin extends JFrame
                 } else if (new Login().VerificaLogin(Login,Senha)==2 )
                 {
                     JTF.setBackground(Color.red);
-                    JPF.setBackground(Color.red);
                 } else if (new Login().VerificaLogin(Login,Senha)==3)
                 {
                     JPF.setBackground(Color.red);
@@ -69,9 +78,9 @@ public class TelaDeLogin extends JFrame
 
         JB2 = new JButton("Primeiro acesso");
         JB2.setBounds(170, 480, 200, 40);
-        JB2.setBackground(Color.MAGENTA);
+        JB2.setBackground(cor2);
         JB2.setFont(new Font("Arial", Font.BOLD, 20));
-        JB2.setForeground(Color.WHITE);
+        JB2.setForeground(cor3);
         JB2.setVisible(true);
         JB2.addActionListener(e ->
         {
@@ -83,8 +92,8 @@ public class TelaDeLogin extends JFrame
         JB3.setBorderPainted(false);
         JB3.setBounds(150, 390, 150, 20);
         JB3.setFont(new Font("Arial", Font.BOLD, 10));
-        JB3.setForeground(Color.MAGENTA);
-        JB3.setBackground(cor);
+        JB3.setForeground(cor2);
+        JB3.setBackground(cor1);
         JB3.setVisible(true);
 
 
@@ -93,8 +102,8 @@ public class TelaDeLogin extends JFrame
         /* configurações do JTextField */
         JTF = new JTextField("digite seu nome de usuario");
         JTF.setBounds(300, 276, 300, 40);
-        JTF.setBackground(Color.MAGENTA);
-        JTF.setForeground(Color.WHITE);
+        JTF.setBackground(cor2);
+        JTF.setForeground(cor3);
         JTF.setFont(new Font("Arial", Font.BOLD, 15));
         JTF.setVisible(true);
         JTF.addFocusListener(new FocusListener()
@@ -104,7 +113,7 @@ public class TelaDeLogin extends JFrame
                 if (JTF.getText().equals("digite seu nome de usuario"))
                 {
                     JTF.setText("");
-                    JTF.setBackground(Color.magenta);
+                    JTF.setBackground(cor2);
                 }
             }
 
@@ -120,8 +129,8 @@ public class TelaDeLogin extends JFrame
 
         JPF = new JPasswordField("digite a sua senha");
         JPF.setBounds(300, 336, 300, 40);
-        JPF.setBackground(Color.MAGENTA);
-        JPF.setForeground(Color.WHITE);
+        JPF.setBackground(cor2);
+        JPF.setForeground(cor3);
         JPF.setFont(new Font("Arial", Font.BOLD, 15));
         JPF.setVisible(true);
         JPF.setEchoChar('\u0000');
@@ -131,13 +140,13 @@ public class TelaDeLogin extends JFrame
             public void focusGained(FocusEvent e)
             {
                 JCB.setSelected(false);
-                JPF.setEchoChar('*');
+                JPF.setEchoChar('•');
                 String password = String.valueOf(JPF.getPassword());
 
                 if(password.equalsIgnoreCase("digite a sua senha"))
                 {
                     JPF.setText("");
-                    JPF.setBackground(Color.magenta);
+                    JPF.setBackground(cor2);
                 }
 
             }
@@ -159,26 +168,27 @@ public class TelaDeLogin extends JFrame
         /* configurações do JLabel */
         JL1 = new JLabel("usuario:");
         JL1.setFont(new Font("arial", Font.BOLD, 20));
-        JL1.setForeground(Color.MAGENTA);
+        JL1.setForeground(cor2);
         JL1.setBounds(170, 280, 80, 30);
         JL1.setVisible(true);
 
         JL2 = new JLabel("senha:");
         JL2.setFont(new Font("arial", Font.BOLD, 20));
-        JL2.setForeground(Color.MAGENTA);
+        JL2.setForeground(cor2);
         JL2.setBounds(170, 340, 70, 30);
         JL2.setVisible(true);
 
         JL3 = new JLabel("<html> Scape<br>&nbsp;&nbsp; Bank</html>");
         JL3.setFont(new Font("arial", Font.BOLD, 60));
-        JL3.setForeground(Color.MAGENTA);
+        JL3.setForeground(cor2);
         JL3.setBounds(280, 0, 240, 300);
         JL3.setVisible(true);
 
         /* configurações do JCheckBox */
         JCB = new JCheckBox();
         JCB.setBounds(610,340,30,30);
-        JCB.setBackground(cor);
+        JCB.setBackground(cor1);
+        JCB.setForeground(cor2);
         JCB.setVisible(true);
         JCB.addActionListener(e ->
         {
@@ -186,7 +196,7 @@ public class TelaDeLogin extends JFrame
             {
                 JPF.setEchoChar('\u0000');
             }
-            else JPF.setEchoChar('*');
+            else JPF.setEchoChar('•');
         });
 
         /* adicionando componentes */
@@ -203,6 +213,7 @@ public class TelaDeLogin extends JFrame
 
         /* inicializando os componentes e o JFrame */
         setVisible(true);
+
 
     }
 }

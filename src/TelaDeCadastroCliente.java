@@ -50,7 +50,7 @@ public class TelaDeCadastroCliente extends JFrame {
                     SalarioAtual = SalarioAtual.substring(2);
                     GanhosExtras = GanhosExtras.substring(2);
             /*
-               Preciso que "CadastroCliente.cadastrarConta(Nome,Cpf,Endereco,Numero,Cep,Cidade,Estado,SalarioAtual,GanhosExtras);"
+               Preciso que "CadastroCliente.cadastrarConta(Nome,Cpf,Endereco,Numero,Cep,Cidade,Estado,SalarioAtual,GanhosExtras)"
                estiver certo e gravou me retorne int 1; caso esteja errado me retorne:
                JOptionPane.showMessageDialog(null,"Você digitou errado! O campo nome não pode conter números ou caracteres especiais. Tente novamente.");
                seguido de return "1"; ou
@@ -58,15 +58,15 @@ public class TelaDeCadastroCliente extends JFrame {
                seguido de return "2"; ou
                OBS: endereço nao precisa me retornar nada!ou
                JOptionPane.showMessageDialog(null,"Você digitou errado! O campo numero pode conter até 3 numeros. Tente novamente.");
-               seguido de return "3";ou
+               seguido de return "3"; ou
                JOptionPane.showMessageDialog(null,"Você digitou errado! O campo cep tem que conter 8 digitos. Tente novamente.");
-               seguido de return "4";ou
+               seguido de return "4"; ou
                JOptionPane.showMessageDialog(null,"Você digitou errado! O campo cidade não pode conter numeros e nem caracteres especiais. Tente novamente.");
                seguido de return "5"; ou
                JOptionPane.showMessageDialog(null,"Você digitou errado! O campo estado não pode conter numeros e nem caracteres especiais. Tente novamente.");
-               seguido de return "6";ou
+               seguido de return "6"; ou
                JOptionPane.showMessageDialog(null,"Você digitou errado! Ariana o campo Salario atual ariana aqui fica ao seu dispor. Tente novamente.");
-               seguido de return "7";ou
+               seguido de return "7"; ou
                JOptionPane.showMessageDialog(null,"Você digitou errado! Ariana o campo Salario renda extra ariana aqui fica ao seu dispor. Tente novamente.");
                seguido de return "8";
              */

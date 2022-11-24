@@ -13,7 +13,6 @@ public class TelaDeCadastro extends JFrame {
 
     JLabel JL1, JL2, JL3, JL4, JL5, Icon1, Icon2;
     Color cor = new Color(98, 0, 158);
-
     static  String Login = "";
     static String Senha = "";
 
@@ -49,8 +48,8 @@ public class TelaDeCadastro extends JFrame {
             try
             { /*preciso de que "new Cadastro().CadastroLoginESenha(Login,Senha);"
                 estiver certo e gravou me retorne int 1; se der erro me retorne:
-                JOptionPane.showMessageDialog(null, esse nome de usuario não e valido);seguido de return "2";
-                JOptionPane.showMessageDialog(null,esse senha invalida, atente-se aos requisitos);seguido de return "3";*/
+                JOptionPane.showMessageDialog(null, esse nome de usuario não e valido); seguido de return "2";
+                JOptionPane.showMessageDialog(null,esse senha invalida, atente-se aos requisitos); seguido de return "3";*/
 
                 switch (new Cadastro().CadastroLoginESenha(Login,Senha)){
                     case 1 ->{
@@ -177,7 +176,7 @@ public class TelaDeCadastro extends JFrame {
         Icon2.setForeground(Color.MAGENTA);
         Icon2.setVisible(true);
 
-        /* adicionando componentes */
+
         add(Icon1);
         add(JL3);
         add(JL1);
