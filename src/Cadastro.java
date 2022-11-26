@@ -1,4 +1,5 @@
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -6,8 +7,6 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 public class Cadastro {
     public int CadastroLoginESenha(String login, String senha) throws IOException {
@@ -17,7 +16,7 @@ public class Cadastro {
         String URI = new URIpadrao().URI();
         StringBuilder id = new StringBuilder(String.valueOf(criptografia(login)));
         StringBuilder caminho = new StringBuilder(URI + id);
-        new SetPaths().SavePaths(id,"C:\\EscapeBank\\native.txt",false);
+        new SetPaths().SavePaths(id,new URIpadrao().URICacheIdUser(),false);
 
             if (validaDeSenhaRegex(senha) || senha.equals(login) || verificaSequencia(senha)) {
                 JOptionPane.showMessageDialog(null, "<html><font color=#FF00FF face=arial><i><b> senha incorreta atente-se aos requisitos");
