@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -17,11 +18,11 @@ public class TelaDeLogin extends JFrame
 
     static  String Login = "";
     static String Senha = "";
-    Image iconeTitulo = Toolkit.getDefaultToolkit().getImage("C:\\Users\\pedro\\OneDrive\\Área de Trabalho\\2º periodo\\TGA\\bank_78392.png");
+    Image iconeTitulo = new Icons().icon1();
 
-    Color cor1 = new PaletaDeCores1().cor1();
-    Color cor2 = new PaletaDeCores1().cor2();
-    Color cor3 = new PaletaDeCores1().cor3();
+    Color cor1 = new LigthMode().cor1();
+    Color cor2 = new LigthMode().cor2();
+    Color cor3 = new LigthMode().cor3();
 
 
     public  TelaDeLogin() {
@@ -56,6 +57,7 @@ public class TelaDeLogin extends JFrame
                JOptionPane.showMessageDialog(null,usuario não existe);seguido de: 2";
                ou
                JOptionPane.showMessageDialog(null,senha incorreta);seguido de: return "3";*/
+
 
             try {
                 if (new Login().VerificaLogin(Login,Senha)==1)
