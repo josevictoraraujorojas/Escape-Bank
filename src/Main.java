@@ -8,7 +8,7 @@ public class Main {
 
         if (!a){
             new TelaDeLogin();
-        }else System.out.println("aguardar Proxima tela");
+        }else new TelaInicial();
     }
     public static void VerificarLogin(Boolean B){a=B;}
 }

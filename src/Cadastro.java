@@ -16,7 +16,6 @@ public class Cadastro {
         String URI = new URIpadrao().URI();
         StringBuilder id = new StringBuilder(String.valueOf(criptografia(login)));
         StringBuilder caminho = new StringBuilder(URI + id);
-        new SetPaths().SavePaths(id,new URIpadrao().URICacheIdUser(),false);
 
             if (validaDeSenhaRegex(senha) || senha.equals(login) || verificaSequencia(senha)) {
                 JOptionPane.showMessageDialog(null, "<html><font color=#FF00FF face=arial><i><b> senha incorreta atente-se aos requisitos");
@@ -30,6 +29,8 @@ public class Cadastro {
                 arquivo.createNewFile();
                 BufferedWriter armazena = new BufferedWriter(new FileWriter(arquivo, true));
                 armazenaLoginESenha(armazena, login, senha);
+                new SetPaths().SavePaths(id,new URIpadrao().URICacheIdUser(),false);
+
                 return 1;
 
             }

@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -60,16 +59,20 @@ public class TelaDeLogin extends JFrame
 
 
             try {
-                if (new Login().VerificaLogin(Login,Senha)==1)
-                {
-
-                    System.out.println("próxima tela ainda em desenvolvimento");
-                } else if (new Login().VerificaLogin(Login,Senha)==2 )
-                {
-                    JTF.setBackground(Color.red);
-                } else if (new Login().VerificaLogin(Login,Senha)==3)
-                {
-                    JPF.setBackground(Color.red);
+                switch (new Login().VerificaLogin(Login,Senha)){
+                    case 1-> {
+                        new SetPaths().SavePaths(new StringBuilder(Login),new URIpadrao().CacheIdUserName(),false);
+                        JOptionPane.showMessageDialog(null,new SetPaths().GetPaths(new URIpadrao().CacheIdUserName()));
+                        boolean a = true;
+                        dispose();
+                        Main.VerificarLogin(a);
+                        String[] args = new String[0];
+                        Main.main(args);
+                    }
+                    case 2->{}
+                    case 3->{
+                        System.out.println("p");
+                    }
                 }
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
