@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class TelaInicial extends JFrame
 {
@@ -102,6 +104,37 @@ public class TelaInicial extends JFrame
         JB3.setFocusPainted(false);
         JB3.setVisible(true);
         JB3.setOpaque(false);
+        JB3.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JB3.setBackground(cor1);
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                JB3.setBackground(cor1);
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                JB3.setBackground(cor1);
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                JB3.setBackground(cor1);
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                JB3.setBackground(cor1);
+
+            }
+        });
 
         JB4 = new JButton(credito);
         JB4.setBounds(594, Y1 +20, 100, 100);
@@ -132,6 +165,7 @@ public class TelaInicial extends JFrame
             new menu();
 
         });
+
 
 
 
@@ -217,8 +251,9 @@ class AreaPix extends JFrame{
     Color cor5 = new LigthMode().cor5();
     Icon menu = new ImageIcon(new Icons().icon6());
 
-
-    JButton JB6;
+String usuario, valor;
+    JButton JB1,JB6;
+    JTextField JT1,Jt2;
     public AreaPix(){
         setSize(800, 600);
         setIconImage(iconTitulo);
@@ -241,7 +276,55 @@ class AreaPix extends JFrame{
             dispose();
             new TelaInicial();
         });
+
+        JT1 = new JTextField();
+        JT1.setBounds(140, 266, 300, 30);
+        JT1.setBackground(Color.MAGENTA);
+        JT1.setForeground(Color.WHITE);
+        JT1.setFont(new Font("Arial", Font.BOLD, 15));
+        JT1.setVisible(true);
+
+        Jt2 = new JTextField();
+        Jt2.setBounds(140, 466, 300, 30);
+        Jt2.setBackground(Color.MAGENTA);
+        Jt2.setForeground(Color.WHITE);
+        Jt2.setFont(new Font("Arial", Font.BOLD, 15));
+        Jt2.setVisible(true);
+        JB1 = new JButton("ok");
+        JB1.setBounds(460, 500, 100, 40);
+        JB1.setBackground(Color.MAGENTA);
+        JB1.setFont(new Font("Arial", Font.BOLD, 20));
+        JB1.setForeground(Color.WHITE);
+        JB1.setVisible(true);
+        JB1.addActionListener(e ->
+        {
+            UIManager.getDefaults().put("OptionPane.background",cor1);
+            UIManager.put ("Panel.background", cor1);
+            usuario = JT1.getText();
+            valor = Jt2.getText();
+
+/*            try
+            { *//*preciso de que "new Cadastro().CadastroLoginESenha(Login,Senha);"
+                estiver certo e gravou me retorne int 1; se der erro me retorne:
+                JOptionPane.showMessageDialog(null, esse nome de usuario não e valido); seguido de return "2";
+                JOptionPane.showMessageDialog(null,esse senha invalida, atente-se aos requisitos); seguido de return "3";*//*
+                switch (mada){
+                    case 1 ->{
+                    }
+                    case 2 -> JT1.setBackground(Color.red);
+                    case 3 -> Jt2.setBackground(Color.red);
+                }
+
+            } catch (IOException a)
+            {
+                throw new RuntimeException(a);
+            }*/
+        });
+
         add(JB6);
+        add(JT1);
+        add(Jt2);
+        add(JB1);
         setVisible(true);
 
     }
