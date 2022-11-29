@@ -2,7 +2,7 @@ import java.io.File;
 
 public class URIpadrao {
 
-    public String URI(){return "C:\\Users\\pedro\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\EscapeBank\\Login\\";}
+    public String URI(){return "C:\\EscapeBank\\Login\\";}
 
 
     public String URICacheIdUser()
@@ -16,7 +16,9 @@ public class URIpadrao {
        return verificar(uri,"C:EscapeBankCaches\\","username.txt");
     }
     public String URIIcons() {
-        return "C:\\Users\\pedro\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\EscapeBank\\Icons\\";}
+        return "C:\\EscapeBank\\Icons\\";}
+    public String URIusrdescript() {
+        return "C:\\EscapeBank\\Users\\users.txt";}
     public String verificar(String uri, String mkdirs,String pasta)
     {
         File arquivo = new File(uri);

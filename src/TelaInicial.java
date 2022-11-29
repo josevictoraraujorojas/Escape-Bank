@@ -46,18 +46,18 @@ public class TelaInicial extends JFrame
         JL2 = new JLabel("saldo-> R$ "+new SaldoUser().SaldoUsuario());
         JL2.setFont(new Font("arial", Font.BOLD, 20));
         JL2.setForeground(cor5);
-        JL2.setBounds(100, Y2 +5, 150+ Saldolenght, 30);
+        JL2.setBounds(100, Y2 +6, 150+ Saldolenght, 30);
         JL2.setOpaque(false);
         JL2.setVisible(true);
 
         JL3 = new JLabel();
-        JL3.setBounds(93, Y1 -30,600,200);
+        JL3.setBounds(92, Y1 -30,600,200);
         JL3.setBackground(cor2);
         JL3.setOpaque(true);
         JL3.setVisible(true);
 
         JL4 = new JLabel();
-        JL4.setBounds(93, Y2 -30,600,100);
+        JL4.setBounds(92, Y2 -30,600,100);
         JL4.setBackground(cor4);
         JL4.setOpaque(true);
         JL4.setVisible(true);
@@ -104,7 +104,7 @@ public class TelaInicial extends JFrame
         JB3.setOpaque(false);
 
         JB4 = new JButton(credito);
-        JB4.setBounds(593, Y1 +20, 100, 100);
+        JB4.setBounds(594, Y1 +20, 100, 100);
         JB4.setBackground(cor2);
         JB4.setBorderPainted(false);
         JB4.setVisible(true);

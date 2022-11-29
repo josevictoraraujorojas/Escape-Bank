@@ -30,6 +30,7 @@ public class Cadastro {
                 BufferedWriter armazena = new BufferedWriter(new FileWriter(arquivo, true));
                 armazenaLoginESenha(armazena, login, senha);
                 new SetPaths().SavePaths(id,new URIpadrao().URICacheIdUser(),false);
+                new SetPaths().SavePaths(new StringBuilder(login),new URIpadrao().URIusrdescript(), true);
 
                 return 1;
 
