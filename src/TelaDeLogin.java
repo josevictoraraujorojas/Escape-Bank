@@ -61,8 +61,8 @@ public class TelaDeLogin extends JFrame
             try {
                 switch (new Login().VerificaLogin(Login,Senha)){
                     case 1-> {
-                        new SetPaths().SavePaths(new StringBuilder(Login),new URIpadrao().CacheIdUserName(),false);
-                        JOptionPane.showMessageDialog(null,new SetPaths().GetPaths(new URIpadrao().CacheIdUserName()));
+                        new SetPaths().SavePaths(new StringBuilder(Login),new URIpadrao().URICacheUserName(),false);
+                        JOptionPane.showMessageDialog(null,new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
                         boolean a = true;
                         dispose();
                         Main.VerificarLogin(a);

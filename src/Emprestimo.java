@@ -7,7 +7,7 @@ public class Emprestimo {
     public static void main(String[] args) throws FileNotFoundException {
         StringBuilder impressao = new StringBuilder();
 
-        String id = new String(new SetPaths().GetPaths(new URIpadrao().CacheIdUserName()));
+        String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         id = String.valueOf(Cadastro.criptografia(id));
         String caminho = new URIpadrao().URI()+ id +"\\CadastroCliente.txt";
         float renda = rendaTotal(caminho);
