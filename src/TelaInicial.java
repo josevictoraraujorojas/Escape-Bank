@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class TelaInicial extends JFrame
 {
@@ -53,13 +53,13 @@ public class TelaInicial extends JFrame
         JL2.setVisible(true);
 
         JL3 = new JLabel();
-        JL3.setBounds(92, Y1 -30,600,200);
+        JL3.setBounds(92, Y1 -30,601,200);
         JL3.setBackground(cor2);
         JL3.setOpaque(true);
         JL3.setVisible(true);
 
         JL4 = new JLabel();
-        JL4.setBounds(92, Y2 -30,600,100);
+        JL4.setBounds(92, Y2 -30,601,100);
         JL4.setBackground(cor4);
         JL4.setOpaque(true);
         JL4.setVisible(true);
@@ -104,36 +104,10 @@ public class TelaInicial extends JFrame
         JB3.setFocusPainted(false);
         JB3.setVisible(true);
         JB3.setOpaque(false);
-        JB3.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                JB3.setBackground(cor1);
+        JB3.addActionListener(e -> {
+            dispose();
+            new Telaemprestimo();
 
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                JB3.setBackground(cor1);
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                JB3.setBackground(cor1);
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                JB3.setBackground(cor1);
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                JB3.setBackground(cor1);
-
-            }
         });
 
         JB4 = new JButton(credito);
@@ -207,8 +181,7 @@ class menu extends JFrame{
     Icon menu = new ImageIcon(new Icons().icon6());
 
     Color cor2 = new LigthMode().cor2();
-    Color cor4 = new LigthMode().cor4();
-    Color cor5 = new LigthMode().cor5();
+
 
 JButton JB6;
 
@@ -247,8 +220,7 @@ class AreaPix extends JFrame{
     Image iconTitulo = new Icons().icon1();
     Color cor1 = new LigthMode().cor1();
     Color cor2 = new LigthMode().cor2();
-    Color cor4 = new LigthMode().cor4();
-    Color cor5 = new LigthMode().cor5();
+
     Icon menu = new ImageIcon(new Icons().icon6());
 
 String usuario, valor;
@@ -328,5 +300,129 @@ String usuario, valor;
         setVisible(true);
 
     }
+
+}
+class Telaemprestimo extends JFrame{
+
+
+    Image iconTitulo = new Icons().icon1();
+    Color cor1 = new LigthMode().cor1();
+    Color cor2 = new LigthMode().cor2();
+
+    Icon menu = new ImageIcon(new Icons().icon6());
+
+    Float valorDoEmprestimo;
+    int parcelas;
+    JButton JB1,JB2;
+    JTextField JT1;
+    JComboBox Jt2;
+    String s1[] = { "1", "2", "3", "4", "5","6","7","8","9","10","11","12"};
+    JLabel JL3, JL1;
+    public Telaemprestimo(){
+        setSize(800, 600);
+        setIconImage(iconTitulo);
+        setTitle("area pix");
+        getContentPane().setBackground(cor1);
+        setLayout(null);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JB2 = new JButton("<- voltar");
+        JB2.setBounds(170, 500, 120, 40);
+        JB2.setBackground(Color.MAGENTA);
+        JB2.setFont(new Font("Arial", Font.BOLD, 20));
+        JB2.setForeground(Color.WHITE);
+        JB2.setVisible(true);
+        JB2.addActionListener(e ->
+        {
+            new TelaInicial();
+            dispose();
+        });
+
+/*        JB6 = new JButton(menu);
+        JB6.setBounds(10,10,50,50);
+        JB6.setFont(new Font("arial", Font.BOLD, 20));
+        JB6.setForeground(cor2);
+        JB6.setBackground(cor2);
+        JB6.setOpaque(false);
+        JB6.setBorderPainted(false);
+        JB6.setFocusPainted(false);
+        JB6.setVisible(true);
+        JB6.addActionListener(e -> {
+            dispose();
+            new TelaInicial();
+        });*/
+
+        JT1 = new JTextField("digite o valor");
+        JT1.setBounds(140, 50, 300, 30);
+        JT1.setBackground(Color.MAGENTA);
+        JT1.setForeground(Color.WHITE);
+        JT1.setFont(new Font("Arial", Font.BOLD, 15));
+        JT1.setVisible(true);
+        JT1.addFocusListener(new FocusListener()
+        {
+            @Override
+            public void focusGained(FocusEvent e)
+            {
+                if (JT1.getText().equals("digite o valor"))
+                {
+                    JT1.setBackground(Color.MAGENTA);
+                    JT1.setText("");
+                }
+            }
+            @Override
+            public void focusLost(FocusEvent e)
+            {
+                if (JT1.getText().equals(""))
+                {
+                    JT1.setBackground(Color.red);
+                    JT1.setText("digite o valor");
+                }
+                adiciona();
+            }
+        });
+        JL1 = new JLabel("parcelar em quantas vezes?");
+        JL1.setBounds(140,400,230,30);
+        JL1.setBackground(Color.MAGENTA);
+        JL1.setForeground(Color.WHITE);
+        JL1.setFont(new Font("Arial", Font.BOLD, 15));
+        JL1.setVisible(true);
+
+        Jt2 = new JComboBox(s1);
+        Jt2.setBounds(390, 400, 50, 30);
+        Jt2.setBackground(Color.MAGENTA);
+        Jt2.setForeground(Color.WHITE);
+        Jt2.setFont(new Font("Arial", Font.BOLD, 15));
+        Jt2.setVisible(true);
+
+        JB1 = new JButton("ok");
+        JB1.setBounds(460, 500, 100, 40);
+        JB1.setBackground(Color.MAGENTA);
+        JB1.setFont(new Font("Arial", Font.BOLD, 20));
+        JB1.setForeground(Color.WHITE);
+        JB1.setVisible(true);
+
+        add(JL1);
+        add(JT1);
+        add(Jt2);
+        add(JB1);
+        add(JB2);
+        setVisible(true);
+
+    }
+    public void adiciona(){
+        valorDoEmprestimo = Float.valueOf(JT1.getText());
+        String str = String.valueOf(new Emprestimo().valoremprestimo(valorDoEmprestimo));
+
+
+        JL3 = new JLabel(str);
+        JL3.setBounds(140, 70, 300, 300);
+        JL3.setBackground(cor2);
+        JL3.setForeground(cor1);
+        JL3.setOpaque(true);
+        JL3.setVisible(true);
+        JL3.setFont(new Font("Arial", Font.BOLD, 20));
+        add(JL3);
+        setVisible(false);setVisible(true);
+ }
 
 }

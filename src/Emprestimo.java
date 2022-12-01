@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Emprestimo {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(int args) throws FileNotFoundException {
         StringBuilder impressao = new StringBuilder();
 
         String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
@@ -31,7 +31,7 @@ public class Emprestimo {
             StringBuilder montante = new StringBuilder(String.valueOf((valor * Math.pow((1 + taxaDeJuros), parcelaInicial))/ parcelaInicial));
             impressao.append(parcelaInicial).append(" parcela fica R$");
             impressao.append(montante, 0, montante.indexOf(".")+3);
-            impressao.append("\n");
+            impressao.append("<br>");
             possibilidadesDeParcela(impressao, valor,taxaDeJuros, parcelaInicial +1, parcelaFinal);
         }
         return impressao;
@@ -52,6 +52,47 @@ public class Emprestimo {
             }
         }
         return renda;
+    }
+    public void processar(Float valorDoEmprestimo, int parcelas) throws FileNotFoundException {
+        StringBuilder impressao = new StringBuilder("<html>");
+
+        String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
+        id = String.valueOf(Cadastro.criptografia(id));
+        String caminho = new URIpadrao().URI()+ id +"\\CadastroCliente.txt";
+        float renda = rendaTotal(caminho);
+
+        if (valorDoEmprestimo>=0.30*renda)
+        {
+            valorDoEmprestimo = Float.parseFloat(JOptionPane.showInputDialog(null,"informe o valor do emprestimo"));
+        }
+
+        StringBuilder imprsso = possibilidadesDeParcela(impressao,valorDoEmprestimo, 0.04f,1,12);
+
+        JOptionPane.showMessageDialog(null,valorEmprestimoEscolhido(valorDoEmprestimo,0.04f, parcelas));
+
+    }
+    public StringBuilder valoremprestimo(Float valorDoEmprestimo){
+        StringBuilder impressao = new StringBuilder("<html>");
+
+        String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
+        id = String.valueOf(Cadastro.criptografia(id));
+        String caminho = new URIpadrao().URI()+ id +"\\CadastroCliente.txt";
+        float renda = 0;
+        try {
+            renda = rendaTotal(caminho);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (valorDoEmprestimo>=0.30*renda)
+        {
+        JOptionPane.showMessageDialog(null,"valor ecedido");
+        }
+
+        StringBuilder impresso = possibilidadesDeParcela(impressao,valorDoEmprestimo, 0.04f,1,12);
+        impresso.append("</html>");
+        return impresso;
+
     }
 
 

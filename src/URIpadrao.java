@@ -3,8 +3,8 @@ import java.io.IOException;
 
 public class URIpadrao {
 
-    public String URI(){return "C:\\EscapeBank\\Login\\";}/*caminho padrão de dados no One-Drive*/
-    public String URIIcons() {return "C:\\EscapeBank\\Icons\\";}/*caminho padrão de pacote de icons e imagens no One-Drive*/
+    public String URI(){return "C:\\Users\\pedro\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\EscapeBank\\Login\\";}/*caminho padrão de dados no One-Drive*/
+    public String URIIcons() {return "C:\\Users\\pedro\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\EscapeBank\\Icons\\";}/*caminho padrão de pacote de icons e imagens no One-Drive*/
 
 
     public String URICacheIdUser()
