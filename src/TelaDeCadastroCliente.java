@@ -77,9 +77,7 @@ public class TelaDeCadastroCliente extends JFrame {
                         {
                             case 1 -> {
                                 JOptionPane.showMessageDialog(null, "usuario cadastrado com sucesso");
-                                boolean a = true;
                                 dispose();
-                                Main.VerificarLogin(a);
                                 String[] args = new String[0];
                                 Main.main(args);
                             }
