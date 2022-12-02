@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Emprestimo {
     public static void main(String[] args) throws FileNotFoundException {
-        StringBuilder impressao = new StringBuilder();
+        StringBuilder impressao = new StringBuilder("Parcelas Disponiveis:\n");
 
         String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         id = String.valueOf(Cadastro.criptografia(id));
@@ -31,6 +31,8 @@ public class Emprestimo {
             impressao.append(montante, 0, montante.indexOf(".") + 2);
             impressao.append("\n");
             possibilidadesDeParcela(impressao, valor, taxaDeJuros, parcelaInicial , parcelaFinal-1,parcelaVerificacao,renda);
+        }else {
+            impressao.append("!!!!!!!");
         }
         return impressao;
     }
