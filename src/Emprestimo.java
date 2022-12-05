@@ -14,25 +14,25 @@ public class Emprestimo {
 
         float valorDoEmprestimo = Float.parseFloat(JOptionPane.showInputDialog(null, "informe o valor do emprestimo"));
 
-        JOptionPane.showMessageDialog(null, possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f, 1, 12,valorEmprestimoEscolhido(valorDoEmprestimo,0.04f,12)/12,rendaTotal(caminho)));
+        JOptionPane.showMessageDialog(null, possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f,  12,valorEmprestimoEscolhido(valorDoEmprestimo,0.04f,12)/12,rendaTotal(caminho)));
 
-        int parcelas = Integer.parseInt(JOptionPane.showInputDialog("escolha as parcelas de 1 a 12"));
+        int parcelas = Integer.parseInt(JOptionPane.showInputDialog("escolha a parcela disponivel"));
         JOptionPane.showMessageDialog(null, valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, parcelas));
 
     }
 
-    public static StringBuilder possibilidadesDeParcela(StringBuilder impressao, float valor, float taxaDeJuros, int parcelaInicial, int parcelaFinal,float parcela,float renda) {
-        if (parcelaFinal >= parcelaInicial && parcela <= renda * 0.3)
+    public static StringBuilder possibilidadesDeParcela(StringBuilder impressao, float valor, float taxaDeJuros, int parcelaFinal, float parcelaInicial, float renda) {
+        if (parcelaFinal >= 1  && parcelaInicial <= renda * 0.3)
         {
             int parcelaAuxiliar = parcelaFinal-1;
             float parcelaVerificacao =(float) ((valor * Math.pow((1 + taxaDeJuros), parcelaAuxiliar) / parcelaAuxiliar));
-            parcela= (float) ((valor * (Math.pow((1 + taxaDeJuros), parcelaFinal)) / parcelaFinal));
-            System.out.println(parcela);
-            StringBuilder montante = new StringBuilder(String.valueOf(parcela));
-            impressao.append(parcelaFinal).append(" parcela fica R$");
+            parcelaInicial = (float) ((valor * (Math.pow((1 + taxaDeJuros), parcelaFinal)) / parcelaFinal));
+            System.out.println(parcelaInicial);
+            StringBuilder montante = new StringBuilder(String.valueOf(parcelaInicial));
+            impressao.append(parcelaFinal).append(" parcelaInicial fica R$");
             impressao.append(montante, 0, montante.indexOf(".") + 2);
             impressao.append("\n");
-            possibilidadesDeParcela(impressao, valor, taxaDeJuros, parcelaInicial , parcelaFinal-1,parcelaVerificacao,renda);
+            possibilidadesDeParcela(impressao, valor, taxaDeJuros , parcelaFinal-1,parcelaVerificacao,renda);
         }
         return impressao;
     }
@@ -65,7 +65,7 @@ public class Emprestimo {
             valorDoEmprestimo = Float.parseFloat(JOptionPane.showInputDialog(null, "informe o valor do emprestimo"));
         }
         rendaTotal(caminho);
-        StringBuilder imprsso = possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f, 1, 12,valorEmprestimoEscolhido(valorDoEmprestimo,0.04f,12), rendaTotal(caminho));
+        StringBuilder imprsso = possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f, 12,valorEmprestimoEscolhido(valorDoEmprestimo,0.04f,12), rendaTotal(caminho));
 
         JOptionPane.showMessageDialog(null, valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, parcelas));
 
@@ -88,7 +88,7 @@ public class Emprestimo {
             JOptionPane.showMessageDialog(null, "valor ecedido");
         }
 
-        StringBuilder impresso = possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f, 1, 12,valorEmprestimoEscolhido(valorDoEmprestimo,0.04f,12), rendaTotal(caminho));
+        StringBuilder impresso = possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f, 12,valorEmprestimoEscolhido(valorDoEmprestimo,0.04f,12), rendaTotal(caminho));
         String a = String.valueOf(impresso);
 
         return a.split("\n");
