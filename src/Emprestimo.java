@@ -71,8 +71,8 @@ public class Emprestimo {
 
     }
 
-    public StringBuilder valoremprestimo(Float valorDoEmprestimo) throws FileNotFoundException {
-        StringBuilder impressao = new StringBuilder("<html>");
+    public String[] valoremprestimo(Float valorDoEmprestimo) throws FileNotFoundException {
+        StringBuilder impressao = new StringBuilder();
 
         String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         id = String.valueOf(Cadastro.criptografia(id));
@@ -89,8 +89,9 @@ public class Emprestimo {
         }
 
         StringBuilder impresso = possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f, 1, 12,valorEmprestimoEscolhido(valorDoEmprestimo,0.04f,12), rendaTotal(caminho));
-        impresso.append("</html>");
-        return impresso;
+        String a = String.valueOf(impresso);
+
+        return a.split("\n");
 
     }
 }

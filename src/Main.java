@@ -7,8 +7,8 @@ public class Main {
         new Custom();
 
         if (!a){
-            new TelaDeLogin();
-        }else new TelaInicial();
+            new LoginScreen();
+        }else new HomeScreen();
     }
     public static void VerificarLogin(Boolean B){a=B;}
 }
