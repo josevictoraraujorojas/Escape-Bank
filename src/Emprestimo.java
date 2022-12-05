@@ -24,15 +24,15 @@ public class Emprestimo {
     public static StringBuilder possibilidadesDeParcela(StringBuilder impressao, float valor, float taxaDeJuros, int parcelaInicial, int parcelaFinal,float parcela,float renda) {
         if (parcelaFinal >= parcelaInicial && parcela <= renda * 0.3)
         {
-            float parcelaVerificacao =(float) ((valor * Math.pow((1 + taxaDeJuros), parcelaFinal+1)) / parcelaFinal+1);
-            parcela= (float) ((valor * Math.pow((1 + taxaDeJuros), parcelaFinal)) / parcelaFinal);
+            int parcelaAuxiliar = parcelaFinal-1;
+            float parcelaVerificacao =(float) ((valor * Math.pow((1 + taxaDeJuros), parcelaAuxiliar) / parcelaAuxiliar));
+            parcela= (float) ((valor * (Math.pow((1 + taxaDeJuros), parcelaFinal)) / parcelaFinal));
+            System.out.println(parcela);
             StringBuilder montante = new StringBuilder(String.valueOf(parcela));
             impressao.append(parcelaFinal).append(" parcela fica R$");
             impressao.append(montante, 0, montante.indexOf(".") + 2);
             impressao.append("\n");
             possibilidadesDeParcela(impressao, valor, taxaDeJuros, parcelaInicial , parcelaFinal-1,parcelaVerificacao,renda);
-        }else {
-            impressao.append("!!!!!!!");
         }
         return impressao;
     }
