@@ -11,7 +11,7 @@ public class Cartao {
         arquivo.createNewFile();
         BufferedWriter escreve = new BufferedWriter(new FileWriter(arquivo,true));
 
-        escreve.write("numero do cartao"+numeroDoCartao());
+        escreve.write("numero do cartao:"+numeroDoCartao());
         escreve.newLine();
         escreve.write("nome:"+nome());
         escreve.newLine();
@@ -19,9 +19,6 @@ public class Cartao {
         escreve.newLine();
         escreve.write("validade cartao:"+validadeCartao());
         escreve.close();
-
-
-
     }
     public static String nome() throws FileNotFoundException {
         String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
