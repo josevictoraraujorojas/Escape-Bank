@@ -7,7 +7,7 @@ public class Cartao {
         String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         id = String.valueOf(Cadastro.criptografia(id));
         String caminho = new URIpadrao().URI() + id;
-        File arquivo = new File(String.valueOf(caminho),"Cartão.txt");
+        File arquivo = new File(caminho,"Cartão.txt");
         arquivo.createNewFile();
         BufferedWriter escreve = new BufferedWriter(new FileWriter(arquivo,true));
 
