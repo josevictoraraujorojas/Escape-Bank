@@ -30,7 +30,7 @@ public class Cadastro {
                 BufferedWriter armazena = new BufferedWriter(new FileWriter(arquivo, true));
                 armazenaLoginESenha(armazena, login, senha);
                 new SetPaths().SavePaths(id,new URIpadrao().URICacheIdUser(),false);
-                new SetPaths().SavePaths(new StringBuilder(login),new URIpadrao().URIusrdescript(), true);
+                new SetPaths().SavePaths(new StringBuilder(login),new URIpadrao().URILoginUser(), true);
 
                 return 1;
 
@@ -77,14 +77,13 @@ public class Cadastro {
         return !matcher.find();
     }
 
-    public static Boolean verificaLoginDuplicada(String caminho) {
+    public static boolean verificaLoginDuplicada(String caminho) {
         File verificaDuplicado = new File(caminho);
         return verificaDuplicado.exists();
     }
 
     public static void armazenaLoginESenha(BufferedWriter armazena, String login, String senha) {
         try {
-            Boolean b = true;
             armazena.write(login);
             armazena.newLine();
             armazena.write(String.valueOf(criptografia(senha)));

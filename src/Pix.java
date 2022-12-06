@@ -28,7 +28,7 @@ public class Pix {
         else System.out.println("usuário não encontrado. tente novamente.");*/
     }
     public static boolean verificaUsuario(String usuario) throws FileNotFoundException {
-        scan2 = new Scanner(new File (new URIpadrao().URIusrdescript()));
+        scan2 = new Scanner(new File (new URIpadrao().URILoginUser()));
         while (scan2.hasNextLine()){
             String user = scan2.nextLine();
             if (usuario.equals(user)){

@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Custom {
 }
-class LigthMode {
+class PaletaDeCores {
     public Color cor1() { return new Color(98, 0, 158); }
 
     public Color cor2() { return new Color(255, 0, 255); }
@@ -12,25 +12,11 @@ class LigthMode {
     public Color cor5() { return new Color(0, 0, 0); }
 }
 
-class DarkMode {
-    public Color cor1() {
-        return new Color(0, 0, 158);
-    }
 
-    public Color cor2() {
-        return new Color(255, 0, 0);
-    }
-
-    public Color cor3() {
-        return new Color(0, 0, 0);
-    }
-
-
-}
 class Icons {
     URIpadrao URI = new URIpadrao();
     public Image icon1() {
-        return Toolkit.getDefaultToolkit().getImage(URI.URIIcons()+"bank_78392.png");
+        return Toolkit.getDefaultToolkit().getImage(URI.URIIcons()+"banco.png");
     }
     public Image icon2() {
         return Toolkit.getDefaultToolkit().getImage(URI.URIIcons()+"logo-pix-png-icone-520x520.png");

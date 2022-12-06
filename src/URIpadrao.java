@@ -1,33 +1,41 @@
 import java.io.File;
+import java.io.IOException;
 
 public class URIpadrao {
 
-    public String URI(){return "C:\\EscapeBank\\Login\\";}
+    public String URI(){return "C:\\Users\\pedro\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\EscapeBank\\Login\\";}/*caminho padrão de dados no One-Drive*/
+    public String URIIcons() {return "C:\\Users\\pedro\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\EscapeBank\\Icons\\";}/*caminho padrão de pacote de icons e imagens no One-Drive*/
 
 
     public String URICacheIdUser()
     {
         String uri ="C:\\EscapeBankCache\\id.txt";
-        return verificar(uri,"C:\\EscapeBankCache\\","id.txt");
+        return ExistsURI(uri,"C:\\EscapeBankCache\\","id.txt");/*salva um arquivo no momento do cadastro com o ‘id’ do usuario temporariamente*/
     }
-    public String CacheIdUserName()
+
+    public String URICacheUserName()
     {
        String uri = "C:\\EscapeBankCache\\username.txt";
-       return verificar(uri,"C:EscapeBankCaches\\","username.txt");
+       return ExistsURI(uri,"C:EscapeBankCache\\","username.txt");/*salva um arquivo no momento do Login com o nome de usuario temporariamente*/
     }
-    public String URIIcons() {
-        return "C:\\EscapeBank\\Icons\\";}
-    public String URIusrdescript() {
-        return "C:\\EscapeBank\\Users\\users.txt";}
-    public String verificar(String uri, String mkdirs,String pasta)
+
+    public String URILoginUser() {return "C:\\EscapeBank\\Users\\users.txt";}/*arquivo padrão com o nome de todos os usuários*/
+    public String ExistsURI(String uri, String diretorio, String pasta)
     {
-        File arquivo = new File(uri);
-        if (!arquivo.exists())
+        try
         {
-            File diretorio = new File(mkdirs);
-            diretorio.mkdirs();
-            File file = new File(diretorio.getAbsolutePath()+File.separator+pasta);
+            File URI = new File(uri);
+
+            if (!URI.exists()) {
+                File Diretorio = new File(diretorio);
+                Diretorio.mkdirs();
+                File file = new File(Diretorio.getAbsolutePath() + File.separator + pasta);
+                file.createNewFile();
+            }
             return uri;
-        }else return uri;
+        }catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }
