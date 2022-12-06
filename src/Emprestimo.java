@@ -5,16 +5,8 @@ import java.util.Scanner;
 
 public class Emprestimo {
     public static void main(String[] args) throws FileNotFoundException {
-        StringBuilder impressao = new StringBuilder("Parcelas Disponiveis:\n");
-
-        String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
-        id = String.valueOf(Cadastro.criptografia(id));
-        String caminho = new URIpadrao().URI() + id + "\\CadastroCliente.txt";
-        float renda = rendaTotal(caminho);
-
         float valorDoEmprestimo = Float.parseFloat(JOptionPane.showInputDialog(null, "informe o valor do emprestimo"));
 
-        JOptionPane.showMessageDialog(null, possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f,  12,valorEmprestimoEscolhido(valorDoEmprestimo,0.04f,12)/12,rendaTotal(caminho)));
 
         int parcelas = Integer.parseInt(JOptionPane.showInputDialog("escolha a parcela disponivel"));
         JOptionPane.showMessageDialog(null, valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, parcelas));
@@ -22,17 +14,16 @@ public class Emprestimo {
     }
 
     public static StringBuilder possibilidadesDeParcela(StringBuilder impressao, float valor, float taxaDeJuros, int parcelaFinal, float parcelaInicial, float renda) {
-        if (parcelaFinal >= 1  && parcelaInicial <= renda * 0.3)
-        {
-            int parcelaAuxiliar = parcelaFinal-1;
-            float parcelaVerificacao =(float) ((valor * Math.pow((1 + taxaDeJuros), parcelaAuxiliar) / parcelaAuxiliar));
+        if (parcelaFinal >= 1 && parcelaInicial <= renda * 0.3) {
+            int parcelaAuxiliar = parcelaFinal - 1;
+            float parcelaVerificacao = (float) ((valor * Math.pow((1 + taxaDeJuros), parcelaAuxiliar) / parcelaAuxiliar));
             parcelaInicial = (float) ((valor * (Math.pow((1 + taxaDeJuros), parcelaFinal)) / parcelaFinal));
             System.out.println(parcelaInicial);
             StringBuilder montante = new StringBuilder(String.valueOf(parcelaInicial));
             impressao.append(parcelaFinal).append(" parcelaInicial fica R$");
             impressao.append(montante, 0, montante.indexOf(".") + 2);
             impressao.append("\n");
-            possibilidadesDeParcela(impressao, valor, taxaDeJuros , parcelaFinal-1,parcelaVerificacao,renda);
+            possibilidadesDeParcela(impressao, valor, taxaDeJuros, parcelaFinal - 1, parcelaVerificacao, renda);
         }
         return impressao;
     }
@@ -54,44 +45,23 @@ public class Emprestimo {
     }
 
     public void processar(Float valorDoEmprestimo, int parcelas) throws FileNotFoundException {
-        StringBuilder impressao = new StringBuilder("<html>");
+       String valorTotal = String.valueOf(valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, parcelas));
+       JOptionPane.showMessageDialog(null,valorTotal.substring(0,valorTotal.indexOf(".")+2));
+
+    }
+    public String[] emprestimo(Float valorDoEmprestimo) throws FileNotFoundException {
+        StringBuilder impressao = new StringBuilder("Parcelas Disponiveis:\n");
 
         String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         id = String.valueOf(Cadastro.criptografia(id));
         String caminho = new URIpadrao().URI() + id + "\\CadastroCliente.txt";
         float renda = rendaTotal(caminho);
 
-        if (valorDoEmprestimo >= 0.30 * renda) {
-            valorDoEmprestimo = Float.parseFloat(JOptionPane.showInputDialog(null, "informe o valor do emprestimo"));
-        }
-        rendaTotal(caminho);
-        StringBuilder imprsso = possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f, 12,valorEmprestimoEscolhido(valorDoEmprestimo,0.04f,12), rendaTotal(caminho));
+        String possibildade = String.valueOf(possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f, 12, valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, 12) / 12, rendaTotal(caminho)));
+        return possibildade.split("\n");
 
-        JOptionPane.showMessageDialog(null, valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, parcelas));
+
 
     }
 
-    public String[] valoremprestimo(Float valorDoEmprestimo) throws FileNotFoundException {
-        StringBuilder impressao = new StringBuilder();
-
-        String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
-        id = String.valueOf(Cadastro.criptografia(id));
-        String caminho = new URIpadrao().URI() + id + "\\CadastroCliente.txt";
-        float renda = 0;
-        try {
-            renda = rendaTotal(caminho);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        if (valorDoEmprestimo >= 0.30 * renda) {
-            JOptionPane.showMessageDialog(null, "valor ecedido");
-        }
-
-        StringBuilder impresso = possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f, 12,valorEmprestimoEscolhido(valorDoEmprestimo,0.04f,12), rendaTotal(caminho));
-        String a = String.valueOf(impresso);
-
-        return a.split("\n");
-
-    }
 }

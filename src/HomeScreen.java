@@ -508,7 +508,7 @@ class TelaDeEmprestimo extends JFrame{
             valorDoEmprestimo = Float.valueOf(a);
                     String[] s1;
                     try {
-                        s1 = new Emprestimo().valoremprestimo(valorDoEmprestimo);
+                        s1 = new Emprestimo().emprestimo(valorDoEmprestimo);
                     } catch (FileNotFoundException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -532,7 +532,17 @@ class TelaDeEmprestimo extends JFrame{
         JB2.setFont(new Font("Arial", Font.BOLD, 20));
         JB2.setForeground(Color.WHITE);
         JB2.setVisible(true);
-        JB2.addActionListener(e -> System.out.println("gostosa"));
+        JB2.addActionListener(e -> {
+            String a = (String) JCB.getSelectedItem();
+            a = a.substring(0,2);
+            a = a.replaceAll("\\D","");
+            parcelas= Integer.parseInt(a);
+            try {
+                new Emprestimo().processar(valorDoEmprestimo,parcelas);
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         JB3 = new JButton("<- voltar");
         JB3.setBounds(170, 500, 120, 40);

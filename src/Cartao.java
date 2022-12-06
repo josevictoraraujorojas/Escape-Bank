@@ -1,20 +1,33 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Cartao {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         id = String.valueOf(Cadastro.criptografia(id));
-        String caminho = new URIpadrao().URI() + id + "\\CadastroCliente.txt";
-        System.out.println(nome(caminho));
-        System.out.println(numeroDaConta());
-        System.out.println(validadeCartao());
+        String caminho = new URIpadrao().URI() + id;
+        File arquivo = new File(String.valueOf(caminho),"Cartão.txt");
+        arquivo.createNewFile();
+        BufferedWriter escreve = new BufferedWriter(new FileWriter(arquivo,true));
+
+        escreve.write("numero do cartao"+numeroDoCartao());
+        escreve.newLine();
+        escreve.write("nome:"+nome());
+        escreve.newLine();
+        escreve.write("numero da conta:"+numeroDaConta());
+        escreve.newLine();
+        escreve.write("validade cartao:"+validadeCartao());
+        escreve.close();
+
 
 
     }
-    public static String nome(String caminho) throws FileNotFoundException {
+    public static String nome() throws FileNotFoundException {
+        String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
+        id = String.valueOf(Cadastro.criptografia(id));
+        String caminho = new URIpadrao().URI() + id + "\\CadastroCliente.txt";
+
         String nome = "";
         Scanner lerArquivo = new Scanner(new File(caminho));
         while (lerArquivo.hasNext()) {
@@ -33,10 +46,19 @@ public class Cartao {
         return numeroDaConta;
 
     }
+    public static StringBuilder numeroDoCartao(){
+        StringBuilder numeroDoCartao = new StringBuilder();
+        Random aleatorio = new Random();
+        numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("  ");
+        numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("  ");
+        numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("  ");
+        numeroDoCartao.append(aleatorio.nextInt(1000,10000));
+        return numeroDoCartao;
+    }
     public static StringBuilder validadeCartao(){
         StringBuilder validade = new StringBuilder();
         Random aleatorio = new Random();
-        validade.append(aleatorio.nextInt(0,9)).append("/").append("26");
+        validade.append(aleatorio.nextInt(0,9)+1).append("/").append("26");
 
         return validade;
     }
