@@ -3,8 +3,8 @@ import java.io.IOException;
 
 public class URIpadrao {
 
-    public String URI(){return "C:\\Users\\pedro\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\EscapeBank\\Login\\";}/*caminho padrão de dados no One-Drive*/
-    public String URIIcons() {return "C:\\Users\\pedro\\OneDrive - Instituto Federal de Educação, Ciência e Tecnologia Goiano\\EscapeBank\\Icons\\";}/*caminho padrão de pacote de icons e imagens no One-Drive*/
+    public String URI(){return "H:\\Meu Drive\\ScapeBank\\Login\\";}/*caminho padrão de dados no One-Drive*/
+    public String URIIcons() {return "H:\\Meu Drive\\ScapeBank\\Icons\\";}/*caminho padrão de pacote de icons e imagens no One-Drive*/
 
 
     public String URICacheIdUser()
@@ -19,7 +19,7 @@ public class URIpadrao {
        return ExistsURI(uri,"C:EscapeBankCache\\","username.txt");/*salva um arquivo no momento do Login com o nome de usuario temporariamente*/
     }
 
-    public String URILoginUser() {return "C:\\EscapeBank\\Users\\users.txt";}/*arquivo padrão com o nome de todos os usuários*/
+    public String URILoginUser() {return "H:\\Meu Drive\\ScapeBank\\Users\\users.txt";}/*arquivo padrão com o nome de todos os usuários*/
     public String ExistsURI(String uri, String diretorio, String pasta)
     {
         try

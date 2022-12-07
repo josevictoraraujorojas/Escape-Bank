@@ -5,6 +5,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
+import java.util.Objects;
 
 public class HomeScreen extends JFrame
 {
@@ -476,7 +477,7 @@ class TelaDeEmprestimo extends JFrame{
 
     Float valorDoEmprestimo;
     int parcelas;
-    JButton JB1,JB2, JB3,JB4,JB5,JB6;
+    JButton JB1,JB2, JB3,JB4,JB5;
     JTextField JT1;
     JComboBox<String> JCB;
 
@@ -534,7 +535,7 @@ class TelaDeEmprestimo extends JFrame{
         JB2.setVisible(true);
         JB2.addActionListener(e -> {
             String a = (String) JCB.getSelectedItem();
-            a = a.substring(0,2);
+            a = Objects.requireNonNull(a).substring(0,2);
             a = a.replaceAll("\\D","");
             parcelas= Integer.parseInt(a);
             try {

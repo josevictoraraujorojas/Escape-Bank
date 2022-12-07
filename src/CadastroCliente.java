@@ -35,9 +35,9 @@ public class CadastroCliente {
         calcularRendaTotal();
         return 1;
     }
-    public static boolean confereRegex(String x, String y){
-        Pattern pattern = Pattern.compile(x);
-        Matcher matcher = pattern.matcher(y);
+    public static boolean confereRegex(String regex, String argumento){
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(argumento);
         found = matcher.find();
         return found;
     }

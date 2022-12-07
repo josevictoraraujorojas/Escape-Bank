@@ -65,9 +65,9 @@ public class LoginScreen extends JFrame
                     case 1-> {
                         new SetPaths().SavePaths(new StringBuilder(Login),new URIpadrao().URICacheUserName(),false);
                         JOptionPane.showMessageDialog(null,new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
-                        boolean a = true;
+                        boolean liberado = true;
                         dispose();
-                        Main.VerificarLogin(a);
+                        Main.VerificarLogin(liberado);
                         String[] args = new String[0];
                         Main.main(args);
                     }
@@ -220,6 +220,9 @@ public class LoginScreen extends JFrame
         setVisible(true);
 
 
+    }
+    public void fechar(){
+        dispose();
     }
 }
 class TelaDeCadastro extends JFrame {

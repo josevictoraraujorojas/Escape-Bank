@@ -31,6 +31,8 @@ public class Cadastro {
                 armazenaLoginESenha(armazena, login, senha);
                 new SetPaths().SavePaths(id,new URIpadrao().URICacheIdUser(),false);
                 new SetPaths().SavePaths(new StringBuilder(login),new URIpadrao().URILoginUser(), true);
+                File file = new File(new URIpadrao().URI()+new SetPaths().GetPaths(new URIpadrao().URICacheIdUser())+"\\senhadeoperação.txt");
+                file.createNewFile();
 
                 return 1;
 
