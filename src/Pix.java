@@ -1,5 +1,7 @@
+import javax.swing.*;
 import java.io.*;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Pix {
@@ -8,18 +10,35 @@ public class Pix {
     public static StringBuilder URI = new StringBuilder(new URIpadrao().URI()+
             IdPaths +"\\dadosPix.txt");
     public static File dadosPix = new File(String.valueOf(URI));
-    public static Scanner scan, scan2, scan3, scan4;
-    public static String usuario, valor, userEnvio;
-    public static File padraoPix = new File("C:\\EscapeBank\\Pattern\\padraoPix.txt");
+    public static Scanner scan, scan2, scan4;
+    public static String usuario, valor, userEnvio, valorPix;
+    public static Random rd = new Random();
+    public static File padraoPix = new File("H:\\Meu Drive\\ScapeBank\\Pattern\\padraoPix.txt");
     public static void main(String[] args) throws IOException {
         scan = new Scanner(System.in);
         System.out.println("Seu usuario");
         userEnvio = String.valueOf(Cadastro.criptografia(scan.nextLine()));
         System.out.println("Usuario:");
         usuario = String.valueOf(Cadastro.criptografia(scan.nextLine()));
-        dadosPix(userEnvio);
-        dadosPix(usuario);
-        dadosCadastro(userEnvio);
+        System.out.println("Valor: ");
+        valorPix = scan.nextLine();
+        String vetor[] = criaVetor(userEnvio);
+        dadosCadastro(userEnvio, vetor);
+        dadosCadastroReceptor(usuario, vetor);
+        String loginEnvio = dadosLogin(userEnvio);
+        preencheDados(vetor, "iiiiiiiiiiiiiiii", loginEnvio);
+        String loginUser = dadosLogin(usuario);
+        preencheDados(vetor, "eeeeeeeeeeeeeeee", loginUser);
+        preencheDados(vetor, "bbbb", "pix");
+        preencheDados(vetor, "ffffffff", "Corrente");
+        preencheDados(vetor, "hhhhhhhhhhhhhhhhhhhh", "ScapeBank");
+        String numeroOp = String.valueOf(rd.nextInt(0,100));
+        preencheDados(vetor, "jjjj", loginEnvio.substring(0,3) + numeroOp);
+        preencheDados(vetor, "aaaaaaaa", "R$" + valorPix);
+        escrevePix(userEnvio, vetor);
+        escrevePix(usuario, vetor);
+
+        //verifica usuario envio
 
 /*        if (verificaUsuario(usuario)){
             System.out.println("usuário encontrado");
@@ -56,36 +75,57 @@ public class Pix {
                 x +"\\CadastroCliente.txt");
         return cadastro;
     }
-    public static void dadosPix(String y) throws IOException {
+    public static StringBuilder acessarLogin(String x){
+        StringBuilder login = new StringBuilder(new URIpadrao().URI()+
+                x +"\\LoginESenha.txt");
+        return login;
+    }
+    public static void escrevePix(String y, String vetor[]) throws IOException {
         String nick;
         nick = String.valueOf(acessarResumo(y));
         BufferedWriter wr2 = new BufferedWriter(new FileWriter(nick, true));
-        scan3 = new Scanner(new File(String.valueOf(padraoPix)));
-        while (scan3.hasNext()){
-            wr2.write(scan3.next() + "\t");
+        String dados[] = vetor;
+        for (int i = 0; i < dados.length; i++) {
+            wr2.write(dados[i] + "\t");
         }
+        wr2.newLine();
         wr2.close();
     }
-    public static void dadosCadastro(String userName) throws IOException {
-        String nome = null, cpf = null, nick, nome2, replace;
+    public static void dadosCadastroReceptor(String userName, String[] vetor) throws IOException {
+        String nome = null, cpf = null, nick, nome2, nome3;
         nick = String.valueOf(acessarCadastro(userName));
         File dadosCadastro = new File(String.valueOf(nick));
         scan4 = new Scanner(dadosCadastro);
         while (scan4.hasNextLine()){
             nome2 = scan4.nextLine();
             if (nome2.contains("Nome: ")){
-                nome = nome2.substring(nome2.indexOf(':')+2);
+                nome3 = nome2.substring(nome2.indexOf(':')+2);
+                nome = nome3.replace(' ', '.');
             }
             if (nome2.contains("CPF: ")){
                 cpf = nome2.substring(nome2.indexOf(':')+2);
             }
         }
-        String vetor[] = criaVetor(userName);
         preencheDados(vetor, "cccccccccccccccccccccccccccccc", nome);
         preencheDados(vetor, "dddddddddddddd", cpf);
     }
+    public static void dadosCadastro(String userName, String[] vetor) throws IOException {
+        String nome = null, nick, nome2, nome3;
+        nick = String.valueOf(acessarCadastro(userName));
+        File dadosCadastro = new File(String.valueOf(nick));
+        scan4 = new Scanner(dadosCadastro);
+        while (scan4.hasNextLine()){
+            nome2 = scan4.nextLine();
+            if (nome2.contains("Nome: ")){
+                nome3 = nome2.substring(nome2.indexOf(':')+2);
+                nome = nome3.replace(' ', '.');
+            }
+        }
+        preencheDados(vetor, "gggggggggggggggggggggggg", nome);
+    }
+
     public static String[] criaVetor(String arquivo) throws IOException {
-        BufferedReader rd = new BufferedReader(new FileReader(acessarResumo(arquivo)));
+        BufferedReader rd = new BufferedReader(new FileReader(padraoPix));
         String ler = rd.readLine();
         String vetor[] = ler.split("\t");
         return vetor;
@@ -96,7 +136,11 @@ public class Pix {
                 a[i] = y;
             }
         }
-        System.out.print(Arrays.toString(a));
+    }
+    public static String dadosLogin(String username) throws IOException {
+        BufferedReader rd = new BufferedReader(new FileReader(String.valueOf(acessarLogin(username))));
+        String login = rd.readLine();
+        return login;
     }
 
 }
