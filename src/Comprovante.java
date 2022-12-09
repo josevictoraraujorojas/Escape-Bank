@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Comprovante {
     static Color cor1 = new PaletaDeCores().cor1();
-    public static File rostoComprovante = new File("C:\\EscapeBank\\Pattern\\RostoComprovante.txt");
+    public static File rostoComprovante = new File("H:\\Meu Drive\\ScapeBank\\Pattern\\RostoComprovante.txt");
     public static File dadosPix = new File("C:\\Users\\arian\\OneDrive\\Sistemas Informacao" +
             "\\2.1. LTPII\\LTPII\\src\\Projeto\\dadosPix.txt");
     public static Scanner rosto, pix;

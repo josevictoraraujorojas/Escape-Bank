@@ -485,6 +485,7 @@ class TelaDeCadastroCliente extends JFrame {
                     case 1 -> {
                         JOptionPane.showMessageDialog(null, "usuario cadastrado com sucesso");
                         dispose();
+                        Cartao.cartao();
                         String[] args = new String[0];
                         Main.main(args);
                     }
