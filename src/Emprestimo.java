@@ -50,17 +50,17 @@ public class Emprestimo {
     public void processar(Float valorDoEmprestimo, int parcelas) throws IOException {
        String valorTotal = String.valueOf(valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, parcelas));
        JOptionPane.showMessageDialog(null,valorTotal.substring(0,valorTotal.indexOf(".")+2));
-       String senha = JOptionPane.showInputDialog(null,"informe a senha:");
        if (Senha.SolicitarSenha()){
-           JOptionPane.showConfirmDialog(null,"senha correta");
-           boolean resposta = Boolean.parseBoolean(JOptionPane.showInputDialog(null,"realmente deseja fazer o emprestimo",YES_NO_OPTION));
-           if (resposta){
-               JOptionPane.showConfirmDialog(null,"Emprestimo feito com sucesso");
+           JOptionPane.showInternalMessageDialog(null,"senha correta");
+           int resposta = JOptionPane.showConfirmDialog(null,"Realmente deseja fazer o emprestimo");
+           if (resposta==0){
+               JOptionPane.showInternalMessageDialog(null,"Emprestimo feito");
            }else {
-               JOptionPane.showConfirmDialog(null,"Emprestimo cancelado");
+               JOptionPane.showInternalMessageDialog(null,"Emprestimo cancelado");
+
            }
        }else {
-           JOptionPane.showConfirmDialog(null,"senha incorreta");
+           JOptionPane.showInternalMessageDialog(null,"senha correta");
        }
 
 
