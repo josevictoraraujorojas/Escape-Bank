@@ -1,6 +1,4 @@
-import javax.swing.*;
 import java.io.*;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,15 +9,19 @@ public class Pix {
             IdPaths +"\\dadosPix.txt");
     public static File dadosPix = new File(String.valueOf(URI));
     public static Scanner scan, scan2, scan4;
-    public static String usuario, valor, userEnvio, valorPix;
+    public static String usuario, userEnvio, valorPix;
     public static Random rd = new Random();
     public static File padraoPix = new File("H:\\Meu Drive\\ScapeBank\\Pattern\\padraoPix.txt");
     public static void main(String[] args) throws IOException {
         scan = new Scanner(System.in);
-        System.out.println("Seu usuario");
-        userEnvio = String.valueOf(Cadastro.criptografia(scan.nextLine()));
-        System.out.println("Usuario:");
-        usuario = String.valueOf(Cadastro.criptografia(scan.nextLine()));
+        userEnvio = String.valueOf(Cadastro.criptografia(new URIpadrao().URICacheIdUser()));
+        do {
+            System.out.println("Usuario:");
+            usuario = String.valueOf(Cadastro.criptografia(scan.nextLine()));
+            if (!verificaUsuario(usuario)){
+                System.out.print("Usuário não encontrado. Tente novamente.");
+            }
+        } while (!verificaUsuario(usuario));
         System.out.println("Valor: ");
         valorPix = scan.nextLine();
         String vetor[] = criaVetor(userEnvio);
@@ -37,33 +39,25 @@ public class Pix {
         preencheDados(vetor, "aaaaaaaa", "R$" + valorPix);
         escrevePix(userEnvio, vetor);
         escrevePix(usuario, vetor);
-
-        //verifica usuario envio
-
-/*        if (verificaUsuario(usuario)){
-            System.out.println("usuário encontrado");
-            escrevePix(usuario);
-        }
-        else System.out.println("usuário não encontrado. tente novamente.");*/
     }
     public static boolean verificaUsuario(String usuario) throws FileNotFoundException {
         scan2 = new Scanner(new File (new URIpadrao().URILoginUser()));
         while (scan2.hasNextLine()){
             String user = scan2.nextLine();
-            if (usuario.equals(user)){
+            if (user.equals(usuario)){
                 return true;
             }
         }
         return false;
     }
-    public static void escrevePix(String usuario) throws IOException {
+/*    public static void escrevePix(String usuario) throws IOException {
         BufferedWriter wr = new BufferedWriter(new FileWriter(dadosPix, true));
         valor = scan.nextLine();
         wr.write(usuario);
         wr.newLine();
         wr.write(valor);
         wr.close();
-    }
+    }*/
     public static File acessarResumo(String x){
         StringBuilder URI2 = new StringBuilder(new URIpadrao().URI()+
                 x +"\\resumoOperacoes.txt");
@@ -80,9 +74,9 @@ public class Pix {
                 x +"\\LoginESenha.txt");
         return login;
     }
-    public static void escrevePix(String y, String vetor[]) throws IOException {
+    public static void escrevePix(String usuario, String vetor[]) throws IOException {
         String nick;
-        nick = String.valueOf(acessarResumo(y));
+        nick = String.valueOf(acessarResumo(usuario));
         BufferedWriter wr2 = new BufferedWriter(new FileWriter(nick, true));
         String dados[] = vetor;
         for (int i = 0; i < dados.length; i++) {
@@ -123,7 +117,6 @@ public class Pix {
         }
         preencheDados(vetor, "gggggggggggggggggggggggg", nome);
     }
-
     public static String[] criaVetor(String arquivo) throws IOException {
         BufferedReader rd = new BufferedReader(new FileReader(padraoPix));
         String ler = rd.readLine();
@@ -142,5 +135,4 @@ public class Pix {
         String login = rd.readLine();
         return login;
     }
-
 }

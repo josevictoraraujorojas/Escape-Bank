@@ -1,7 +1,10 @@
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 
 public class Emprestimo {
     public static void main(String[] args) throws FileNotFoundException {
@@ -44,9 +47,22 @@ public class Emprestimo {
         return renda;
     }
 
-    public void processar(Float valorDoEmprestimo, int parcelas) throws FileNotFoundException {
+    public void processar(Float valorDoEmprestimo, int parcelas) throws IOException {
        String valorTotal = String.valueOf(valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, parcelas));
        JOptionPane.showMessageDialog(null,valorTotal.substring(0,valorTotal.indexOf(".")+2));
+       String senha = JOptionPane.showInputDialog(null,"informe a senha:");
+       if (Senha.SolicitarSenha()){
+           JOptionPane.showConfirmDialog(null,"senha correta");
+           boolean resposta = Boolean.parseBoolean(JOptionPane.showInputDialog(null,"realmente deseja fazer o emprestimo",YES_NO_OPTION));
+           if (resposta){
+               JOptionPane.showConfirmDialog(null,"Emprestimo feito com sucesso");
+           }else {
+               JOptionPane.showConfirmDialog(null,"Emprestimo cancelado");
+           }
+       }else {
+           JOptionPane.showConfirmDialog(null,"senha incorreta");
+       }
+
 
     }
     public String[] emprestimo(Float valorDoEmprestimo) throws FileNotFoundException {
