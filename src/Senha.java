@@ -6,8 +6,9 @@ public class Senha {
     static Color cor = new Color(98, 0, 158);
 
 
-    public static boolean CriarSenha(String user) throws IOException {
+    public static boolean CriarSenha() throws IOException {
 
+        String user = String.valueOf(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         String cripto = String.valueOf(Cadastro.criptografia(user));
         String uri = new URIpadrao().URI()+cripto+"\\senhadeoperação.txt";
         new URIpadrao().ExistsURI(uri,new URIpadrao().URI()+cripto,"\\senhadeoperação.txt");
@@ -40,8 +41,9 @@ public class Senha {
             else return true;
         }
     }
-    public static boolean SolicitarSenha(String user) throws IOException {
+    public static boolean SolicitarSenha() throws IOException {
 
+        String user = String.valueOf(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         String cripto = String.valueOf(Cadastro.criptografia(user));
         String uri = new URIpadrao().URI()+cripto+"\\senhadeoperação.txt";
         File URI = new File(uri);
@@ -59,6 +61,15 @@ public class Senha {
         return false;
 
 
+    }
+
+    public static void main(String[] args) {
+        try {
+            System.out.println(CriarSenha());
+            System.out.println(SolicitarSenha());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
