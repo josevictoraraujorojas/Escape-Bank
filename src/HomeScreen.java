@@ -5,6 +5,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Objects;
 
 public class HomeScreen extends JFrame
@@ -20,6 +21,8 @@ public class HomeScreen extends JFrame
     Color cor2 = new PaletaDeCores().cor2();
     Color cor4 = new PaletaDeCores().cor4();
     Color cor5 = new PaletaDeCores().cor5();
+    Color cor7 = new PaletaDeCores().cor7();
+    Color cor8 = new PaletaDeCores().cor8();
     JButton JB1,JB2,JB3,JB4,JB5,JB6;
     JLabel JL1,JL2,JL3, JL4,JL5,JL6;
     UserName userName = new UserName();
@@ -35,6 +38,8 @@ public class HomeScreen extends JFrame
         setLayout(null);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
 
 
 
@@ -76,7 +81,7 @@ public class HomeScreen extends JFrame
 
         JL6 =new JLabel();
         JL6.setBounds(500, 0,800,600);
-        JL6.setBackground(Color.black);
+        JL6.setBackground(cor5);
         JL6.setOpaque(true);
         JL6.setVisible(true);
 
@@ -91,7 +96,7 @@ public class HomeScreen extends JFrame
         JB1.addMouseListener(new MouseAdapter()
         {
             @Override
-            public void mouseEntered(MouseEvent e) {JB1.setBackground(new Color(156, 0, 255));}
+            public void mouseEntered(MouseEvent e) {JB1.setBackground(cor7);}
 
             @Override
             public void mouseExited(MouseEvent e) {
@@ -111,7 +116,7 @@ public class HomeScreen extends JFrame
         JB2.addMouseListener(new MouseAdapter()
         {
             @Override
-            public void mouseEntered(MouseEvent e) {JB2.setBackground(new Color(208, 108, 208, 255));}
+            public void mouseEntered(MouseEvent e) {JB2.setBackground(cor8);}
 
             @Override
             public void mouseExited(MouseEvent e) {
@@ -133,7 +138,7 @@ public class HomeScreen extends JFrame
         JB3.addMouseListener(new MouseAdapter()
         {
             @Override
-            public void mouseEntered(MouseEvent e) {JB3.setBackground(new Color(208, 108, 208, 255));}
+            public void mouseEntered(MouseEvent e) {JB3.setBackground(cor8);}
 
             @Override
             public void mouseExited(MouseEvent e) {
@@ -149,7 +154,7 @@ public class HomeScreen extends JFrame
         JB4.addMouseListener(new MouseAdapter()
         {
             @Override
-            public void mouseEntered(MouseEvent e) {JB4.setBackground(new Color(208, 108, 208, 255));}
+            public void mouseEntered(MouseEvent e) {JB4.setBackground(cor8);}
 
             @Override
             public void mouseExited(MouseEvent e) {
@@ -179,7 +184,7 @@ public class HomeScreen extends JFrame
         JB6.addMouseListener(new MouseAdapter()
         {
             @Override
-            public void mouseEntered(MouseEvent e) {JB6.setBackground(new Color(157, 0, 255));}
+            public void mouseEntered(MouseEvent e) {JB6.setBackground(cor7);}
 
             @Override
             public void mouseExited(MouseEvent e) {
@@ -268,6 +273,7 @@ class AreaPix extends JFrame{
     Color cor1 = new PaletaDeCores().cor1();
     Color cor2 = new PaletaDeCores().cor2();
     Color cor3 = new PaletaDeCores().cor3();
+    Color cor6 = new PaletaDeCores().cor6();
     Icon menu = new ImageIcon(new Icons().icon6());
 String usuario, valor;
     JButton JB,JB1,JB2,JB3, JB4;
@@ -284,9 +290,9 @@ String usuario, valor;
 
         JB = new JButton("<- voltar");
         JB.setBounds(170, 500, 120, 40);
-        JB.setBackground(Color.MAGENTA);
+        JB.setBackground(cor2);
         JB.setFont(new Font("Arial", Font.BOLD, 20));
-        JB.setForeground(Color.WHITE);
+        JB.setForeground(cor3);
         JB.setVisible(true);
         JB.addActionListener(e ->
         {
@@ -335,9 +341,9 @@ String usuario, valor;
 
         JB3 = new JButton("<- voltar");
         JB3.setBounds(170, 500, 120, 40);
-        JB3.setBackground(Color.MAGENTA);
+        JB3.setBackground(cor2);
         JB3.setFont(new Font("Arial", Font.BOLD, 20));
-        JB3.setForeground(Color.WHITE);
+        JB3.setForeground(cor3);
         JB3.setVisible(true);
         JB3.addActionListener(e ->
         {
@@ -407,7 +413,7 @@ String usuario, valor;
             public void focusGained(FocusEvent e) {
                 if (JtF2.getText().equals("R$______.__"))
                 {
-                    JtF2.setBackground(Color.MAGENTA);
+                    JtF2.setBackground(cor2);
                     JtF2.setText("R$");
                 }
             }
@@ -417,7 +423,7 @@ String usuario, valor;
 
                 if (JtF2.getText().equals("R$")|| JtF2.getText().equals(""))
                 {
-                    JtF2.setBackground(Color.red);
+                    JtF2.setBackground(cor6);
                     JtF2.setText("R$______.__");
                 }
 
@@ -448,13 +454,13 @@ String usuario, valor;
         Icon1 = new JLabel("$");
         Icon1.setBounds(280,11,300,250);
         Icon1.setFont(new Font("arial", Font.ITALIC, 200));
-        Icon1.setForeground(Color.MAGENTA);
+        Icon1.setForeground(cor2);
         Icon1.setVisible(true);
 
         Icon2 = new JLabel("pix!");
         Icon2.setBounds(400,160,60,50);
         Icon2.setFont(new Font("arial", Font.ITALIC, 20));
-        Icon2.setForeground(Color.MAGENTA);
+        Icon2.setForeground(cor2);
         Icon2.setVisible(true);
 
         add(JB1);
@@ -473,6 +479,8 @@ class TelaDeEmprestimo extends JFrame{
     Image iconTitulo = new Icons().icon1();
     Color cor1 = new PaletaDeCores().cor1();
     Color cor2 = new PaletaDeCores().cor2();
+    Color cor3 = new PaletaDeCores().cor3();
+    Color cor6 = new PaletaDeCores().cor6();
     Icon menu = new ImageIcon(new Icons().icon6());
 
     Float valorDoEmprestimo;
@@ -493,9 +501,9 @@ class TelaDeEmprestimo extends JFrame{
 
         JB1 = new JButton("ok");
         JB1.setBounds(460, 500, 100, 40);
-        JB1.setBackground(Color.MAGENTA);
+        JB1.setBackground(cor2);
         JB1.setFont(new Font("Arial", Font.BOLD, 20));
-        JB1.setForeground(Color.WHITE);
+        JB1.setForeground(cor3);
         JB1.setVisible(true);
         JB1.addActionListener(e -> {
 
@@ -504,19 +512,26 @@ class TelaDeEmprestimo extends JFrame{
             remove(JB3);
             add(JB4);
             atualiza();
-            String a = JT1.getText();
-            a = a.substring(2);
-            valorDoEmprestimo = Float.valueOf(a);
+
+            valorDoEmprestimo = Float.valueOf(JT1.getText().substring(2));
                     String[] s1;
                     try {
                         s1 = new Emprestimo().emprestimo(valorDoEmprestimo);
                     } catch (FileNotFoundException ex) {
                         throw new RuntimeException(ex);
                     }
+                    int j = 0;
+                    for (int i = 0; i < s1.length; i++)
+                    {
+                        j= i;
+                    }
+                    if (j==0){
+                        s1[0]="não há parcelas disponíveis";
+                    }
 
                     JCB = new JComboBox<>(s1);
                     JCB.setBounds(330, 250, 300, 30);
-                    JCB.setBackground(Color.MAGENTA);
+                    JCB.setBackground(cor2);
                     JCB.setForeground(cor1);
                     JCB.setFont(new Font("Arial", Font.BOLD, 15));
                     JCB.setEnabled(true);
@@ -529,27 +544,25 @@ class TelaDeEmprestimo extends JFrame{
 
         JB2 = new JButton("ok");
         JB2.setBounds(460, 500, 100, 40);
-        JB2.setBackground(Color.MAGENTA);
+        JB2.setBackground(cor2);
         JB2.setFont(new Font("Arial", Font.BOLD, 20));
-        JB2.setForeground(Color.WHITE);
+        JB2.setForeground(cor3);
         JB2.setVisible(true);
         JB2.addActionListener(e -> {
-            String a = (String) JCB.getSelectedItem();
-            a = Objects.requireNonNull(a).substring(0,2);
-            a = a.replaceAll("\\D","");
-            parcelas= Integer.parseInt(a);
+            String a = Objects.requireNonNull((String) JCB.getSelectedItem()).substring(0,2);
+            parcelas= Integer.parseInt(a.replaceAll("\\D",""));
             try {
-                new Emprestimo().processar(valorDoEmprestimo,parcelas);
-            } catch (FileNotFoundException ex) {
+                new Emprestimo().processar(valorDoEmprestimo,parcelas,(String) JCB.getSelectedItem());
+            } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
 
         JB3 = new JButton("<- voltar");
         JB3.setBounds(170, 500, 120, 40);
-        JB3.setBackground(Color.MAGENTA);
+        JB3.setBackground(cor2);
         JB3.setFont(new Font("Arial", Font.BOLD, 20));
-        JB3.setForeground(Color.WHITE);
+        JB3.setForeground(cor3);
         JB3.setVisible(true);
         JB3.addActionListener(e ->
         {
@@ -559,9 +572,9 @@ class TelaDeEmprestimo extends JFrame{
 
         JB4 = new JButton("<- voltar");
         JB4.setBounds(170, 500, 120, 40);
-        JB4.setBackground(Color.MAGENTA);
+        JB4.setBackground(cor2);
         JB4.setFont(new Font("Arial", Font.BOLD, 20));
-        JB4.setForeground(Color.WHITE);
+        JB4.setForeground(cor3);
         JB4.setVisible(true);
         JB4.addActionListener(e -> {
             JT1.setText("R$______.__");
@@ -591,15 +604,15 @@ class TelaDeEmprestimo extends JFrame{
 
         JT1 = new JTextField("R$______.__");
         JT1.setBounds(330, 100, 300, 30);
-        JT1.setBackground(Color.MAGENTA);
-        JT1.setForeground(Color.WHITE);
+        JT1.setBackground(cor2);
+        JT1.setForeground(cor3);
         JT1.setFont(new Font("Arial", Font.BOLD, 15));
         JT1.setVisible(true);
         JT1.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 if (JT1.getText().equals("R$______.__")) {
-                    JT1.setBackground(Color.MAGENTA);
+                    JT1.setBackground(cor2);
                     JT1.setText("R$");
                 }
 
@@ -615,7 +628,7 @@ class TelaDeEmprestimo extends JFrame{
             @Override
             public void focusLost(FocusEvent e) {
                 if (JT1.getText().equals("")||JT1.getText().equals("R$")) {
-                    JT1.setBackground(Color.red);
+                    JT1.setBackground(cor6);
                     JT1.setText("R$______.__");
                 }
             }
@@ -678,5 +691,6 @@ class TelaDeEmprestimo extends JFrame{
         setSize(800,600);
         setVisible(true);
     }
+
 
 }

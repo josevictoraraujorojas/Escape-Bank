@@ -10,6 +10,9 @@ class PaletaDeCores {
     public Color cor3() { return new Color(255, 255, 255); }
     public Color cor4() { return new Color(144, 32, 213); }
     public Color cor5() { return new Color(0, 0, 0); }
+    public Color cor6() { return new Color(255, 0, 0); }
+    public Color cor7() { return new Color(156, 0, 255); }
+    public Color cor8() { return new Color(208, 108, 208, 255); }
 }
 
 

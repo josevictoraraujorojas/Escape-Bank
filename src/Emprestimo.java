@@ -1,17 +1,16 @@
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static javax.swing.JOptionPane.YES_NO_OPTION;
-
 public class Emprestimo {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         float valorDoEmprestimo = Float.parseFloat(JOptionPane.showInputDialog(null, "informe o valor do emprestimo"));
 
 
-        int parcelas = Integer.parseInt(JOptionPane.showInputDialog("escolha a parcela disponivel"));
+        int parcelas = Integer.parseInt(JOptionPane.showInputDialog("escolha a parcela disponível"));
         JOptionPane.showMessageDialog(null, valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, parcelas));
 
     }
@@ -23,7 +22,7 @@ public class Emprestimo {
             parcelaInicial = (float) ((valor * (Math.pow((1 + taxaDeJuros), parcelaFinal)) / parcelaFinal));
             System.out.println(parcelaInicial);
             StringBuilder montante = new StringBuilder(String.valueOf(parcelaInicial));
-            impressao.append(parcelaFinal).append(" parcelaInicial fica R$");
+            impressao.append(parcelaFinal).append(" vezes de R$ ");
             impressao.append(montante, 0, montante.indexOf(".") + 2);
             impressao.append("\n");
             possibilidadesDeParcela(impressao, valor, taxaDeJuros, parcelaFinal - 1, parcelaVerificacao, renda);
@@ -46,32 +45,27 @@ public class Emprestimo {
         }
         return renda;
     }
-
-    public void processar(Float valorDoEmprestimo, int parcelas) throws IOException {
-       String valorTotal = String.valueOf(valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, parcelas));
-       JOptionPane.showMessageDialog(null,valorTotal.substring(0,valorTotal.indexOf(".")+2));
-       if (Senha.SolicitarSenha()){
-           JOptionPane.showInternalMessageDialog(null,"senha correta");
-           int resposta = JOptionPane.showConfirmDialog(null,"Realmente deseja fazer o emprestimo");
-           if (resposta==0){
-               JOptionPane.showInternalMessageDialog(null,"Emprestimo feito");
-           }else {
-               JOptionPane.showInternalMessageDialog(null,"Emprestimo cancelado");
-
-           }
-       }else {
-           JOptionPane.showInternalMessageDialog(null,"senha correta");
-       }
-
-
+    public void processar(Float valorDoEmprestimo, int parcelas,String imprimir) throws IOException
+    {
+        Color cor1 = new PaletaDeCores().cor1();
+        UIManager.getDefaults().put("OptionPane.background",cor1);
+        UIManager.put ("Panel.background", cor1);
+        String valorTotal = String.valueOf(valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, parcelas));
+        Object[] options = { "confirmar", "cancelar" };
+        int opcao = JOptionPane.showOptionDialog(null, "<html><font color=#FF00FF face=arial><i><b> seu emprestimo ficará no<br>valor total de: R$ "+valorTotal.substring(0,valorTotal.indexOf(".")+2)+"<br> <br>valor que irá receber: R$ "+valorDoEmprestimo+"<br>em: "+ imprimir+"<br> <br>se deseja continuar clique em confirmar", "emprestimo", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+        if (opcao == 0 && Senha.SolicitarSenha()){
+            JOptionPane.showMessageDialog(null,"<html><font color=#FF00FF face=arial><i><b> Emprestimo feito com sucesso");
+        }else {
+            JOptionPane.showMessageDialog(null,"<html><font color=#FF00FF face=arial><i><b> Emprestimo cancelado");
+        }
     }
+
     public String[] emprestimo(Float valorDoEmprestimo) throws FileNotFoundException {
-        StringBuilder impressao = new StringBuilder("Parcelas Disponiveis:\n");
+        StringBuilder impressao = new StringBuilder("Parcelas Disponíveis:\n");
 
         String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         id = String.valueOf(Cadastro.criptografia(id));
         String caminho = new URIpadrao().URI() + id + "\\CadastroCliente.txt";
-        float renda = rendaTotal(caminho);
 
         String possibildade = String.valueOf(possibilidadesDeParcela(impressao, valorDoEmprestimo, 0.04f, 12, valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, 12) / 12, rendaTotal(caminho)));
         return possibildade.split("\n");

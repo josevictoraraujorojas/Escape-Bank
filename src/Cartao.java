@@ -4,9 +4,8 @@ import java.util.Scanner;
 
 public class Cartao {
     public static Random aleatorio = new Random();
-    public static void main(String[] args) throws IOException {
-        String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
-        id = String.valueOf(Cadastro.criptografia(id));
+    public static void cartao() throws IOException {
+        String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheIdUser()));
         String caminho = new URIpadrao().URI() + id;
         File arquivo = new File(caminho,"Cartão.txt");
         arquivo.createNewFile();
@@ -24,8 +23,7 @@ public class Cartao {
         escreve.close();
     }
     public static String nome() throws FileNotFoundException {
-        String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
-        id = String.valueOf(Cadastro.criptografia(id));
+        String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheIdUser()));
         String caminho = new URIpadrao().URI() + id + "\\CadastroCliente.txt";
 
         String nome = "";

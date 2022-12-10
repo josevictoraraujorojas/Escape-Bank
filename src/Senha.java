@@ -3,18 +3,19 @@ import java.awt.*;
 import java.io.*;
 
 public class Senha {
-    static Color cor = new Color(98, 0, 158);
+    static Color cor1 = new PaletaDeCores().cor1();
 
 
-    public static boolean CriarSenha() throws IOException {
+    public static boolean CriarSenha() throws IOException
+    {
 
         String user = String.valueOf(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         String cripto = String.valueOf(Cadastro.criptografia(user));
         String uri = new URIpadrao().URI()+cripto+"\\senhadeoperação.txt";
         new URIpadrao().ExistsURI(uri,new URIpadrao().URI()+cripto,"\\senhadeoperação.txt");
         File URI = new File(uri);
-        UIManager.getDefaults().put("OptionPane.background",cor);
-        UIManager.put ("Panel.background", cor);
+        UIManager.getDefaults().put("OptionPane.background",cor1);
+        UIManager.put ("Panel.background", cor1);
 
 
         while (true)
@@ -41,14 +42,15 @@ public class Senha {
             else return true;
         }
     }
-    public static boolean SolicitarSenha() throws IOException {
+    public static boolean SolicitarSenha() throws IOException
+    {
 
         String user = String.valueOf(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         String cripto = String.valueOf(Cadastro.criptografia(user));
         String uri = new URIpadrao().URI()+cripto+"\\senhadeoperação.txt";
         File URI = new File(uri);
-        UIManager.getDefaults().put("OptionPane.background",cor);
-        UIManager.put ("Panel.background", cor);
+        UIManager.getDefaults().put("OptionPane.background",cor1);
+        UIManager.put ("Panel.background", cor1);
 
         BufferedReader ler = new BufferedReader(new FileReader(URI));
         String senha = ler.readLine();
@@ -59,19 +61,5 @@ public class Senha {
         }
         else JOptionPane.showMessageDialog(null,"<html><font color=#FF00FF face=arial><i><b>senha incorreta");
         return false;
-
-
     }
-
-    public static void main(String[] args) {
-        try {
-            System.out.println(CriarSenha());
-            System.out.println(SolicitarSenha());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-
 }
