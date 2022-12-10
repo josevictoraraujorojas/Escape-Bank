@@ -15,6 +15,9 @@ public class LerCartao {
     public static String  validadeCartao () throws FileNotFoundException {
        return pesquisaArquivo("validade cartao:");
     }
+    public static String  codigoDeSeguranca() throws FileNotFoundException {
+       return pesquisaArquivo("codigo de seguranca:");
+    }
     public static String pesquisaArquivo(String pesquisa) throws FileNotFoundException {
         String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         id = String.valueOf(Cadastro.criptografia(id));

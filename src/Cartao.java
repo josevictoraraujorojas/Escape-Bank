@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Cartao {
+    public static Random aleatorio = new Random();
     public static void main(String[] args) throws IOException {
         String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         id = String.valueOf(Cadastro.criptografia(id));
@@ -18,6 +19,8 @@ public class Cartao {
         escreve.write("numero da conta:"+numeroDaConta());
         escreve.newLine();
         escreve.write("validade cartao:"+validadeCartao());
+        escreve.newLine();
+        escreve.write("codigo de seguranca:"+codigoDeSeguranca());
         escreve.close();
     }
     public static String nome() throws FileNotFoundException {
@@ -37,7 +40,6 @@ public class Cartao {
     }
     public static StringBuilder numeroDaConta(){
         StringBuilder numeroDaConta = new StringBuilder();
-        Random aleatorio = new Random();
         numeroDaConta.append(aleatorio.nextInt(100,1000)).append(" ").append("011 ");
         numeroDaConta.append(aleatorio.nextInt(10000000,100000000)).append("-").append(aleatorio.nextInt(0,10));
         return numeroDaConta;
@@ -45,7 +47,6 @@ public class Cartao {
     }
     public static StringBuilder numeroDoCartao(){
         StringBuilder numeroDoCartao = new StringBuilder();
-        Random aleatorio = new Random();
         numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("  ");
         numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("  ");
         numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("  ");
@@ -54,9 +55,13 @@ public class Cartao {
     }
     public static StringBuilder validadeCartao(){
         StringBuilder validade = new StringBuilder();
-        Random aleatorio = new Random();
         validade.append(aleatorio.nextInt(0,9)+1).append("/").append("26");
 
         return validade;
+    }
+    public static StringBuilder codigoDeSeguranca(){
+        StringBuilder codigoDeSeguranca = new StringBuilder();
+        codigoDeSeguranca.append(aleatorio.nextInt(100,1000));
+        return codigoDeSeguranca;
     }
 }

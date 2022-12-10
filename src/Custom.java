@@ -33,6 +33,12 @@ class Icons {
     public Image icon6(){
         return Toolkit.getDefaultToolkit().getImage(URI.URIIcons()+"hamburger.png");
     }
+    public Image icon7(){
+        return Toolkit.getDefaultToolkit().getImage(URI.URIIcons()+"55555.png");
+    }
+    public Image icon8(){
+        return Toolkit.getDefaultToolkit().getImage(URI.URIIcons()+"4444.png");
+    }
 }
 
 

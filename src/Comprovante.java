@@ -24,6 +24,7 @@ public class Comprovante {
             e.printStackTrace();
         }
     }
+
     static {
         try {
             pix = new Scanner(arquivoProvisorio(usuario));
