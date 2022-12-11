@@ -45,7 +45,8 @@ public class HomeScreen extends JFrame
 
         int Userlength = new UserName().User().length();
         Userlength = Userlength *20;
-        int Saldolenght = (int) saldoUser.SaldoUsuario()*10;
+        String a = String.valueOf(new SaldoUser().SaldoUsuario());
+        int Saldolenght = (int) saldoUser.SaldoUsuario()*110;
 
         JL1 = new JLabel("olá, "+ userName.User());
         JL1.setFont(new Font("arial", Font.BOLD, 20));
@@ -552,7 +553,13 @@ class TelaDeEmprestimo extends JFrame{
             String a = Objects.requireNonNull((String) JCB.getSelectedItem()).substring(0,2);
             parcelas= Integer.parseInt(a.replaceAll("\\D",""));
             try {
-                new Emprestimo().processar(valorDoEmprestimo,parcelas,(String) JCB.getSelectedItem());
+               switch (new Emprestimo().processar(valorDoEmprestimo,parcelas,(String) JCB.getSelectedItem())){
+                   case 1->{
+                       dispose();
+                       new HomeScreen();
+                   }
+                   case 2-> System.out.println("cancelado");
+               }
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

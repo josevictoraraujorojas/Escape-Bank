@@ -30,6 +30,7 @@ public class Cadastro {
                 BufferedWriter armazena = new BufferedWriter(new FileWriter(arquivo, true));
                 armazenaLoginESenha(armazena, login, senha);
                 new SetPaths().SavePaths(id,new URIpadrao().URICacheIdUser(),false);
+                new SetPaths().SavePaths(null,new URIpadrao().URICacheIdUser()+"\\saldouser.txt",false);
                 new SetPaths().SavePaths(new StringBuilder("\n" + login),new URIpadrao().URILoginUser(), true);
                 File file = new File(new URIpadrao().URI()+new SetPaths().GetPaths(new URIpadrao().URICacheIdUser())+"\\senhadeoperação.txt");
                 file.createNewFile();
