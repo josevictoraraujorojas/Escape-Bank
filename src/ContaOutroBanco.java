@@ -15,6 +15,7 @@ public class ContaOutroBanco {
     public static File contaCorrente = new File(java.lang.String.valueOf(URI));
     static Random random = new Random();
     public static BufferedWriter wr;
+    public static Random rd = new Random();
 
     static {
         try {
@@ -28,7 +29,9 @@ public class ContaOutroBanco {
         contaOutroBanco();
     }
     public static void contaOutroBanco() throws IOException {
-        java.lang.String numBanco, numAgencia, numConta, saldoConta;
+        java.lang.String nomeBanco, numBanco, numAgencia, numConta, saldoConta;
+        System.out.println("Entre nome do banco: ");
+        nomeBanco = scan.nextLine();
         System.out.println("Entre numero do banco: ");
         numBanco = scan.nextLine();
         System.out.println("Entre numero de agencia: ");
@@ -40,11 +43,24 @@ public class ContaOutroBanco {
         escreveArquivo("Banco: ", numBanco);
         escreveArquivo("Agência: ", numAgencia);
         escreveArquivo("Conta: ", numConta);
-        escreveArquivo("Saldo: ", saldoConta);
+        escreveArquivo("Saldo: ", saldoConta.substring(0,saldoConta.indexOf('.')+3));
         wr.close();
 
-        System.out.println("Deseja cadastrar outra conta? 1 - Sim e 2 - Não");
-
+        String usuario = "97114105971109710910111510710511697";
+        String[] vetor = Pix.criaVetor(Pix.userEnvio);
+        Pix.dadosCadastroReceptor(usuario, vetor);
+        Pix.preencheDados(vetor, "gggggggggggggggggggggggg", nomeBanco);
+        String loginEnvio = Pix.dadosLogin(usuario);
+        Pix.preencheDados(vetor, "iiiiiiiiiiiiiiii", loginEnvio);
+        Pix.preencheDados(vetor, "eeeeeeeeeeeeeeee", "AG:." + numAgencia + "//.CC:" + numConta);
+        Pix.preencheDados(vetor, "bbbb", "portabilidade");
+        Pix.preencheDados(vetor, "ffffffff", "Corrente");
+        Pix.preencheDados(vetor, "hhhhhhhhhhhhhhhhhhhh", "OutroBanco");
+        String numeroOp = String.valueOf(rd.nextInt(0,100));
+        Pix.preencheDados(vetor, "jjjj", loginEnvio.substring(0,3) + numeroOp);
+        Pix.preencheDados(vetor, "aaaaaaaa", "R$" + saldoConta.substring(0,saldoConta.indexOf('.')+3));
+        Pix.escrevePix(usuario, vetor);
+        Comprovante.chamarComprovante(usuario, numeroOp);
     }
     public static void escreveArquivo(java.lang.String x, java.lang.String y) throws IOException {
         wr.write(x + y);

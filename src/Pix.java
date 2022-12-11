@@ -12,6 +12,7 @@ public class Pix {
     public static String usuario, userEnvio, valorPix;
     public static Random rd = new Random();
     public static File padraoPix = new File("H:\\Meu Drive\\ScapeBank\\Pattern\\padraoPix.txt");
+    static String uri ="H:\\Meu Drive\\ScapeBank\\Login\\";
     public static void main(String[] args) throws IOException {
         scan = new Scanner(System.in);
         userEnvio = String.valueOf(Cadastro.criptografia(new URIpadrao().URICacheIdUser()));
@@ -41,13 +42,9 @@ public class Pix {
         escrevePix(usuario, vetor);
     }
     public static boolean verificaUsuario(String usuario) throws FileNotFoundException {
-        scan2 = new Scanner(new File (new URIpadrao().URILoginUser()));
-        while (scan2.hasNextLine()){
-            String user = scan2.nextLine();
-            if (user.equals(usuario)){
-                return true;
-            }
-        }
+        File URI = new File((new File(uri) + "\\" + usuario));
+        if (URI.exists())
+            return true;
         return false;
     }
 /*    public static void escrevePix(String usuario) throws IOException {

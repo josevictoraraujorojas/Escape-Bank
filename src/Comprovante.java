@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
-import java.nio.file.Files;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Comprovante {
@@ -24,15 +22,7 @@ public class Comprovante {
             e.printStackTrace();
         }
     }
-
-    static {
-        try {
-            pix = new Scanner(arquivoProvisorio(usuario));
-        } catch (FileNotFoundException e) { //aqui ele lê o provisório da pasta do cliente
-            e.printStackTrace();
-        }
-    }
-    public static File acessarResumo(String usuario){ //seu método tem que escrever no resumo de operações
+        public static File acessarResumo(String usuario){ //seu método tem que escrever no resumo de operações
         StringBuilder URI2 = new StringBuilder(new URIpadrao().URI()+ //pode ver o código no Pix -> escrevePix
                 usuario +"\\resumoOperacoes.txt"); // e escrever no padrão que rola no preenche dados
         File resumoOperacoes = new File(String.valueOf(URI2));
@@ -49,11 +39,11 @@ public class Comprovante {
         wr2.newLine();
         wr2.close();
     }
-    public static void main(String[] args) throws IOException { //mudar o nome pra um chamarComprovante
+    public static void chamarComprovante(String usuario, String operacao) throws IOException { //mudar o nome pra um chamarComprovante
         //na troca do nome do main pra método tem que colocar String usuario, String operacao
-        String vetor[] = criaVetor("97114105971109710910111510710511697","ari46");
-        escreveProvisorio("97114105971109710910111510710511697", vetor);
-        readPrintFile();
+        String vetor[] = criaVetor(usuario,operacao);
+        escreveProvisorio(usuario, vetor);
+        readPrintFile(usuario);
     }
     public static Scanner scan;
     public static String[] criaVetor(String usuario, String operacao) throws IOException {
@@ -72,16 +62,18 @@ public class Comprovante {
         }
         return vetor;
     }
-    public static void readPrintFile(){  //aqui ele lê o provisório e imprime o comprovante
+    public static void readPrintFile(String usuario) throws IOException {  //aqui ele lê o provisório e imprime o comprovante
         UIManager.getDefaults().put("OptionPane.background",cor1);
         UIManager.put ("Panel.background", cor1);
         StringBuilder impressao = new StringBuilder();
+        Scanner scan = new Scanner(arquivoProvisorio(usuario));
+        String pix;
         while (rosto.hasNextLine()) {
+            pix = scan.next();
             impressao = impressao.append("<html><font color=#FF00FF face=arial><i><b>" +
                     rosto.nextLine().replace('.', ' ') +
-                    pix.next().replace('.', ' ') + "\n");
+                    pix.replace('.', ' ') + "\n");
         }
-
     JOptionPane.showMessageDialog(null, impressao, "Comprovante", JOptionPane.PLAIN_MESSAGE);
     }
 }
