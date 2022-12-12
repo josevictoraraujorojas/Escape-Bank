@@ -77,6 +77,7 @@ public class SaldoEExtrato {
 
         while (scan2.hasNextLine()) {
             nome4 = scan2.nextLine();
+            nome4 = nome4.replace(':', ' ');
             nome4 = nome4.substring(nome4.indexOf('$') + 1);
             nome4 = nome4.substring(0, nome4.indexOf('.') + 3);
             if (nome4.contains(" ")) {
