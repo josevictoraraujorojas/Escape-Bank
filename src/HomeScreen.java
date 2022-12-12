@@ -1,11 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class HomeScreen extends JFrame
@@ -37,7 +35,13 @@ public class HomeScreen extends JFrame
         getContentPane().setBackground(cor1);
         setLayout(null);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent evt)
+            {
+            }
+        });
 
 
 
@@ -74,10 +78,10 @@ public class HomeScreen extends JFrame
         JL4.setOpaque(true);
         JL4.setVisible(true);
 
-        JL5 = new JLabel("menu");
+        JL5 = new JLabel("sair");
         JL5.setFont(new Font("arial", Font.BOLD, 20));
         JL5.setForeground(cor2);
-        JL5.setBounds(590, 20,60, 30);
+        JL5.setBounds(600, 20,60, 30);
         JL5.setVisible(true);
 
         JL6 =new JLabel();
@@ -94,6 +98,13 @@ public class HomeScreen extends JFrame
         JB1.setFont(new Font("arial", Font.BOLD, 20));
         JB1.setForeground(cor5);
         JB1.setBackground(cor4);
+        JB1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new TelaDeExtrato();
+                dispose();
+            }
+        });
         JB1.addMouseListener(new MouseAdapter()
         {
             @Override
@@ -152,6 +163,17 @@ public class HomeScreen extends JFrame
         JB4.setBackground(cor2);
         JB4.setBorderPainted(false);
         JB4.setVisible(true);
+        JB4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new TelaDeCartaoDeCredito();
+                } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+                dispose();
+            }
+        });
         JB4.addMouseListener(new MouseAdapter()
         {
             @Override
@@ -172,14 +194,19 @@ public class HomeScreen extends JFrame
 
         JB6 = new JButton(menu);
         JB6.setBounds(650,10,50,50);
-        JB6.setBackground(cor1);
+        JB6.setBackground(cor2);
         JB6.setBorderPainted(false);
-        JB6.setFocusPainted(false);
         JB6.setVisible(true);
+        JB6.setOpaque(false);
         JB6.addActionListener(e -> {
-
             dispose();
-            new menu();
+            Main.VerificarLogin(false);
+            String[] args = new String[0];
+            try {
+                Main.main(args);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
 
         });
         JB6.addMouseListener(new MouseAdapter()
@@ -245,7 +272,13 @@ JButton JB6;
         getContentPane().setBackground(cor1);
         setLayout(null);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent evt)
+            {
+            }
+        });
 
         JB6 = new JButton(menu);
         JB6.setBounds(10,10,50,50);
@@ -287,7 +320,13 @@ String usuario, valor;
         getContentPane().setBackground(cor1);
         setLayout(null);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent evt)
+            {
+            }
+        });
 
         JB = new JButton("<- voltar");
         JB.setBounds(170, 500, 120, 40);
@@ -498,7 +537,14 @@ class TelaDeEmprestimo extends JFrame{
         getContentPane().setBackground(cor1);
         setLayout(null);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent evt)
+            {
+            }
+        });
+
 
         JB1 = new JButton("ok");
         JB1.setBounds(460, 500, 100, 40);
@@ -535,7 +581,6 @@ class TelaDeEmprestimo extends JFrame{
                     JCB.setBackground(cor2);
                     JCB.setForeground(cor1);
                     JCB.setFont(new Font("Arial", Font.BOLD, 15));
-                    JCB.setEnabled(true);
                     JCB.setVisible(true);
                     add(JCB);
                     add(JL2);
@@ -700,4 +745,179 @@ class TelaDeEmprestimo extends JFrame{
     }
 
 
+}
+class TelaDeExtrato extends JFrame
+{
+    Image iconTitulo = new Icons().icon1();
+
+    Color cor1 = new PaletaDeCores().cor1();
+    Color cor2 = new PaletaDeCores().cor2();
+    Color cor3 = new PaletaDeCores().cor3();
+    Color cor4 = new PaletaDeCores().cor4();
+    Color cor5 = new PaletaDeCores().cor5();
+    Color cor7 = new PaletaDeCores().cor7();
+    Color cor8 = new PaletaDeCores().cor8();
+    JButton JB1,JB2,JB3,JB4,JB5,JB6;
+    JLabel JL1,JL2,JL3, JL4,JL5,JL6;
+    JComboBox<String> JCB;
+    static String palavra;
+
+    String [] comp = {
+            ".ari04.|.pedroooo.|.pix.|.R$400.|",
+            ".ari05.|.pedro.|.pix.|.R$500000.|",
+            ".ari06.|.pedro.|.pix.|.R$60.|",
+            ".ari07.|.pedro.|.pix.|.R$70.|",
+            ".ari08.|.pedro.|.pix.|.R$80.|"};
+
+    public TelaDeExtrato()
+    {
+        setSize(1100, 600);
+        setIconImage(iconTitulo);
+        setTitle("Scape Bank");
+        getContentPane().setBackground(cor1);
+        setLayout(null);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent evt)
+            {
+            }
+        });
+
+        JL1 = new JLabel("$                       $xtrato                       $");
+        JL1.setBounds(100, 100, 1000, 50);
+        JL1.setForeground(cor2);
+        JL1.setFont(new Font("Arial", Font.BOLD, 50));
+        JL1.setVisible(true);String b = " ";
+        String text =b.repeat(22) +"operacao"+b.repeat(23+24)+"destino"+b.repeat(24+23)+"transação"+b.repeat(23+25)+"valor"+b.repeat(25);
+
+        JL2 = new JLabel(text);
+        JL2.setBounds(50, 220, 1000, 30);
+        JL2.setForeground(cor2);
+        JL2.setBackground(cor7);
+        JL2.setOpaque(true);
+        JL2.setFont(new Font("Arial", Font.BOLD, 15));
+        JL2.setVisible(true);
+        String[]s1 = new String[0];
+        for (int i = 0; i < s1.length; i++) {
+           s1[i]= Arrays.toString(ProcessarVetor(comp));
+        }
+
+
+
+        JCB = new JComboBox<>(ProcessarVetor(comp));
+        JCB.setBounds(50, 250, 1000, 30);
+        JCB.setBackground(cor2);
+        JCB.setForeground(cor1);
+        JCB.setFont(new Font("Arial", Font.BOLD, 15));
+        JCB.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+               JCB.showPopup();
+            }
+        });
+        JCB.setVisible(true);
+        JB1 = new JButton("abrir->");
+        JB1.setBounds(760, 500, 100, 40);
+        JB1.setBackground(cor2);
+        JB1.setFont(new Font("Arial", Font.BOLD, 20));
+        JB1.setForeground(cor3);
+        JB1.setVisible(true);
+        JB1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String a = Objects.requireNonNull((String) JCB.getSelectedItem()).replace(" &nbsp;"," ").substring(46,77);
+                a= a.replace(" ","");
+                System.out.println(a);
+            }
+        });
+
+        JB3 = new JButton("<- voltar");
+        JB3.setBounds(170, 500, 120, 40);
+        JB3.setBackground(cor2);
+        JB3.setFont(new Font("Arial", Font.BOLD, 20));
+        JB3.setForeground(cor3);
+        JB3.setVisible(true);
+        JB3.addActionListener(e ->
+        {
+            new HomeScreen();
+            dispose();
+        });
+
+
+        add(JL1);
+        add(JL2);
+        add(JB1);
+        add(JB3);
+        getContentPane().add(JCB);
+
+        setVisible(true);
+
+    }
+
+    public static String[] ProcessarVetor(String[] vetor){
+
+        String[] vetor2;
+
+        for (int i = 0; i < vetor.length; i++)
+        {
+            vetor[i]=vetor[i].replace("|","|-");
+        }
+
+        for (int i = 0; i < vetor.length; i++) {
+            vetor2 = vetor[i].split("-");
+
+            for (int j = 0; j < vetor2.length; j++) {
+                recursao(vetor2[j]);
+                vetor2[j] = palavra;
+
+
+            }
+            String pors = Arrays.toString(vetor2);
+            vetor[i] = pors;
+
+
+        }
+        StringBuilder concat = new StringBuilder("");
+
+
+        for (String s : vetor) {
+            String a = s + "_\n";
+            concat.append(a);
+        }
+
+        String arrumar = String.valueOf(concat);
+        arrumar= arrumar.replace(", .","");
+        arrumar= arrumar.replace("]","");arrumar= arrumar.replace("[","");
+        arrumar= arrumar.replace("."," ");
+        arrumar= arrumar.replace("|","");
+        arrumar= arrumar.replace(" "," &nbsp;");
+
+        vetor=arrumar.split("_");
+
+        for (int i = 0; i < vetor.length; i++) {
+            vetor[i]="<html><font color=#ff0000  face=arial><i><b>"+vetor[i];
+
+        }
+
+        return vetor;
+    }
+
+
+    public static void main(String[] args) {
+new TelaDeExtrato();
+
+
+    }
+    public static void recursao(String tratamento) {
+
+        if (tratamento.length() < 33)
+        {
+            recursao(tratamento.replace(".", ". "));
+        }
+        else if (tratamento.length() > 33) {
+            recursao(tratamento.replace(" |", "|"));
+        } else {palavra = tratamento;}
+    }
 }

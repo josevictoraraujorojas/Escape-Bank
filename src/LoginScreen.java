@@ -3,6 +3,8 @@ import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -37,7 +39,13 @@ public class LoginScreen extends JFrame
         setSize(800, 600);
         getContentPane().setBackground(cor1);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent evt)
+            {
+            }
+        });
         setIconImage(iconeTitulo);
 
         /* configurações do JButton */
@@ -267,7 +275,13 @@ class TelaDeCadastro extends JFrame {
         setIconImage(iconeTitulo);
         setSize(800, 600);
         getContentPane().setBackground(cor1);
-        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent evt)
+            {
+            }
+        });
         setUndecorated(true);
 
         /* configurações do JButton */

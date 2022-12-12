@@ -74,4 +74,8 @@ public class Comprovante {
         }
     JOptionPane.showMessageDialog(null, impressao, "Comprovante", JOptionPane.PLAIN_MESSAGE);
     }
+
+    public static void main(String[] args) throws IOException {
+        readPrintFile("97114105971109710910111510710511697");
+    }
 }

@@ -27,14 +27,44 @@ public class Cartao {
         String caminho = new URIpadrao().URI() + id + "\\CadastroCliente.txt";
 
         String nome = "";
+        StringBuilder juntar = new StringBuilder("");
         Scanner lerArquivo = new Scanner(new File(caminho));
-        while (lerArquivo.hasNext()) {
-            String linha = lerArquivo.nextLine();
-            if (linha.contains("Nome")) {
-                nome = linha.substring(linha.indexOf(":") + 2);
+        while(true) {
+            String linha;
+            do {
+                if (!lerArquivo.hasNext()) {
+                    return nome;
+                }
+
+                linha = lerArquivo.nextLine();
+            } while(!linha.contains("Nome"));
+
+            nome = linha.substring(linha.indexOf(":") + 2);
+            nome = nome.replaceAll(" ", "/ ");
+            String a = nome.substring(nome.indexOf("/"));
+            String[] Nome = a.split("/");
+            nome = nome.substring(0, nome.indexOf("/"));
+
+            int i;
+            for(i = 1; i < Nome.length; ++i) {
+                if (i == 1) {
+                    Nome[i] = Nome[i].substring(1, 2);
+                } else if (Nome[i].length() <= 3) {
+                    Nome[i] = "";
+                } else {
+                    Nome[i] = Nome[i].substring(0, 2);
+                }
             }
+
+            for(i = 1; i < Nome.length; ++i) {
+                Nome[i] = Nome[i].replaceAll(" ", ".");
+                juntar = juntar.append(Nome[i]);
+            }
+
+            nome = nome + " " + juntar;
+            nome = recursao(nome);
+            System.out.println(nome);
         }
-        return nome;
     }
     public static StringBuilder numeroDaConta(){
         StringBuilder numeroDaConta = new StringBuilder();
@@ -45,9 +75,9 @@ public class Cartao {
     }
     public static StringBuilder numeroDoCartao(){
         StringBuilder numeroDoCartao = new StringBuilder();
-        numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("  ");
-        numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("  ");
-        numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("  ");
+        numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("     ");
+        numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("     ");
+        numeroDoCartao.append(aleatorio.nextInt(1000,10000)).append("     ");
         numeroDoCartao.append(aleatorio.nextInt(1000,10000));
         return numeroDoCartao;
     }
@@ -62,4 +92,16 @@ public class Cartao {
         codigoDeSeguranca.append(aleatorio.nextInt(100,1000));
         return codigoDeSeguranca;
     }
+    public static String recursao(String str) {
+        if (str.length() <= 13) {
+            return str;
+        } else {
+            StringBuilder a = new StringBuilder(str);
+            a.delete(a.indexOf("."), a.indexOf(".") + 2);
+            str = String.valueOf(a);
+            return recursao(str);
+        }
+    }
+
+
 }
