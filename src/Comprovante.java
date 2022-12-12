@@ -38,11 +38,16 @@ public class Comprovante {
         wr2.close();
     }
     public static void chamarComprovante(String usuario, String operacao) throws IOException { //mudar o nome pra um chamarComprovante
-        //na troca do nome do main pra método tem que colocar String usuario, String operacao
         String vetor[] = criaVetor(usuario,operacao);
         escreveProvisorio(usuario, vetor);
         readPrintFile(usuario);
     }
+/*    public static void main(String[] args) {
+        String usuario = "97114105971109710910111510710511697";
+        String vetor[] = criaVetor(usuario,"Jos56");
+        escreveProvisorio(usuario, vetor);
+        readPrintFile(usuario);
+    }*/
     public static Scanner scan;
     public static String[] criaVetor(String usuario, String operacao) throws IOException {
         String nick;
