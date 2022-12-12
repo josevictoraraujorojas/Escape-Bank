@@ -45,7 +45,7 @@ public class Emprestimo {
         }
         return renda;
     }
-    public void processar(Float valorDoEmprestimo, int parcelas,String imprimir) throws IOException
+    public int processar(Float valorDoEmprestimo, int parcelas, String imprimir) throws IOException
     {
         Color cor1 = new PaletaDeCores().cor1();
         UIManager.getDefaults().put("OptionPane.background",cor1);
@@ -55,9 +55,12 @@ public class Emprestimo {
         int opcao = JOptionPane.showOptionDialog(null, "<html><font color=#FF00FF face=arial><i><b> seu emprestimo ficará no<br>valor total de: R$ "+valorTotal.substring(0,valorTotal.indexOf(".")+2)+"<br> <br>valor que irá receber: R$ "+valorDoEmprestimo+"<br>em: "+ imprimir+"<br> <br>se deseja continuar clique em confirmar", "emprestimo", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
         if (opcao == 0 && Senha.SolicitarSenha()){
             JOptionPane.showMessageDialog(null,"<html><font color=#FF00FF face=arial><i><b> Emprestimo feito com sucesso");
+            return 1;
         }else {
             JOptionPane.showMessageDialog(null,"<html><font color=#FF00FF face=arial><i><b> Emprestimo cancelado");
+            return 2;
         }
+
     }
 
     public String[] emprestimo(Float valorDoEmprestimo) throws FileNotFoundException {
