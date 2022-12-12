@@ -26,7 +26,12 @@ public class SaldoEExtrato {
             Extrato(extrato);
             escreveExtrato(userEnvio, Extrato(extrato));
         } while (scan2.hasNextLine());
-        calculaExtrato(userEnvio);
+        double extratoFinal = calculaExtrato(userEnvio);
+        FileWriter escreve = new FileWriter(acessarExtrato(userEnvio));
+        escreve.write("");
+        escreve.close();
+        System.out.println(extratoFinal);
+
     }
     public static String[] criaVetor(String extrato) throws IOException {
         String vetor[] = extrato.split("\t");
@@ -65,37 +70,22 @@ public class SaldoEExtrato {
         wr2.newLine();
         wr2.close();
     }
-    public static void calculaExtrato(String usuario) throws IOException {
+    public static double calculaExtrato(String usuario) throws IOException {
         Scanner scan2 = new Scanner(acessarExtrato(usuario));
         String nome4;
-        Scanner scan3 = new Scanner(nome2);
-        String nome3 = scan3.nextLine();
-/*        int vetorDiminui[] = new int[25], vetorSoma[] = new int[25];
-        for (int i = 0; i < 23; i++) {
+        float soma = 0;
+
+        while (scan2.hasNextLine()) {
             nome4 = scan2.nextLine();
-            if (scan2.hasNextLine()){
-                for (int j = 0; j < 1; j++) {
-                    if (ler[1].contains(nome3)){
-                        vetorSoma[i] = ler[3].substring(ler[3].indexOf('$')+1);
-                        vetorDiminui[i] = "0";
-                    } else {
-                        vetorSoma[i] = "0";
-                        vetorDiminui[i] = ler[3].substring(ler[3].indexOf('$')+1);
-                    }
-                }
+            nome4 = nome4.substring(nome4.indexOf('$') + 1);
+            nome4 = nome4.substring(0, nome4.indexOf('.') + 3);
+            if (nome4.contains(" ")) {
+                nome4 = nome4.substring(1, nome4.length());
             }
+            double valores = Double.parseDouble(nome4);
+            soma += valores;
         }
-        System.out.print(Arrays.toString(vetorSoma));
-        System.out.println(Arrays.toString(vetorDiminui));
-        int soma = 0;
-        for (int i = 0; i < vetorSoma.length; i++) {
-            soma = (Integer.parseInt(vetorSoma[i]) + Integer.parseInt(vetorSoma[i+1]));
-            i++;
-        }
-        System.out.println(soma);*/
+
+        return soma;
     }
-/*    public static int quantidadeLinhas(){
-        Scanner scan2 = new Scanner(acessarExtrato(usuario));
-        String nome4;
-    }*/
 }
