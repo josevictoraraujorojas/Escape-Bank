@@ -11,13 +11,12 @@ public class SaldoEExtrato {
     }
     public static File nome2 = new File(new URIpadrao().URICacheUserName());
     public static File nome = new File(new URIpadrao().URICacheIdUser());
-    public static String usuario, userEnvio;
-
+    public static String userEnvio;
     public static File userNome = new File("C:\\EscapeBankCache\\username.txt");
     static Scanner scan;
-
     static { try { scan = new Scanner(userNome); } catch (FileNotFoundException e) {
         throw new RuntimeException(e); } }
+
     public static void main(String[] args) throws IOException {
         String userLeitura = scan.nextLine();
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
@@ -28,7 +27,6 @@ public class SaldoEExtrato {
             escreveExtrato(userEnvio, Extrato(extrato));
         } while (scan2.hasNextLine());
         calculaExtrato(userEnvio);
-
     }
     public static String[] criaVetor(String extrato) throws IOException {
         String vetor[] = extrato.split("\t");

@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -51,7 +50,7 @@ public class Pix {
             return true;
         return false;
     }
-/*    public static void escrevePix(String usuario) throws IOException {
+/*    public static void alertarPix(String usuario) throws IOException {
         BufferedWriter wr = new BufferedWriter(new FileWriter(dadosPix, true));
         valor = scan.nextLine();
         wr.write(usuario);
