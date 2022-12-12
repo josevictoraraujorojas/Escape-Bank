@@ -17,7 +17,7 @@ public class SaldoEExtrato {
     static { try { scan = new Scanner(userNome); } catch (FileNotFoundException e) {
         throw new RuntimeException(e); } }
 
-    public static void main(String[] args) throws IOException {
+    public static double retornarExtrato() throws IOException {
         String userLeitura = scan.nextLine();
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
         Scanner scan2 = new Scanner(acessarResumo(userEnvio));
@@ -30,8 +30,11 @@ public class SaldoEExtrato {
         FileWriter escreve = new FileWriter(acessarExtrato(userEnvio));
         escreve.write("");
         escreve.close();
-        System.out.println(extratoFinal);
+        return extratoFinal;
+    }
 
+    public static void main(String[] args) throws IOException {
+        System.out.println(retornarExtrato());
     }
     public static String[] criaVetor(String extrato) throws IOException {
         String vetor[] = extrato.split("\t");

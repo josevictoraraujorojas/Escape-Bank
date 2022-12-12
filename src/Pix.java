@@ -28,6 +28,7 @@ public class Pix {
         } while (!verificaUsuario(usuario) || usuario.equals(userEnvio));
         System.out.println("Valor: ");
         valorPix = scan.nextLine();
+        valorPix = valorPix.replace('.',',');
         String vetor[] = criaVetor();
         dadosCadastro(userEnvio, vetor);
         dadosCadastroReceptor(usuario, vetor);

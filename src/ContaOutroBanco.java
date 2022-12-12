@@ -42,7 +42,8 @@ public class ContaOutroBanco {
         escreveArquivo("Banco: ", numBanco);
         escreveArquivo("Agência: ", numAgencia);
         escreveArquivo("Conta: ", numConta);
-        escreveArquivo("Saldo: ", saldoConta.substring(0,saldoConta.indexOf('.')+3)/*.replace('.',',')*/);
+        escreveArquivo("Saldo: ", saldoConta.substring(0,saldoConta.indexOf('.')+3).
+                replace('.',','));
         wr.close();
 
         String userLeitura = scan2.nextLine();
@@ -59,7 +60,7 @@ public class ContaOutroBanco {
         String numeroOp = String.valueOf(rd.nextInt(0,100));
         Pix.preencheDados(vetor, "jjjj", loginEnvio.substring(0,3) + numeroOp);
         Pix.preencheDados(vetor, "aaaaaaaa", "R$:" +
-                saldoConta.substring(0,saldoConta.indexOf('.')+3)/*.replace('.',',')*/);
+                saldoConta.substring(0,saldoConta.indexOf('.')+3).replace('.',','));
         Pix.escrevePix(usuario, vetor);
         Comprovante.chamarComprovante(usuario, numeroOp);
     }
