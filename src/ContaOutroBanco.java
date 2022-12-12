@@ -16,7 +16,6 @@ public class ContaOutroBanco {
     static Random random = new Random();
     public static BufferedWriter wr;
     public static Random rd = new Random();
-
     static {
         try {
             wr = new BufferedWriter(new FileWriter(contaCorrente, true));
@@ -24,7 +23,6 @@ public class ContaOutroBanco {
             throw new RuntimeException(e);
         }
     }
-
     public static void main(String[] args) throws IOException {
         contaOutroBanco();
     }
@@ -47,7 +45,7 @@ public class ContaOutroBanco {
         wr.close();
 
         String usuario = "97114105971109710910111510710511697";
-        String[] vetor = Pix.criaVetor(Pix.userEnvio);
+        String[] vetor = Pix.criaVetor();
         Pix.dadosCadastroReceptor(usuario, vetor);
         Pix.preencheDados(vetor, "gggggggggggggggggggggggg", nomeBanco);
         String loginEnvio = Pix.dadosLogin(usuario);

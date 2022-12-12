@@ -7,8 +7,6 @@ public class Comprovante {
     static Color cor1 = new PaletaDeCores().cor1();
     public static File rostoComprovante = new File("H:\\Meu Drive\\ScapeBank\\Pattern\\RostoComprovante.txt");
     public static Scanner rosto; //só pra ler o comprovante padrão, na pasta Pattern ficam arquivos padrão
-    public static Scanner pix; //aqui ele vai ler a linha que o seu arquivo criar no Resumo de Operações
-    public static String usuario; //esse usuario vai ser o nome do cliente criptografado
     public static File arquivoProvisorio(String usuario){ //aqui ele cria um arquivo provisório
         StringBuilder URI2 = new StringBuilder(new URIpadrao().URI()+ //ele lê no resumo de operações, salva em
                 usuario +"\\provisorio.txt"); //um vetor e do vetor ele imprime no padrão que o comprovante lê

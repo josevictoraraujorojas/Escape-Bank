@@ -7,8 +7,7 @@ public class Pix {
             GetPaths(new URIpadrao().URICacheIdUser()));
     public static StringBuilder URI = new StringBuilder(new URIpadrao().URI()+
             IdPaths +"\\dadosPix.txt");
-    public static File dadosPix = new File(String.valueOf(URI));
-    public static Scanner scan, scan2, scan4;
+    public static Scanner scan, scan4;
     public static String usuario, userEnvio, valorPix;
     public static Random rd = new Random();
     public static File padraoPix = new File("H:\\Meu Drive\\ScapeBank\\Pattern\\padraoPix.txt");
@@ -25,7 +24,7 @@ public class Pix {
         } while (!verificaUsuario(usuario));
         System.out.println("Valor: ");
         valorPix = scan.nextLine();
-        String vetor[] = criaVetor(userEnvio);
+        String vetor[] = criaVetor();
         dadosCadastro(userEnvio, vetor);
         dadosCadastroReceptor(usuario, vetor);
         String loginEnvio = dadosLogin(userEnvio);
@@ -55,9 +54,9 @@ public class Pix {
         wr.write(valor);
         wr.close();
     }*/
-    public static File acessarResumo(String x){
+    public static File acessarResumo(String usuario){
         StringBuilder URI2 = new StringBuilder(new URIpadrao().URI()+
-                x +"\\resumoOperacoes.txt");
+                usuario +"\\resumoOperacoes.txt");
         File resumoOperacoes = new File(String.valueOf(URI2));
         return resumoOperacoes;
     }
@@ -114,7 +113,7 @@ public class Pix {
         }
         preencheDados(vetor, "gggggggggggggggggggggggg", nome);
     }
-    public static String[] criaVetor(String arquivo) throws IOException {
+    public static String[] criaVetor() throws IOException {
         BufferedReader rd = new BufferedReader(new FileReader(padraoPix));
         String ler = rd.readLine();
         String vetor[] = ler.split("\t");
