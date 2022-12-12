@@ -40,7 +40,7 @@ public class Pix {
         preencheDados(vetor, "hhhhhhhhhhhhhhhhhhhh", "ScapeBank");
         String numeroOp = String.valueOf(rd.nextInt(0,100));
         preencheDados(vetor, "jjjj", loginEnvio.substring(0,3) + numeroOp);
-        preencheDados(vetor, "aaaaaaaa", "R$ " + valorPix);
+        preencheDados(vetor, "aaaaaaaa", "R$:" + valorPix);
         escrevePix(userEnvio, vetor);
         escrevePix(usuario, vetor);
     }
@@ -81,9 +81,9 @@ public class Pix {
         String dados[] = vetor;
         String teste2 = String.valueOf(Cadastro.criptografia(dados[21]));
         if (usuario.equals(teste2) && !dados[6].contains("-")){
-            dados[6] = dados[6].replace(' ','-');
+            dados[6] = dados[6].replace(':','-');
         } if (!usuario.equals(teste2) && dados[6].contains("-")){
-            dados[6] = dados[6].replace('-',' ');
+            dados[6] = dados[6].replace('-',':');
         }
         for (int i = 0; i < dados.length; i++) {
             wr2.write(dados[i] + "\t");

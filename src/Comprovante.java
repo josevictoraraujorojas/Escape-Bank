@@ -42,11 +42,8 @@ public class Comprovante {
         escreveProvisorio(usuario, vetor);
         readPrintFile(usuario);
     }
-/*    public static void main(String[] args) {
-        String usuario = "97114105971109710910111510710511697";
-        String vetor[] = criaVetor(usuario,"Jos56");
-        escreveProvisorio(usuario, vetor);
-        readPrintFile(usuario);
+/*    public static void main(String[] args) throws IOException {
+        chamarComprovante("97114105971109710910111510710511697", "ari56");
     }*/
     public static Scanner scan;
     public static String[] criaVetor(String usuario, String operacao) throws IOException {
@@ -75,12 +72,8 @@ public class Comprovante {
             pix = scan.next();
             impressao = impressao.append("<html><font color=#FF00FF face=arial><i><b>" +
                     rosto.nextLine().replace('.', ' ') +
-                    pix.replace('.', ' ') + "\n");
+                    pix.replace('.', ' ').replace(':',' ') + "\n");
         }
     JOptionPane.showMessageDialog(null, impressao, "Comprovante", JOptionPane.PLAIN_MESSAGE);
-    }
-
-    public static void main(String[] args) throws IOException {
-        readPrintFile("97114105971109710910111510710511697");
     }
 }

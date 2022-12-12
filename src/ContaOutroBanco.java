@@ -1,7 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -23,6 +20,10 @@ public class ContaOutroBanco {
             throw new RuntimeException(e);
         }
     }
+    public static Scanner scan2;
+    public static File userNome = new File("C:\\EscapeBankCache\\username.txt");
+    static { try { scan2 = new Scanner(userNome); } catch (FileNotFoundException e) {
+        throw new RuntimeException(e); } }
     public static void main(String[] args) throws IOException {
         contaOutroBanco();
     }
@@ -44,7 +45,8 @@ public class ContaOutroBanco {
         escreveArquivo("Saldo: ", saldoConta.substring(0,saldoConta.indexOf('.')+3));
         wr.close();
 
-        String usuario = "97114105971109710910111510710511697";
+        String userLeitura = scan2.nextLine();
+        String usuario = String.valueOf(Cadastro.criptografia(userLeitura));
         String[] vetor = Pix.criaVetor();
         Pix.dadosCadastroReceptor(usuario, vetor);
         Pix.preencheDados(vetor, "gggggggggggggggggggggggg", nomeBanco);
@@ -56,7 +58,7 @@ public class ContaOutroBanco {
         Pix.preencheDados(vetor, "hhhhhhhhhhhhhhhhhhhh", "OutroBanco");
         String numeroOp = String.valueOf(rd.nextInt(0,100));
         Pix.preencheDados(vetor, "jjjj", loginEnvio.substring(0,3) + numeroOp);
-        Pix.preencheDados(vetor, "aaaaaaaa", "R$" + saldoConta.substring(0,saldoConta.indexOf('.')+3));
+        Pix.preencheDados(vetor, "aaaaaaaa", "R$:" + saldoConta.substring(0,saldoConta.indexOf('.')+3));
         Pix.escrevePix(usuario, vetor);
         Comprovante.chamarComprovante(usuario, numeroOp);
     }
