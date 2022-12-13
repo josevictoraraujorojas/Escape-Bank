@@ -12,12 +12,17 @@ public class Pix {
     public static Random rd = new Random();
     public static File padraoPix = new File("H:\\Meu Drive\\ScapeBank\\Pattern\\padraoPix.txt");
     static String uri ="H:\\Meu Drive\\ScapeBank\\Login\\";
-    public static File userNome = new File("C:\\EscapeBankCache\\username.txt");
-    static { try { scan2 = new Scanner(userNome); } catch (FileNotFoundException e) {
-            throw new RuntimeException(e); } }
+    public static String nomeUsuario(){
+        File userNome = new File("C:\\EscapeBankCache\\username.txt");
+        try { scan2 = new Scanner(userNome); } catch (FileNotFoundException e) {
+            throw new RuntimeException(e); }
+        String a = scan2.nextLine();
+        return a;
+    }
+
     public static void main(String[] args) throws IOException {
         scan = new Scanner(System.in);
-        String userLeitura = scan2.nextLine();
+        String userLeitura = nomeUsuario();
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
         do {
             System.out.println("Usuario:");

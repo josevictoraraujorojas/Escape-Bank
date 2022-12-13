@@ -21,10 +21,11 @@ public class Comprovante {
             e.printStackTrace();
         }
     }
-        public static File acessarResumo(String usuario){ //seu método tem que escrever no resumo de operações
+        public static File acessarResumo(String usuario) throws IOException { //seu método tem que escrever no resumo de operações
         StringBuilder URI2 = new StringBuilder(new URIpadrao().URI()+ //pode ver o código no Pix -> escrevePix
                 usuario +"\\resumoOperacoes.txt"); // e escrever no padrão que rola no preenche dados
         File resumoOperacoes = new File(String.valueOf(URI2));
+        acessarResumo(usuario).createNewFile();
         return resumoOperacoes;
     }
     public static void escreveProvisorio(String usuario, String vetor[]) throws IOException {
