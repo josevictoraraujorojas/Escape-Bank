@@ -57,10 +57,11 @@ public class SaldoEExtrato {
         }
         return vetorExtrato;
     }
-    public static File acessarExtrato(String usuario){
+    public static File acessarExtrato(String usuario) throws IOException {
         StringBuilder URI2 = new StringBuilder(new URIpadrao().URI()+
                 usuario +"\\extrato.txt");
         File extrato = new File(String.valueOf(URI2));
+        extrato.createNewFile();
         return extrato;
     }
     public static void escreveExtrato(String usuario, String vetor[]) throws IOException {

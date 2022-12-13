@@ -25,7 +25,12 @@ public class Comprovante {
         StringBuilder URI2 = new StringBuilder(new URIpadrao().URI()+ //pode ver o código no Pix -> escrevePix
                 usuario +"\\resumoOperacoes.txt"); // e escrever no padrão que rola no preenche dados
         File resumoOperacoes = new File(String.valueOf(URI2));
-        acessarResumo(usuario).createNewFile();
+        resumoOperacoes.createNewFile();
+        FileWriter escreve = new FileWriter(resumoOperacoes);
+                escreve.write(".\t.\t.\t.\tjjjj\t.\tR$:0,00\t.\tbbbb\t.\t.\t." +
+                "\tcccccccccccccccccccccccccccccc\tdddddddddddddd\teeeeeeeeeeeeeeee\tffffffff\t.\t.\t." +
+                "\tgggggggggggggggggggggggg\thhhhhhhhhhhhhhhhhhhh\tiiiiiiiiiiiiiiii\t.\t.\t.\t.\t.");
+                escreve.close();
         return resumoOperacoes;
     }
     public static void escreveProvisorio(String usuario, String vetor[]) throws IOException {
