@@ -17,5 +17,6 @@ public class Main {
     }
     public static void VerificarLogin(Boolean autorizacao)
     {confirmacao = autorizacao;
+        /*System.out.println(confirmacao);*/
     }
 }
