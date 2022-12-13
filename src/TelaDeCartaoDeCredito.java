@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class TelaDeCartaoDeCredito extends JFrame {
     Image iconTitulo = new Icons().icon1();

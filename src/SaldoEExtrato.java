@@ -16,9 +16,9 @@ public class SaldoEExtrato {
     static Scanner scan;
     static { try { scan = new Scanner(userNome); } catch (FileNotFoundException e) {
         throw new RuntimeException(e); } }
+    static String userLeitura = scan.nextLine();
 
     public static double retornarExtrato() throws IOException {
-        String userLeitura = scan.nextLine();
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
         Scanner scan2 = new Scanner(acessarResumo(userEnvio));
         do{
@@ -27,15 +27,18 @@ public class SaldoEExtrato {
             escreveExtrato(userEnvio, Extrato(extrato));
         } while (scan2.hasNextLine());
         double extratoFinal = calculaExtrato(userEnvio);
+        String valor = String.valueOf(extratoFinal);
+        valor = valor.substring(0, valor.indexOf('.')+2);
+        extratoFinal = Double.parseDouble(valor);
         FileWriter escreve = new FileWriter(acessarExtrato(userEnvio));
         escreve.write("");
         escreve.close();
         return extratoFinal;
     }
 
-    public static void main(String[] args) throws IOException {
+/*    public static void main(String[] args) throws IOException {
         System.out.println(retornarExtrato());
-    }
+    }*/
     public static String[] criaVetor(String extrato) throws IOException {
         String vetor[] = extrato.split("\t");
         return vetor;
@@ -76,11 +79,11 @@ public class SaldoEExtrato {
     public static double calculaExtrato(String usuario) throws IOException {
         Scanner scan2 = new Scanner(acessarExtrato(usuario));
         String nome4;
-        float soma = 0;
+        double soma = 0;
 
         while (scan2.hasNextLine()) {
             nome4 = scan2.nextLine();
-            nome4 = nome4.replace(':', ' ');
+            nome4 = nome4.replace(':', ' ').replace(',','.');
             nome4 = nome4.substring(nome4.indexOf('$') + 1);
             nome4 = nome4.substring(0, nome4.indexOf('.') + 3);
             if (nome4.contains(" ")) {
@@ -89,7 +92,6 @@ public class SaldoEExtrato {
             double valores = Double.parseDouble(nome4);
             soma += valores;
         }
-
         return soma;
     }
 }

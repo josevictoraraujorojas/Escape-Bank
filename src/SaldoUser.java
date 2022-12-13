@@ -1,4 +1,12 @@
+import java.io.IOException;
+
 public class SaldoUser {
 
     public double SaldoUsuario() {
-        return 100.0;}}
+        double a = 0;
+        try {
+            a = SaldoEExtrato.retornarExtrato();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return a;}}

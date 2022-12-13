@@ -80,10 +80,10 @@ public class Pix {
         nick = String.valueOf(acessarResumo(usuario));
         BufferedWriter wr2 = new BufferedWriter(new FileWriter(nick, true));
         String dados[] = vetor;
-        String teste2 = String.valueOf(Cadastro.criptografia(dados[15]));
-        if ((usuario.equals(teste2) || usuario.equals("ScapeBank")) && !dados[6].contains("-")){
+        String teste2 = String.valueOf(Cadastro.criptografia(dados[21]));
+        if (usuario.equals(teste2) && !dados[6].contains("-")){
             dados[6] = dados[6].replace(':','-');
-        } if ((!usuario.equals(teste2) || !usuario.equals("ScapeBank")) && dados[6].contains("-")){
+        } if (!usuario.equals(teste2) && dados[6].contains("-")){
             dados[6] = dados[6].replace('-',':');
         }
         for (int i = 0; i < dados.length; i++) {
