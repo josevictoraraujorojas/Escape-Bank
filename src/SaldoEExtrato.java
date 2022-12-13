@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class SaldoEExtrato {
@@ -33,6 +34,30 @@ public class SaldoEExtrato {
         escreve.close();
         return extratoFinal;
     }
+    public static String[] mandarvetor() throws IOException {
+        userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
+        Scanner scan2 = new Scanner(acessarResumo(userEnvio));
+        LineNumberReader lnr = new LineNumberReader(new FileReader(acessarResumo(userEnvio)));
+        lnr.skip(Long.MAX_VALUE);
+        int retorno = lnr.getLineNumber();
+        String[] vetor = new String[retorno-1];
+        int linha =-1;
+        while (scan2.hasNextLine()){
+
+            String extrato = scan2.nextLine();
+            String a = Arrays.toString(Extrato(extrato));
+            if (a.equals("[jjjj, iiiiiiiiiiiiiiii, bbbb, R$:0,00]")){
+                continue;
+            }linha = linha+1;
+            for (int i = 0; i < vetor.length; i++) {
+
+                vetor[linha]=a;
+                
+            }}
+
+        return vetor;
+
+    }
     public static String[] criaVetor(String extrato) throws IOException {
         String vetor[] = extrato.split("\t");
         return vetor;
@@ -51,6 +76,7 @@ public class SaldoEExtrato {
             if (s == vetor[21])
                 vetorExtrato[1] = s; //nome de quem enviou
         }
+
         return vetorExtrato;
     }
     public static File acessarExtrato(String usuario) throws IOException {

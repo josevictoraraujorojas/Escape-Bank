@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class HomeScreen extends JFrame
 {
@@ -809,7 +808,7 @@ class TelaDeExtrato extends JFrame
            s1[i]= Arrays.toString(ProcessarVetor(comp));
         }
 
-
+/*
         String userEnvio = String.valueOf(Cadastro.criptografia(SaldoEExtrato.userLeitura));
         Scanner scan2 = null;
         try {
@@ -820,10 +819,15 @@ class TelaDeExtrato extends JFrame
         String extrato = scan2.nextLine();
         extrato = scan2.nextLine();
         try {
-            JCB = new JComboBox<>(ProcessarVetor(SaldoEExtrato.Extrato(extrato)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }*/
+        try {
+            JCB = new JComboBox<>(ProcessarVetor(SaldoEExtrato.mandarvetor()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         JCB.setBounds(50, 250, 1000, 30);
         JCB.setBackground(cor2);
         JCB.setForeground(cor1);
@@ -875,15 +879,14 @@ class TelaDeExtrato extends JFrame
 
     public static String[] ProcessarVetor(String[] vetor){
 
+        String sj ;
         String[] vetor2;
 
-        for (int i = 0; i < vetor.length; i++)
-        {
-            vetor[i]=vetor[i].replace("|","|-");
-        }
+
+
 
         for (int i = 0; i < vetor.length; i++) {
-            vetor2 = vetor[i].split("-");
+            vetor2 = vetor[i].split(", ");
 
             for (int j = 0; j < vetor2.length; j++) {
                 vetor2[j] = "." + vetor2[j] + ".|";

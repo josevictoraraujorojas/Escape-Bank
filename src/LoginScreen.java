@@ -246,7 +246,8 @@ public class LoginScreen extends JFrame
 
     }
 }
-class TelaDeCadastro extends JFrame {
+class
+TelaDeCadastro extends JFrame {
     Image iconeTitulo = new Icons().icon1();
 
     Color cor1 = new PaletaDeCores().cor1();
@@ -275,6 +276,7 @@ class TelaDeCadastro extends JFrame {
         setIconImage(iconeTitulo);
         setSize(800, 600);
         getContentPane().setBackground(cor1);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter()
         {
