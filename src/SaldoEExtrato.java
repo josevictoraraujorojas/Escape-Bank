@@ -16,7 +16,6 @@ public class SaldoEExtrato {
     static { try { scan = new Scanner(userNome); } catch (FileNotFoundException e) {
         throw new RuntimeException(e); } }
     static String userLeitura = scan.nextLine();
-
     public static double retornarExtrato() throws IOException {
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
         Scanner scan2 = new Scanner(acessarResumo(userEnvio));
@@ -57,6 +56,9 @@ public class SaldoEExtrato {
 
         return vetor;
 
+    }
+    public static void main(String[] args) throws IOException {
+        retornarExtrato();
     }
     public static String[] criaVetor(String extrato) throws IOException {
         String vetor[] = extrato.split("\t");

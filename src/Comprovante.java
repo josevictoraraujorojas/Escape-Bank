@@ -64,7 +64,7 @@ public class Comprovante {
         readPrintFile(usuario);
     }
     public static void main(String[] args) throws IOException {
-        chamarComprovante("7411111510111810599116111114", "Jos17");
+        chamarComprovante("97114105971109710910111510710511697", "ari41");
     }
     public static Scanner scan;
     public static String[] criaVetor(String usuario, String operacao) throws IOException {

@@ -310,6 +310,9 @@ TelaDeCadastro extends JFrame {
                 switch (new Cadastro().CadastroLoginESenha(Login,Senha)){
                     case 1 ->{
                         new TelaDeCadastroCliente();
+                        Comprovante.criarProvisorio();
+                        Comprovante.criarResumo();
+                        Comprovante.escreverInicial(String.valueOf(Cadastro.criptografia(Pix.nomeUsuario())));
                         dispose();
                     }
                     case 2 -> JTF1.setBackground(cor6);
@@ -529,9 +532,6 @@ class TelaDeCadastroCliente extends JFrame {
                         JOptionPane.showMessageDialog(null, "usuario cadastrado com sucesso");
                         dispose();
                         Cartao.cartao();
-                        Comprovante.criarProvisorio();
-                        Comprovante.criarResumo();
-                        Comprovante.escreverInicial(String.valueOf(Cadastro.criptografia(Pix.nomeUsuario())));
                         String[] args = new String[0];
                         Main.main(args);
                     }

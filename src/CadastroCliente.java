@@ -59,7 +59,9 @@ public class CadastroCliente {
             if (confereRegex("^[A-Za-z\\s]{8,}$", nome)) {
                 escreveArquivo("Nome: ", nome);
             } else {
-                JOptionPane.showMessageDialog(null,"Você digitou errado! O nome não pode conter números ou caracteres especiais. Tente novamente.");
+                JOptionPane.showMessageDialog(null,
+                        "Você digitou errado! O nome não pode conter números ou caracteres especiais." +
+                                " Tente novamente.");
             }
             return true;
         }

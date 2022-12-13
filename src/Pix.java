@@ -21,6 +21,9 @@ public class Pix {
         return a;
     }
 
+/*    public static void main(String[] args) throws IOException {
+        fazerPix("ProjetoScapeBank","2000.00");
+    }*/
     public static void fazerPix(String usuario, String valorPix) throws IOException {
         String userLeitura = nomeUsuario();
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
@@ -30,6 +33,7 @@ public class Pix {
             if (!verificaUsuario(usuario) || usuario.equals(userEnvio)){
                 JOptionPane.showMessageDialog(null,
                         "Usuário não encontrado. Tente novamente.");
+                break;
             }
         } while (!verificaUsuario(usuario) || usuario.equals(userEnvio));
         double saldo, Pix;
