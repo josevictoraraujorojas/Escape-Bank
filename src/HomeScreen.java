@@ -376,8 +376,12 @@ String usuario, valor;
             UIManager.put ("Panel.background", cor1);
             usuario = JTF1.getText();
             valor = JtF2.getText();
+            valor = valor.substring(2);
             try {
-                Pix.fazerPix(usuario,valor);
+                if (Pix.fazerPix(usuario,valor)){
+                    new HomeScreen();
+                    dispose();
+                }
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

@@ -26,18 +26,18 @@ public class Comprovante {
         File resumoOperacoes = new File(String.valueOf(URI2));
         return resumoOperacoes;
     }
-    public static void criarResumo() throws IOException {
+/*    public static void criarResumo() throws IOException {
         String cripto = String.valueOf(Cadastro.criptografia(Pix.nomeUsuario()));
         String uri = "H:\\Meu Drive\\ScapeBank\\Login\\" + cripto + "\\resumoOperacoes.txt";
         File a = new File(uri);
         a.createNewFile();
-    }
-    public static void criarProvisorio() throws IOException {
+    }*/
+/*    public static void criarProvisorio() throws IOException {
         String cripto = String.valueOf(Cadastro.criptografia(Pix.nomeUsuario()));
         String uri = "H:\\Meu Drive\\ScapeBank\\Login\\" + cripto + "\\provisorio.txt";
         File a = new File(uri);
         a.createNewFile();
-    }
+    }*/
     public static void escreverInicial(String usuario) throws IOException {
         File resumoOperacoes = acessarResumo(usuario);
         FileWriter escreve = new FileWriter(resumoOperacoes);

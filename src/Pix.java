@@ -24,7 +24,7 @@ public class Pix {
 /*    public static void main(String[] args) throws IOException {
         fazerPix("ProjetoScapeBank","2000.00");
     }*/
-    public static void fazerPix(String usuario, String valorPix) throws IOException {
+    public static boolean fazerPix(String usuario, String valorPix) throws IOException {
         String userLeitura = nomeUsuario();
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
         do {
@@ -61,6 +61,8 @@ public class Pix {
         preencheDados(vetor, "aaaaaaaa", "R$:" + valorPix);
         escrevePix(userEnvio, vetor);
         escrevePix(usuario, vetor);
+        JOptionPane.showMessageDialog(null, "Operação cadastrada com sucesso!");
+        return true;
     }
     public static boolean verificaUsuario(String usuario) {
         File URI = new File((new File(uri) + "\\" + usuario));

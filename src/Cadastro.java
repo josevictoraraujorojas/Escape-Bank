@@ -33,6 +33,14 @@ public class Cadastro {
                 new SetPaths().SavePaths(new StringBuilder("\n" + login),new URIpadrao().URILoginUser(), true);
                 File file = new File(new URIpadrao().URI()+new SetPaths().GetPaths(new URIpadrao().URICacheIdUser())+"\\senhadeoperação.txt");
                 file.createNewFile();
+                String uri = "H:\\Meu Drive\\ScapeBank\\Login\\" +
+                        new SetPaths().GetPaths(new URIpadrao().URICacheIdUser()) + "\\provisorio.txt";
+                File a = new File(uri);
+                a.createNewFile();
+                String uri2 = "H:\\Meu Drive\\ScapeBank\\Login\\" + new SetPaths().GetPaths(new URIpadrao().URICacheIdUser()) + "\\resumoOperacoes.txt";
+                File b = new File(uri2);
+                b.createNewFile();
+                Comprovante.escreverInicial(String.valueOf(new SetPaths().GetPaths(new URIpadrao().URICacheIdUser())));
 
                 return 1;
 
