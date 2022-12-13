@@ -528,6 +528,7 @@ class TelaDeCadastroCliente extends JFrame {
                         Cartao.cartao();
                         Comprovante.arquivoProvisorio(String.valueOf(Cadastro.criptografia(Pix.nomeUsuario())));
                         Comprovante.acessarResumo(String.valueOf(Cadastro.criptografia(Pix.nomeUsuario())));
+                        Comprovante.escreverInicial(String.valueOf(Cadastro.criptografia(Pix.nomeUsuario())));
                         String[] args = new String[0];
                         Main.main(args);
                     }

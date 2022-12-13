@@ -67,7 +67,6 @@ public class Emprestimo {
     }
     public String[] emprestimo(Float valorDoEmprestimo) throws FileNotFoundException {
         StringBuilder impressao = new StringBuilder("Parcelas Disponíveis:\n");
-
         String id = new String(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()));
         id = String.valueOf(Cadastro.criptografia(id));
         String caminho = new URIpadrao().URI() + id + "\\CadastroCliente.txt";
@@ -88,7 +87,7 @@ public class Emprestimo {
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
         String valorEmprestimo = String.valueOf(valorDoEmprestimo);
         String valorTotal = valorEmprestimo.replace('.',',').
-                substring(0, valorEmprestimo.indexOf('.')+3);
+                substring(0, valorEmprestimo.indexOf(',')+3);
         String vetor[] = Pix.criaVetor();
         Pix.preencheDados(vetor, "gggggggggggggggggggggggg", "//Parcelas:." + parcelas);
         Pix.dadosCadastroReceptor(userEnvio, vetor);
