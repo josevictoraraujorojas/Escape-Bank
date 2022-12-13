@@ -402,7 +402,7 @@ TelaDeCadastro extends JFrame {
         JL2.setBounds(10, 267, 70, 30);
         JL2.setVisible(true);
 
-        JL3 = new JLabel("<html>Bem vindo ao Escape-Bank<br> de um Escape na burocracia!</html>");
+        JL3 = new JLabel("<html>Bem vindo ao Scape-Bank<br> de um Scape na burocracia!</html>");
         JL3.setFont(new Font("arial", Font.BOLD, 20));
         JL3.setForeground(cor2);
         JL3.setBounds(10, 10, 450, 60);
