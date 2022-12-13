@@ -33,10 +33,6 @@ public class SaldoEExtrato {
         escreve.close();
         return extratoFinal;
     }
-
-/*    public static void main(String[] args) throws IOException {
-        System.out.println(retornarExtrato());
-    }*/
     public static String[] criaVetor(String extrato) throws IOException {
         String vetor[] = extrato.split("\t");
         return vetor;

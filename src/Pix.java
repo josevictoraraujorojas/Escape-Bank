@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
@@ -20,21 +21,20 @@ public class Pix {
         return a;
     }
 
-    public static void main(String[] args) throws IOException {
-        scan = new Scanner(System.in);
+    public static void fazerPix(String usuario, String valorPix) throws IOException {
         String userLeitura = nomeUsuario();
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
         do {
             System.out.println("Usuario:");
-            usuario = String.valueOf(Cadastro.criptografia(scan.nextLine()));
+            usuario = String.valueOf(Cadastro.criptografia(usuario));
             if (!verificaUsuario(usuario) || usuario.equals(userEnvio)){
-                System.out.print("Usuário não encontrado. Tente novamente.");
+                JOptionPane.showMessageDialog(null,
+                        "Usuário não encontrado. Tente novamente.");
             }
         } while (!verificaUsuario(usuario) || usuario.equals(userEnvio));
         double saldo, Pix;
         do {
             System.out.println("Valor: ");
-            valorPix = scan.nextLine();
             Pix = Double.parseDouble(valorPix);
             saldo = SaldoEExtrato.retornarExtrato();
         } while (saldo <= Pix);

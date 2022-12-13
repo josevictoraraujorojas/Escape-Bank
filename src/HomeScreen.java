@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class HomeScreen extends JFrame
 {
@@ -376,7 +377,11 @@ String usuario, valor;
             UIManager.put ("Panel.background", cor1);
             usuario = JTF1.getText();
             valor = JtF2.getText();
-            JOptionPane.showMessageDialog(null,usuario+valor);
+            try {
+                Pix.fazerPix(usuario,valor);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         JB3 = new JButton("<- voltar");
@@ -805,8 +810,20 @@ class TelaDeExtrato extends JFrame
         }
 
 
-
-        JCB = new JComboBox<>(ProcessarVetor(comp));
+        String userEnvio = String.valueOf(Cadastro.criptografia(SaldoEExtrato.userLeitura));
+        Scanner scan2 = null;
+        try {
+            scan2 = new Scanner(SaldoEExtrato.acessarResumo(userEnvio));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        String extrato = scan2.nextLine();
+        extrato = scan2.nextLine();
+        try {
+            JCB = new JComboBox<>(ProcessarVetor(SaldoEExtrato.Extrato(extrato)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         JCB.setBounds(50, 250, 1000, 30);
         JCB.setBackground(cor2);
         JCB.setForeground(cor1);
@@ -869,6 +886,7 @@ class TelaDeExtrato extends JFrame
             vetor2 = vetor[i].split("-");
 
             for (int j = 0; j < vetor2.length; j++) {
+                vetor2[j] = "." + vetor2[j] + ".|";
                 recursao(vetor2[j]);
                 vetor2[j] = palavra;
 
