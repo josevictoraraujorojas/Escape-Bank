@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class SaldoEExtrato {
@@ -9,7 +8,6 @@ public class SaldoEExtrato {
         File resumoOperacoes = new File(String.valueOf(URI2));
         return resumoOperacoes;
     }
-    public static File nome2 = new File(new URIpadrao().URICacheUserName());
     public static File nome = new File(new URIpadrao().URICacheIdUser());
     public static String userEnvio;
     public static File userNome = new File("C:\\EscapeBankCache\\username.txt");

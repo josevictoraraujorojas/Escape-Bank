@@ -89,11 +89,10 @@ public class Emprestimo {
     public static void anotarResumo(float valorDoEmprestimo, int parcelas, String imprimir) throws IOException {
         String userLeitura = scan2.nextLine();
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
-        String valorTotal = String.valueOf(valorEmprestimoEscolhido(valorDoEmprestimo, 0.04f, parcelas)).
+        String valorTotal = String.valueOf(valorDoEmprestimo).
                 replace('.',',');
         String vetor[] = Pix.criaVetor();
-        Pix.preencheDados(vetor, "gggggggggggggggggggggggg", "Valor.Empréstimo:." + valorDoEmprestimo +
-                "//Parcelas:." + parcelas);
+        Pix.preencheDados(vetor, "gggggggggggggggggggggggg", "//Parcelas:." + parcelas);
         Pix.dadosCadastroReceptor(userEnvio, vetor);
         String loginEnvio = Pix.dadosLogin(userEnvio);
         Pix.preencheDados(vetor, "iiiiiiiiiiiiiiii", "ScapeBank");

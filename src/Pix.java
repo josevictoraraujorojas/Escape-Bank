@@ -7,7 +7,7 @@ public class Pix {
             GetPaths(new URIpadrao().URICacheIdUser()));
     public static StringBuilder URI = new StringBuilder(new URIpadrao().URI()+
             IdPaths +"\\dadosPix.txt");
-    public static Scanner scan, scan2, scan4;
+    public static Scanner scan, scan2, scan3, scan4;
     public static String usuario, userEnvio, valorPix;
     public static Random rd = new Random();
     public static File padraoPix = new File("H:\\Meu Drive\\ScapeBank\\Pattern\\padraoPix.txt");
@@ -40,6 +40,9 @@ public class Pix {
         preencheDados(vetor, "ffffffff", "Corrente");
         preencheDados(vetor, "hhhhhhhhhhhhhhhhhhhh", "ScapeBank");
         String numeroOp = String.valueOf(rd.nextInt(0,100));
+        while (!confereOperacao(userEnvio, numeroOp)){
+            numeroOp = String.valueOf(rd.nextInt(0,100));
+        };
         preencheDados(vetor, "jjjj", loginEnvio.substring(0,3) + numeroOp);
         preencheDados(vetor, "aaaaaaaa", "R$:" + valorPix);
         escrevePix(userEnvio, vetor);
@@ -49,6 +52,19 @@ public class Pix {
         File URI = new File((new File(uri) + "\\" + usuario));
         if (URI.exists())
             return true;
+        return false;
+    }
+    public static boolean confereOperacao(String userName, String operacao) throws FileNotFoundException {
+        String nick = String.valueOf(acessarResumo(userName));
+        File dadosResumo = new File(String.valueOf(nick));
+        scan3 = new Scanner(dadosResumo);
+        String opExistente;
+        while (scan3.hasNextLine()){
+            opExistente = scan3.nextLine();
+            if (opExistente.contains(operacao)){
+                return true;
+            }
+        }
         return false;
     }
 /*    public static void alertarPix(String usuario) throws IOException {
