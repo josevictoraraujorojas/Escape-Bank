@@ -855,6 +855,12 @@ class TelaDeExtrato extends JFrame
                 String a = Objects.requireNonNull((String) JCB.getSelectedItem()).replace(" &nbsp;"," ").substring(46,77);
                 a= a.replace(" ","");
                 System.out.println(a);
+                String usuario = String.valueOf(Cadastro.criptografia(String.valueOf(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()))));
+                try {
+                    Comprovante.chamarComprovante(usuario, a);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
