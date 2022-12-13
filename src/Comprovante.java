@@ -11,7 +11,6 @@ public class Comprovante {
         StringBuilder URI2 = new StringBuilder(new URIpadrao().URI()+ //ele lê no resumo de operações, salva em
                 usuario +"\\provisorio.txt"); //um vetor e do vetor ele imprime no padrão que o comprovante lê
         File provisorio = new File(String.valueOf(URI2)); //neste arquivo provisório.
-        provisorio.createNewFile();
         return provisorio;
     }
     static {
@@ -25,8 +24,19 @@ public class Comprovante {
         StringBuilder URI2 = new StringBuilder(new URIpadrao().URI()+ //pode ver o código no Pix -> escrevePix
                 usuario +"\\resumoOperacoes.txt"); // e escrever no padrão que rola no preenche dados
         File resumoOperacoes = new File(String.valueOf(URI2));
-        resumoOperacoes.createNewFile();
         return resumoOperacoes;
+    }
+    public static void criarResumo() throws IOException {
+        String cripto = String.valueOf(Cadastro.criptografia(Pix.nomeUsuario()));
+        String uri = "H:\\Meu Drive\\ScapeBank\\Login\\" + cripto + "\\resumoOperacoes.txt";
+        File a = new File(uri);
+        a.createNewFile();
+    }
+    public static void criarProvisorio() throws IOException {
+        String cripto = String.valueOf(Cadastro.criptografia(Pix.nomeUsuario()));
+        String uri = "H:\\Meu Drive\\ScapeBank\\Login\\" + cripto + "\\provisorio.txt";
+        File a = new File(uri);
+        a.createNewFile();
     }
     public static void escreverInicial(String usuario) throws IOException {
         File resumoOperacoes = acessarResumo(usuario);
@@ -34,6 +44,7 @@ public class Comprovante {
         escreve.write(".\t.\t.\t.\tjjjj\t.\tR$:0,00\t.\tbbbb\t.\t.\t." +
                 "\tcccccccccccccccccccccccccccccc\tdddddddddddddd\teeeeeeeeeeeeeeee\tffffffff\t.\t.\t." +
                 "\tgggggggggggggggggggggggg\thhhhhhhhhhhhhhhhhhhh\tiiiiiiiiiiiiiiii\t.\t.\t.\t.\t.");
+        escreve.write("\n");
         escreve.close();
     }
     public static void escreveProvisorio(String usuario, String vetor[]) throws IOException {

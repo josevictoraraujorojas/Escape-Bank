@@ -86,8 +86,8 @@ public class Emprestimo {
         String userLeitura = scan2.nextLine();
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
         String valorEmprestimo = String.valueOf(valorDoEmprestimo);
-        String valorTotal = valorEmprestimo.replace('.',',').
-                substring(0, valorEmprestimo.indexOf(',')+3);
+        String valorTotal = valorEmprestimo.replace(',','.').
+                substring(0, valorEmprestimo.indexOf('.')+2);
         String vetor[] = Pix.criaVetor();
         Pix.preencheDados(vetor, "gggggggggggggggggggggggg", "//Parcelas:." + parcelas);
         Pix.dadosCadastroReceptor(userEnvio, vetor);

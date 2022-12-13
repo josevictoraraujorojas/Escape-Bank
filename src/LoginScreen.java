@@ -283,6 +283,7 @@ class TelaDeCadastro extends JFrame {
             }
         });
         setUndecorated(true);
+        setLocationRelativeTo(null);
 
         /* configurações do JButton */
         JB1 = new JButton("ok");
@@ -526,8 +527,8 @@ class TelaDeCadastroCliente extends JFrame {
                         JOptionPane.showMessageDialog(null, "usuario cadastrado com sucesso");
                         dispose();
                         Cartao.cartao();
-                        Comprovante.arquivoProvisorio(String.valueOf(Cadastro.criptografia(Pix.nomeUsuario())));
-                        Comprovante.acessarResumo(String.valueOf(Cadastro.criptografia(Pix.nomeUsuario())));
+                        Comprovante.criarProvisorio();
+                        Comprovante.criarResumo();
                         Comprovante.escreverInicial(String.valueOf(Cadastro.criptografia(Pix.nomeUsuario())));
                         String[] args = new String[0];
                         Main.main(args);
