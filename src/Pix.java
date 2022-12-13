@@ -26,9 +26,14 @@ public class Pix {
                 System.out.print("Usuário não encontrado. Tente novamente.");
             }
         } while (!verificaUsuario(usuario) || usuario.equals(userEnvio));
-        System.out.println("Valor: ");
-        valorPix = scan.nextLine();
-        valorPix = valorPix.replace('.',',');
+        double saldo, Pix;
+        do {
+            System.out.println("Valor: ");
+            valorPix = scan.nextLine();
+            Pix = Double.parseDouble(valorPix);
+            saldo = SaldoEExtrato.retornarExtrato();
+        } while (saldo <= Pix);
+        valorPix = valorPix.replace('.', ',');
         String vetor[] = criaVetor();
         dadosCadastro(userEnvio, vetor);
         dadosCadastroReceptor(usuario, vetor);
@@ -40,8 +45,8 @@ public class Pix {
         preencheDados(vetor, "ffffffff", "Corrente");
         preencheDados(vetor, "hhhhhhhhhhhhhhhhhhhh", "ScapeBank");
         String numeroOp = String.valueOf(rd.nextInt(0,100));
-        while (!confereOperacao(userEnvio, numeroOp)){
-            numeroOp = String.valueOf(rd.nextInt(0,100));
+        while (!confereOperacao(userEnvio, numeroOp)) {
+            numeroOp = String.valueOf(rd.nextInt(0, 100));
         };
         preencheDados(vetor, "jjjj", loginEnvio.substring(0,3) + numeroOp);
         preencheDados(vetor, "aaaaaaaa", "R$:" + valorPix);

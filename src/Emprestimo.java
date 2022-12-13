@@ -29,11 +29,9 @@ public class Emprestimo {
         }
         return impressao;
     }
-
     public static float valorEmprestimoEscolhido(float valor, float taxaDeJuros, int parcela) {
         return (float) (valor * Math.pow((1 + taxaDeJuros), parcela));
     }
-
     public static float rendaTotal(String caminho) throws FileNotFoundException {
         float renda = 0;
         Scanner lerArquivo = new Scanner(new File(caminho));
@@ -67,7 +65,6 @@ public class Emprestimo {
         }
 
     }
-
     public String[] emprestimo(Float valorDoEmprestimo) throws FileNotFoundException {
         StringBuilder impressao = new StringBuilder("Parcelas Disponíveis:\n");
 
@@ -89,8 +86,9 @@ public class Emprestimo {
     public static void anotarResumo(float valorDoEmprestimo, int parcelas, String imprimir) throws IOException {
         String userLeitura = scan2.nextLine();
         userEnvio = String.valueOf(Cadastro.criptografia(userLeitura));
-        String valorTotal = String.valueOf(valorDoEmprestimo).
-                replace('.',',');
+        String valorEmprestimo = String.valueOf(valorDoEmprestimo);
+        String valorTotal = valorEmprestimo.replace('.',',').
+                substring(0, valorEmprestimo.indexOf('.')+3);
         String vetor[] = Pix.criaVetor();
         Pix.preencheDados(vetor, "gggggggggggggggggggggggg", "//Parcelas:." + parcelas);
         Pix.dadosCadastroReceptor(userEnvio, vetor);

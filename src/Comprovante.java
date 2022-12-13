@@ -7,10 +7,11 @@ public class Comprovante {
     static Color cor1 = new PaletaDeCores().cor1();
     public static File rostoComprovante = new File("H:\\Meu Drive\\ScapeBank\\Pattern\\RostoComprovante.txt");
     public static Scanner rosto; //só pra ler o comprovante padrão, na pasta Pattern ficam arquivos padrão
-    public static File arquivoProvisorio(String usuario){ //aqui ele cria um arquivo provisório
+    public static File arquivoProvisorio(String usuario) throws IOException { //aqui ele cria um arquivo provisório
         StringBuilder URI2 = new StringBuilder(new URIpadrao().URI()+ //ele lê no resumo de operações, salva em
                 usuario +"\\provisorio.txt"); //um vetor e do vetor ele imprime no padrão que o comprovante lê
         File provisorio = new File(String.valueOf(URI2)); //neste arquivo provisório.
+        provisorio.createNewFile();
         return provisorio;
     }
     static {
@@ -43,7 +44,7 @@ public class Comprovante {
         readPrintFile(usuario);
     }
     public static void main(String[] args) throws IOException {
-        chamarComprovante("97114105971109710910111510710511697", "ari43");
+        chamarComprovante("7411111510111810599116111114", "Jos17");
     }
     public static Scanner scan;
     public static String[] criaVetor(String usuario, String operacao) throws IOException {
