@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Notificacao {
     public Notificacao() throws IOException {
-        String uri = new URIpadrao().URI()+"103117103117116101115116101"/*Cadastro.criptografia(String.valueOf(new SetPaths().GetPaths(new URIpadrao().URICacheUserName())))*/ +"\\notificação.txt";
+        String uri = new URIpadrao().URI()+Cadastro.criptografia(String.valueOf(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()))) +"\\notificação.txt";
         FileWriter file = new FileWriter(uri,false);
         File file2 = new File(uri);
         BufferedWriter gravar = new BufferedWriter(file);
