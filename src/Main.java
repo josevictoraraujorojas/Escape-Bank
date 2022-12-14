@@ -29,7 +29,7 @@ public class Main extends  Thread{
             try {
                 String uri = new URIpadrao().URI()+"103117103117116101115116101"/*Cadastro.criptografia(String.valueOf(new SetPaths().GetPaths(new URIpadrao().URICacheUserName())))*/ +"\\notificação.txt";
                 FileWriter file = null;
-                file = new FileWriter(uri,true);
+                file = new FileWriter(uri,false);
                 File file2 = new File(uri);
 
                 BufferedWriter gravar = new BufferedWriter(file);
@@ -45,7 +45,6 @@ public class Main extends  Thread{
                 }
                 gravar.write("sem notificações");
                 gravar.flush();
-                gravar.close();
             } catch (IOException e)
             {
                 throw new RuntimeException(e);
