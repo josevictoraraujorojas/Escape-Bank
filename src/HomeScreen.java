@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
@@ -49,7 +51,6 @@ public class HomeScreen extends JFrame
 
         int Userlength = new UserName().User().length();
         Userlength = Userlength *20;
-        String a = String.valueOf(new SaldoUser().SaldoUsuario());
         int Saldolenght = (int) saldoUser.SaldoUsuario()*110;
 
         JL1 = new JLabel("olá, "+ userName.User());
@@ -98,12 +99,9 @@ public class HomeScreen extends JFrame
         JB1.setFont(new Font("arial", Font.BOLD, 20));
         JB1.setForeground(cor5);
         JB1.setBackground(cor4);
-        JB1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new TelaDeExtrato();
-                dispose();
-            }
+        JB1.addActionListener(e -> {
+            new TelaDeExtrato();
+            dispose();
         });
         JB1.addMouseListener(new MouseAdapter()
         {
@@ -163,16 +161,13 @@ public class HomeScreen extends JFrame
         JB4.setBackground(cor2);
         JB4.setBorderPainted(false);
         JB4.setVisible(true);
-        JB4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    new TelaDeCartaoDeCredito();
-                } catch (FileNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                }
-                dispose();
+        JB4.addActionListener(e -> {
+            try {
+                new TelaDeCartaoDeCredito();
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
             }
+            dispose();
         });
         JB4.addMouseListener(new MouseAdapter()
         {
@@ -255,52 +250,6 @@ public class HomeScreen extends JFrame
         new HomeScreen();
     }
 }
-class menu extends JFrame{
-    Image iconTitulo = new Icons().icon1();
-    Color cor1 = new PaletaDeCores().cor1();
-    Icon menu = new ImageIcon(new Icons().icon6());
-
-    Color cor2 = new PaletaDeCores().cor2();
-
-
-JButton JB6;
-
-    public menu(){
-        setSize(300, 600);
-        setIconImage(iconTitulo);
-        setTitle("Scape Bank");
-        getContentPane().setBackground(cor1);
-        setLayout(null);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter()
-        {
-            public void windowClosing(WindowEvent evt)
-            {
-            }
-        });
-
-        JB6 = new JButton(menu);
-        JB6.setBounds(10,10,50,50);
-        JB6.setFont(new Font("arial", Font.BOLD, 20));
-        JB6.setForeground(cor2);
-        JB6.setBackground(cor2);
-        JB6.setOpaque(false);
-        JB6.setBorderPainted(false);
-        JB6.setFocusPainted(false);
-        JB6.setVisible(true);
-        JB6.addActionListener(e -> {
-            dispose();
-            new HomeScreen();
-        });
-        add(JB6);
-
-        setVisible(true);
-
-
-    }
-
-}
 class AreaPix extends JFrame{
 
     Image iconTitulo = new Icons().icon1();
@@ -379,6 +328,7 @@ String usuario, valor;
             valor = valor.substring(2);
             try {
                 if (Pix.fazerPix(usuario,valor)){
+                    notificao(valor,usuario);
                     new HomeScreen();
                     dispose();
                 }
@@ -519,6 +469,15 @@ String usuario, valor;
         add(Icon1);
         add(Icon2);
         setVisible(true);
+    }
+    public void notificao(String valor, String usuario) throws IOException
+    {
+        String uri = new URIpadrao().URI()+Cadastro.criptografia(usuario) +"\\notificação.txt";
+        FileWriter file = new FileWriter(uri,true);
+        BufferedWriter gravar = new BufferedWriter(file);
+        gravar.write("\nvocê recebeu uma tranferencia|no valor de: R$"+valor+"|de "+ new SetPaths().GetPaths(new URIpadrao().URICacheUserName()) );
+        gravar.flush();
+        gravar.close();
     }
 }
 class TelaDeEmprestimo extends JFrame{
@@ -761,21 +720,12 @@ class TelaDeExtrato extends JFrame
     Color cor1 = new PaletaDeCores().cor1();
     Color cor2 = new PaletaDeCores().cor2();
     Color cor3 = new PaletaDeCores().cor3();
-    Color cor4 = new PaletaDeCores().cor4();
-    Color cor5 = new PaletaDeCores().cor5();
+
     Color cor7 = new PaletaDeCores().cor7();
-    Color cor8 = new PaletaDeCores().cor8();
-    JButton JB1,JB2,JB3,JB4,JB5,JB6;
-    JLabel JL1,JL2,JL3, JL4,JL5,JL6;
+    JButton JB1,JB3;
+    JLabel JL1,JL2;
     JComboBox<String> JCB;
     static String palavra;
-
-    String [] comp = {
-            ".ari04.|.pedroooo.|.pix.|.R$400.|",
-            ".ari05.|.pedro.|.pix.|.R$500000.|",
-            ".ari06.|.pedro.|.pix.|.R$60.|",
-            ".ari07.|.pedro.|.pix.|.R$70.|",
-            ".ari08.|.pedro.|.pix.|.R$80.|"};
 
     public TelaDeExtrato()
     {
@@ -798,7 +748,7 @@ class TelaDeExtrato extends JFrame
         JL1.setForeground(cor2);
         JL1.setFont(new Font("Arial", Font.BOLD, 50));
         JL1.setVisible(true);String b = " ";
-        String text =b.repeat(22) +"operacao"+b.repeat(23+24)+"destino"+b.repeat(24+23)+"transação"+b.repeat(23+25)+"valor"+b.repeat(25);
+        String text =b.repeat(22) +"operacão"+b.repeat(23+24)+"destino"+b.repeat(24+23)+"transação"+b.repeat(23+25)+"valor"+b.repeat(25);
 
         JL2 = new JLabel(text);
         JL2.setBounds(50, 220, 1000, 30);
@@ -807,25 +757,7 @@ class TelaDeExtrato extends JFrame
         JL2.setOpaque(true);
         JL2.setFont(new Font("Arial", Font.BOLD, 15));
         JL2.setVisible(true);
-        String[]s1 = new String[0];
-        for (int i = 0; i < s1.length; i++) {
-           s1[i]= Arrays.toString(ProcessarVetor(comp));
-        }
 
-/*
-        String userEnvio = String.valueOf(Cadastro.criptografia(SaldoEExtrato.userLeitura));
-        Scanner scan2 = null;
-        try {
-            scan2 = new Scanner(SaldoEExtrato.acessarResumo(userEnvio));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        String extrato = scan2.nextLine();
-        extrato = scan2.nextLine();
-        try {
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }*/
         try {
             JCB = new JComboBox<>(ProcessarVetor(SaldoEExtrato.mandarvetor()));
         } catch (IOException e) {
@@ -849,18 +781,15 @@ class TelaDeExtrato extends JFrame
         JB1.setFont(new Font("Arial", Font.BOLD, 20));
         JB1.setForeground(cor3);
         JB1.setVisible(true);
-        JB1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String a = Objects.requireNonNull((String) JCB.getSelectedItem()).replace(" &nbsp;"," ").substring(46,77);
-                a= a.replace(" ","");
-                System.out.println(a);
-                String usuario = String.valueOf(Cadastro.criptografia(String.valueOf(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()))));
-                try {
-                    Comprovante.chamarComprovante(usuario, a);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+        JB1.addActionListener(e -> {
+            String a = Objects.requireNonNull((String) JCB.getSelectedItem()).replace(" &nbsp;"," ").substring(46,77);
+            a= a.replace(" ","");
+            System.out.println(a);
+            String usuario = String.valueOf(Cadastro.criptografia(String.valueOf(new SetPaths().GetPaths(new URIpadrao().URICacheUserName()))));
+            try {
+                Comprovante.chamarComprovante(usuario, a);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
 
@@ -889,7 +818,6 @@ class TelaDeExtrato extends JFrame
 
     public static String[] ProcessarVetor(String[] vetor){
 
-        String sj ;
         String[] vetor2;
 
 
@@ -905,23 +833,23 @@ class TelaDeExtrato extends JFrame
 
 
             }
-            String pors = Arrays.toString(vetor2);
-            vetor[i] = pors;
+            String array = Arrays.toString(vetor2);
+            vetor[i] = array;
 
 
         }
-        StringBuilder concat = new StringBuilder("");
+        StringBuilder concat = new StringBuilder();
 
 
         for (String s : vetor) {
-            String a = s + "_\n";
+            String a = s + "_";
             concat.append(a);
         }
 
         String arrumar = String.valueOf(concat);
         arrumar= arrumar.replace(", .","");
-        arrumar= arrumar.replace("]","");arrumar= arrumar.replace("[","");
-        arrumar= arrumar.replace("."," ");
+        arrumar= arrumar.replace("]","").replace("[","");
+        arrumar= arrumar.replace(".","");
         arrumar= arrumar.replace("|","");
         arrumar= arrumar.replace(" "," &nbsp;");
 
@@ -947,7 +875,8 @@ new TelaDeExtrato();
         {
             recursao(tratamento.replace(".", ". "));
         }
-        else if (tratamento.length() > 33) {
+        else if (tratamento.length() > 33)
+        {
             recursao(tratamento.replace(" |", "|"));
         } else {palavra = tratamento;}
     }
