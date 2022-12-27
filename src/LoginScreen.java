@@ -114,6 +114,7 @@ public class LoginScreen extends JFrame
 
         /* configurações do JTextField */
         JTF = new JTextField("digite seu nome de usuario");
+        JTF = new JTextField("admpedroferreira");
         JTF.setBounds(300, 276, 300, 40);
         JTF.setBackground(cor2);
         JTF.setForeground(cor3);
@@ -141,6 +142,7 @@ public class LoginScreen extends JFrame
         });
 
         JPF = new JPasswordField("digite a sua senha");
+        JPF = new JPasswordField("Admpedro19");
         JPF.setBounds(300, 336, 300, 40);
         JPF.setBackground(cor2);
         JPF.setForeground(cor3);

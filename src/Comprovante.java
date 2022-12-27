@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Comprovante {
@@ -81,6 +82,7 @@ public class Comprovante {
                 }
             }
         }
+        System.out.println(Arrays.toString(vetor));
         return vetor;
     }
     public static void readPrintFile(String usuario) throws IOException {  //aqui ele lê o provisório e imprime o comprovante
@@ -88,6 +90,7 @@ public class Comprovante {
         UIManager.put ("Panel.background", cor1);
         StringBuilder impressao = new StringBuilder();
         Scanner scan = new Scanner(arquivoProvisorio(usuario));
+        rosto = new Scanner(rostoComprovante);
         String pix;
         while (rosto.hasNextLine()) {
             pix = scan.next();

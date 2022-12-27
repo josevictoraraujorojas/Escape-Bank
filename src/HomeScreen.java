@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
@@ -30,6 +28,9 @@ public class HomeScreen extends JFrame
     int Y1 =300, Y2 =150;
 
     public HomeScreen(){
+        if (userName == null && avatar == null && pix == null && emprestimo == null){
+            JOptionPane.showMessageDialog(null,"erro!!!\n sem internet\nverifique sua conexão com a internet");
+        }
 
         setSize(800, 600);
         setIconImage(iconTitulo);
@@ -100,7 +101,7 @@ public class HomeScreen extends JFrame
         JB1.setForeground(cor5);
         JB1.setBackground(cor4);
         JB1.addActionListener(e -> {
-            new TelaDeExtrato();
+            new AreaPix.TelaDeExtrato();
             dispose();
         });
         JB1.addMouseListener(new MouseAdapter()
@@ -142,7 +143,7 @@ public class HomeScreen extends JFrame
         JB3.setVisible(true);
         JB3.addActionListener(e -> {
             dispose();
-            new TelaDeEmprestimo();
+            new AreaPix.TelaDeEmprestimo();
 
         });
         JB3.addMouseListener(new MouseAdapter()
@@ -246,9 +247,6 @@ public class HomeScreen extends JFrame
         g.dispose();
     }
 
-    public static void main(String[] args) {
-        new HomeScreen();
-    }
 }
 class AreaPix extends JFrame{
 
@@ -328,7 +326,7 @@ String usuario, valor;
             valor = valor.substring(2);
             try {
                 if (Pix.fazerPix(usuario,valor)){
-                    notificao(valor,usuario);
+                    Notificacao.GravarNotificao(usuario, valor);
                     new HomeScreen();
                     dispose();
                 }
@@ -470,17 +468,8 @@ String usuario, valor;
         add(Icon2);
         setVisible(true);
     }
-    public void notificao(String valor, String usuario) throws IOException
-    {
-        String uri = new URIpadrao().URI()+Cadastro.criptografia(usuario) +"\\notificação.txt";
-        FileWriter file = new FileWriter(uri,true);
-        BufferedWriter gravar = new BufferedWriter(file);
-        gravar.write("\nvocê recebeu uma tranferencia|no valor de: R$"+valor+"|de "+ new SetPaths().GetPaths(new URIpadrao().URICacheUserName()) );
-        gravar.flush();
-        gravar.close();
-    }
-}
-class TelaDeEmprestimo extends JFrame{
+
+public static class TelaDeEmprestimo extends JFrame{
 
 
     Image iconTitulo = new Icons().icon1();
@@ -702,9 +691,6 @@ class TelaDeEmprestimo extends JFrame{
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new TelaDeEmprestimo();
-    }
     public void atualiza(){
         setSize(801,600);
         setSize(800,600);
@@ -713,7 +699,7 @@ class TelaDeEmprestimo extends JFrame{
 
 
 }
-class TelaDeExtrato extends JFrame
+static class TelaDeExtrato extends JFrame
 {
     Image iconTitulo = new Icons().icon1();
 
@@ -864,11 +850,7 @@ class TelaDeExtrato extends JFrame
     }
 
 
-    public static void main(String[] args) {
-new TelaDeExtrato();
 
-
-    }
     public static void recursao(String tratamento) {
 
         if (tratamento.length() < 33)
@@ -880,4 +862,4 @@ new TelaDeExtrato();
             recursao(tratamento.replace(" |", "|"));
         } else {palavra = tratamento;}
     }
-}
+}}
